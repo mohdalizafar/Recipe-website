@@ -1,0 +1,36 @@
+{
+  "title": "Example Recipe",
+  "slideshowImages": [
+    "images/meal_placeholder.png",
+    "images/meal_placeholder.png",
+    "images/meal_placeholder.png"
+  ],
+  "ingredients": [
+    {
+      "ingredient": "ingrediant 1",
+      "unit": "grams"
+    },
+    {
+      "ingredient": "ingrediant 2",
+      "unit": "Litres"
+    },
+    {
+      "ingredient": "ingrediant 3",
+      "unit": "grams"
+    }
+  ],
+  "steps": [
+    {
+      "text": "description of step 1",
+      "image": "images/meal_placeholder.png"
+    },
+    {
+      "text": "description of step 2",
+      "image": "images/meal_placeholder.png"
+    },
+    {
+      "text": "description of step 3",
+      "image": "images/meal_placeholder.png"
+    }
+  ]
+}

@@ -7,12 +7,190 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+   <div class="container">
         <main class="content">
-            <h1>Recipe X</h1>
+            <!-- Image Slideshow Section -->
+            <div class="slideshow-container" id="slideshow">
+                <div class="slideshow-track" id="slideshowTrack"></div>
+                <div class="slideshow-dots" id="slideshowDots"></div>
+                <button class="slideshow-arrow slideshow-arrow-left" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="slideshow-arrow slideshow-arrow-right" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+            
+            <!-- Title Section -->
+            <div class="content-title">
+                <h1 id="contentTitle">Loading...</h1>
+            </div>
+            
+            <!-- Ingredients Section -->
+            <div class="content-ingredients">
+                <h2>Ingredients</h2>
+                <ul class="content-list" id="contentList"></ul>
+            </div>
+            
+            <!-- Steps Section -->
+            <div class="content-steps" id="stepsSection">
+                <h2>Steps</h2>
+            </div>
         </main>
         <nav class="bottom-nav" id="bottomNav"></nav>
     </div>
     <script src="script.js"></script>
+    <script>
+        // Get the file parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileKey = urlParams.get('recipe');
+        
+        // Map file keys to actual file names by adding .txt extension
+        const fileName = fileKey ? 'recipes/' + fileKey + '.json' : 'recipes/recipe_template.json';
+        
+        // load the file
+        fetch(fileName)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('File not found');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // The info from the file is parsed and used to design the web page
+                loadRecipePage(data);
+            })
+            .catch(error => {
+                document.getElementById('contentArea').innerHTML = 
+                    '<div class="error">Content not available: ' + fileName + '</div>';
+            });
+
+            function loadRecipePage(data) {
+                const parsed = JSON.parse(data);
+                // title
+                if (parsed.title) {
+                    document.getElementById('contentTitle').textContent = parsed.title;
+                    document.title = parsed.title;
+                }
+
+                // slideshow
+                if (parsed.slideshowImages && parsed.slideshowImages.length > 0) {
+                    createSlideshow(parsed.slideshowImages);
+                } else {
+                    document.getElementById('slideshow').style.display = 'none';
+                }
+
+                // ingredient list
+                if (parsed.ingredients) {
+                    createList(parsed.ingredients);
+                } else {
+                    document.querySelector('.content-ingredients').style.display = 'none';
+                }
+
+                // List of steps
+                if (parsed.steps && parsed.steps.length > 0) {
+                    createSteps(parsed.steps);
+                } else {
+                    document.getElementById('stepsSection').style.display = 'none';
+                }
+            }
+
+            function createList(ingredients) {
+                const list = document.getElementById('contentList');
+                
+                ingredients.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'list-item';
+                    li.innerHTML = `
+                        <div class="list-item-left">${item.ingredient}</div>
+                        <div class="list-item-right">${item.unit}</div>
+                    `;
+                    list.appendChild(li);
+                });
+            }
+
+            function createSteps(steps) {
+                const section = document.getElementById('stepsSection');
+                
+                steps.forEach((step, index) => {
+                    const pDiv = document.createElement('div');
+                    pDiv.className = 'paragraph-with-image';
+                    pDiv.innerHTML = `
+                        <img src="${step.image}" alt="step ${index + 1}" class="paragraph-image">
+                        <div class="paragraph-text">${step.text}</div>
+                    `;
+                    section.appendChild(pDiv);
+                });
+            }
+
+            let currentSlide = 0;
+            let slideshowInterval;
+
+            function changeSlide(direction) {
+                const slides = document.querySelectorAll('.slide');
+                if (slides.length === 0) return;
+                
+                currentSlide += direction;
+                
+                // Loop around if at ends
+                if (currentSlide >= slides.length) {
+                    currentSlide = 0;
+                } else if (currentSlide < 0) {
+                    currentSlide = slides.length - 1;
+                }
+                
+                goToSlide(currentSlide);
+                
+                // Reset the auto-advance timer
+                startSlideshow();
+            }
+
+            function goToSlide(index) {
+                const slides = document.querySelectorAll('.slide');
+                const dots = document.querySelectorAll('.dot');
+                const track = document.getElementById('slideshowTrack');
+                
+                if (slides.length === 0) return;
+                
+                currentSlide = index;
+                track.style.transform = `translateX(-${index * 100}%)`;
+                
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            function startSlideshow() {
+                clearInterval(slideshowInterval);
+                slideshowInterval = setInterval(() => {
+                    changeSlide(1);
+                }, 5000);
+            }
+
+            function createSlideshow(images) {
+                const track = document.getElementById('slideshowTrack');
+                const dots = document.getElementById('slideshowDots');
+                
+                images.forEach((image, index) => {
+                    // Create slide
+                    const slide = document.createElement('div');
+                    slide.className = 'slide';
+                    slide.innerHTML = `<img src="${image}" alt="Slide ${index + 1}">`;
+                    track.appendChild(slide);
+                    
+                    // Create dot
+                    const dot = document.createElement('span');
+                    dot.className = 'dot';
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToSlide(index));
+                    dots.appendChild(dot);
+                });
+                
+                // Hide arrows if only one slide
+                const arrows = document.querySelectorAll('.slideshow-arrow');
+                if (images.length <= 1) {
+                    arrows.forEach(arrow => arrow.style.display = 'none');
+                }
+                
+                // Start slideshow
+                startSlideshow();
+            }
+    </script>
 </body>
 </html>
