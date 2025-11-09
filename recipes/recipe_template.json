@@ -7,15 +7,15 @@
   ],
   "ingredients": [
     {
-      "ingredient": "ingrediant 1",
+      "ingredient": "ingredient 1",
       "unit": "grams"
     },
     {
-      "ingredient": "ingrediant 2",
+      "ingredient": "ingredient 2",
       "unit": "Litres"
     },
     {
-      "ingredient": "ingrediant 3",
+      "ingredient": "ingredient 3",
       "unit": "grams"
     }
   ],
