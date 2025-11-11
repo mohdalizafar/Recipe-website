@@ -70,7 +70,7 @@ body {
 
 /* ############################################### Used by View Recipe Page ######### */
 /* Tags Section */
-.tags {
+.tags-container {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
