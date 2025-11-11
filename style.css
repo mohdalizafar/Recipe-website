@@ -13,7 +13,7 @@ body {
 
 
 /* ===== LAYOUT CONTAINERS ===== */
-/*       -> used by all pages */
+/*       |> used by all pages */
 /* Used for div */
 .container {
     min-height: 100vh;
@@ -154,6 +154,34 @@ body {
     right: 15px;
 }
 
+@media (max-width: 768px) {
+    .slideshow-container {
+        height: 20vh;
+    }
+    .slideshow-dots {
+        bottom: 5px;
+    }
+    
+    .dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .slideshow-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+    
+    .slideshow-arrow-left {
+        left: 5px;
+    }
+    
+    .slideshow-arrow-right {
+        right: 5px;
+    }
+}
+
 /* ===== TITLE SECTIONS ===== */
 .content-title {
     padding: 20px;
@@ -166,6 +194,16 @@ body {
     margin: 0;
     font-size: 24px;
     font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .content-title {
+        padding: 15px;
+    }
+    
+    .content-title h1 {
+        font-size: 20px;
+    }
 }
 
 /* ===== INGREDIENTS SECTION ===== */
@@ -209,6 +247,22 @@ body {
     font-weight: 600;
 }
 
+@media (max-width: 768px) {
+    .content-ingredients {
+        padding: 15px;
+    }
+    
+    .content-ingredients h2 {
+        font-size: 18px;
+    }
+    
+    .list-item {
+        padding: 10px 0;
+        font-size: 14px;
+    }
+}
+
+
 /* ===== STEPS SECTION ===== */
 .content-steps {
     padding: 20px;
@@ -240,6 +294,25 @@ body {
     margin: 0;
 }
 
+@media (max-width: 768px) {
+    .content-steps {
+        padding: 15px;
+    }
+    
+    .paragraph-with-image {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .paragraph-image {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+    }
+}
+
 
 /* ===== COOK MODE BUTTON ===== */
 .content-cookModeButton {
@@ -257,7 +330,7 @@ body {
     background: rgb(249, 158, 0);
     border: 0px;
     color: rgb(255, 255, 255);
-    font-size: 24px;
+    font-size: 22px;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,122,255,0.3);
     transition: all 0.3s ease;
@@ -286,81 +359,6 @@ body {
 @media (max-width: 768px) {
     .content-cookModeButton {
         bottom: 80px;
-    }
-    
-    .cookModeButton {
-        width: 90px;
-        height: 40px;
-        font-size: 22px;
-    }
-}
-
-
-/* ===== MOBILE DESIGN ===== */
-@media (max-width: 768px) {
-    .slideshow-container {
-        height: 20vh;
-    }
-    
-    .content-title {
-        padding: 15px;
-    }
-    
-    .content-title h1 {
-        font-size: 20px;
-    }
-    
-    .content-ingredients {
-        padding: 15px;
-    }
-    
-    .content-ingredients h2 {
-        font-size: 18px;
-    }
-    
-    .list-item {
-        padding: 10px 0;
-        font-size: 14px;
-    }
-    
-    .content-steps {
-        padding: 15px;
-    }
-    
-    .paragraph-with-image {
-        flex-direction: column;
-        gap: 10px;
-        padding: 15px;
-        margin-bottom: 15px;
-    }
-    
-    .paragraph-image {
-        width: 100%;
-        height: 120px;
-        object-fit: cover;
-    }
-    
-    .slideshow-dots {
-        bottom: 5px;
-    }
-    
-    .dot {
-        width: 6px;
-        height: 6px;
-    }
-
-    .slideshow-arrow {
-        width: 30px;
-        height: 30px;
-        font-size: 16px;
-    }
-    
-    .slideshow-arrow-left {
-        left: 5px;
-    }
-    
-    .slideshow-arrow-right {
-        right: 5px;
     }
 }
 /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Used by View Recipe Page ^^^^^^^^^ */
