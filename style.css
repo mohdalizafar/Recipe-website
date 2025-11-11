@@ -28,7 +28,6 @@ body {
 }
 
 
-/* ############################################### Used by View Recipe Page ######### */
 /* ===== BOTTOM BAR ===== */
 .bottom-nav {
     position: fixed;
@@ -69,6 +68,7 @@ body {
 }
 
 
+/* ############################################### Used by View Recipe Page ######### */
 /* ===== SLIDESHOW COMPONENT ===== */
 .slideshow-container {
     height: 25vh;
