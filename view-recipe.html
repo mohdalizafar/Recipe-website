@@ -21,6 +21,9 @@
             <div class="content-title">
                 <h1 id="contentTitle">Loading...</h1>
             </div>
+
+            <!-- Tags -->
+            <div class="tags" id="tags"></div>
             
             <!-- Ingredients Section -->
             <div class="content-ingredients">
@@ -76,6 +79,13 @@
                     document.title = parsed.title;
                 }
 
+                // tags
+                if (parsed.tags && parsed.tags.length > 0) {
+                    createTags(parsed.tags);
+                } else {
+                    document.getElementById('tags').style.display = 'none';
+                }
+
                 // slideshow
                 if (parsed.slideshowImages && parsed.slideshowImages.length > 0) {
                     createSlideshow(parsed.slideshowImages);
@@ -90,12 +100,23 @@
                     document.querySelector('.content-ingredients').style.display = 'none';
                 }
 
-                // List of steps
+                // list of steps
                 if (parsed.steps && parsed.steps.length > 0) {
                     createSteps(parsed.steps);
                 } else {
                     document.getElementById('stepsSection').style.display = 'none';
                 }
+            }
+
+            function createTags(tags) {
+                const container = document.getElementById('tags');
+                
+                tags.forEach(tag => {
+                    const tagElement = document.createElement('span');
+                    tagElement.className = 'tag';
+                    tagElement.textContent = tag;
+                    container.appendChild(tagElement);
+                });
             }
 
             function createList(ingredients) {

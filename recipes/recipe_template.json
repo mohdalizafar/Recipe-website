@@ -32,5 +32,6 @@
       "text": "description of step 3",
       "image": "images/meal_placeholder.png"
     }
-  ]
+  ],
+  "tags": ["Vegan", "Vegetarian", "Gluten-free", "Contains Nuts"]
 }
