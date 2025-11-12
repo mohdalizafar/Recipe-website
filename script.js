@@ -32,6 +32,14 @@ const navConfig = [
     }
 ];
 
+// makes the floating back button in the top left work
+function goBack() {
+    // Check if there's history to go back to
+    if (document.referrer && document.referrer.includes(window.location.hostname)) {
+        window.history.back();
+    }
+}
+
 // Initialize navigation
 function initNavigation() {
     const bottomNav = document.getElementById('bottomNav');
