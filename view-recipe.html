@@ -126,6 +126,7 @@
 
 /* ===== TITLE SECTIONS ===== */
 .content-title {
+    /* display: flex; */
     padding: 20px;
     text-align: center;
     background: white;
@@ -147,6 +148,58 @@
         font-size: 20px;
     }
 }
+
+
+/* ===== FAVOURITE BUTTON ===== */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+}
+
+.favourite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 90px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+}
+
+.heart-icon {
+    width: 28px;
+    height: 28px;
+    transition: all 0.3s ease;
+}
+
+.heart-icon path {
+    stroke: #e74c3c;
+    stroke-width: 2;
+    fill: none;
+    transition: all 0.3s ease;
+}
+
+.favourite-btn.active .heart-icon path {
+    fill: #e74c3c;
+    stroke: #e74c3c;
+}
+
+.favourite-btn:hover {
+    transform: scale(1.1);
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.favourite-btn:active {
+    transform: scale(0.95);
+}
+
 
 /* ===== INGREDIENTS SECTION ===== */
 .content-ingredients {
@@ -276,7 +329,6 @@
     border-radius: 6px;
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
     .content-steps {
         padding: 15px;
@@ -325,7 +377,7 @@
 /* ===== COOK MODE BUTTON ===== */
 .content-cookModeButton {
     position: fixed;
-    bottom: 80px; /* Position above bottom nav */
+    bottom: 80px;
     left: 50%;
     transform: translate(-50%);
     z-index: 1000;
@@ -367,57 +419,6 @@
     .content-cookModeButton {
         bottom: 80px;
     }
-}
-
-
-/* ===== FAVOURITE BUTTON ===== */
-.title-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    position: relative;
-}
-
-.favourite-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 90px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px;
-    height: 46px;
-}
-
-.heart-icon {
-    width: 28px;
-    height: 28px;
-    transition: all 0.3s ease;
-}
-
-.heart-icon path {
-    stroke: #e74c3c;
-    stroke-width: 2;
-    fill: none;
-    transition: all 0.3s ease;
-}
-
-.favourite-btn.active .heart-icon path {
-    fill: #e74c3c;
-    stroke: #e74c3c;
-}
-
-.favourite-btn:hover {
-    transform: scale(1.1);
-    background: rgba(231, 76, 60, 0.1);
-}
-
-.favourite-btn:active {
-    transform: scale(0.95);
 }
 
 
