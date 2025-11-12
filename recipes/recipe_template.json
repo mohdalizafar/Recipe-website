@@ -7,30 +7,38 @@
   ],
   "ingredients": [
     {
-      "ingredient": "ingredient 1",
-      "unit": "grams"
+      "ingredient": "cereal",
+      "unit": "300 grams"
     },
     {
-      "ingredient": "ingredient 2",
-      "unit": "Litres"
+      "ingredient": "Milk",
+      "unit": "500 mL"
     },
     {
-      "ingredient": "ingredient 3",
-      "unit": "grams"
+      "ingredient": "Garlic",
+      "unit": "1 cloves"
     }
   ],
   "steps": [
     {
       "text": "description of step 1",
-      "image": "images/meal_placeholder.png"
+      "image": "images/meal_placeholder.png",
+      "time": "3 mins"
     },
     {
       "text": "description of step 2",
-      "image": "images/meal_placeholder.png"
+      "image": "images/meal_placeholder.png",
+      "time": "1 min"
     },
     {
       "text": "description of step 3",
-      "image": "images/meal_placeholder.png"
+      "image": "images/meal_placeholder.png",
+      "time": "3 hours"
+    },
+    {
+      "text": "description of step 4",
+      "image": "images/meal_placeholder.png",
+      "time": "1/2 hour"
     }
   ],
   "tags": ["Vegan", "Vegetarian", "Gluten-free", "Contains Nuts"]
