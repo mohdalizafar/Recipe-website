@@ -202,17 +202,6 @@
     </nav>
   </div>
 
-  <script>
-    const tabs = document.querySelectorAll('.nav-tab');
-    function setActiveFromHash() {
-      const current = (location.hash || '#profile').replace('#','');
-      tabs.forEach(tab => {
-        const isActive = tab.getAttribute('href') === '#' + current;
-        tab.classList.toggle('active', isActive);
-      });
-    }
-    setActiveFromHash();
-    window.addEventListener('hashchange', setActiveFromHash);
-  </script>
+ <script src="script.js"></script>
 </body>
 </html>
