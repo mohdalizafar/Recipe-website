@@ -1,19 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile · Recipe App</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --brand: #7a1ebd;
+      --ink: #111827;
+      --sub: #6b7280;
+      --surface: #ffffff;
+      --card: #ffffff;
+      --line: #e5e7eb;
+      --shadow: 0 6px 24px rgba(0,0,0,.08);
+      --radius: 18px;
+    }
+    body { background: #f7f7fb; color: var(--ink); font-family: system-ui, sans-serif; }
+
+    .container { min-height: 100vh; display: flex; flex-direction: column; }
+    .content { flex: 1; padding: 16px; }
+
+    .screen {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px 16px 90px;
+      position: relative;
+    }
+
+    .topbar { 
+      text-align: center; 
+      margin-bottom: 16px; 
+      position: relative; 
+      height: 90px; /* thicker top bar */
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      background: #fff; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .topbar h1 { font-size: 22px; font-weight: 700; }
+
+    /* back button */
+    .back-btn {
+      position: absolute;
+      top: 10px; /* slightly moved up */
+      left: 16px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 60px; height: 60px; /* bigger button */
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      color: #333;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .back-btn:hover { background: #f3f4f6; transform: scale(1.08); }
+
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .avatar {
+      width: 80px; height: 80px; border-radius: 50%; background: #eef2ff;
+      border: 2px dashed #c7d2fe; display: grid; place-items: center; color: #6366f1;
+    }
+
+    .profile-meta h2 { font-size: 18px; margin-bottom: 4px; }
+    .profile-meta p { color: var(--sub); font-size: 13px; }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--sub);
+      margin-top: 24px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .list { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-top: 8px; }
+    .row { display: flex; align-items: center; padding: 14px 16px; }
+    .row + .row { border-top: 1px solid var(--line); }
+    .row .icon { width: 34px; height: 34px; border-radius: 10px; background: #f0f9ff; display: grid; place-items: center; border: 1px solid #e0f2fe; margin-right: 10px; }
+    .row .label { font-size: 15px; font-weight: 600; }
+    .row .chev { margin-left: auto; color: #9ca3af; }
+
+    /* bottom nav bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+    .bottom-nav a {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #444;
+      font-size: 13px;
+    }
+    .bottom-nav a .nav-icon { font-size: 22px; margin-bottom: 2px; }
+    .bottom-nav a.active { color: var(--brand); font-weight: 600; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <main class="content">
-            <h1>Profile Page</h1>
-            <p>Profile content goes here</p>
-        </main>
-        <nav class="bottom-nav" id="bottomNav"></nav>
-    </div>
-    <script src="script.js"></script>
+  <div class="container">
+    <main class="content">
+      <div class="topbar">
+        <button class="back-btn" onclick="history.back()">←</button>
+        <h1>Profile Page</h1>
+      </div>
+
+      <section class="profile-card">
+        <div class="avatar">IMG</div>
+        <div class="profile-meta">
+          <h2>Your Name</h2>
+          <p>Tap any section below to edit preferences</p>
+        </div>
+      </section>
+
+      <div class="section-title">Preferences</div>
+      <section class="list">
+        <a class="row" href="#dietary">
+          <div class="icon">🥗</div>
+          <div class="label">Dietary Restriction</div>
+          <span class="chev">›</span>
+        </a>
+        <a class="row" href="#style">
+          <div class="icon">🧑‍🍳</div>
+          <div class="label">Cooking Style</div>
+          <span class="chev">›</span>
+        </a>
+      </section>
+
+      <div class="section-title">My Recipes</div>
+      <section class="list">
+        <a class="row" href="#saved">
+          <div class="icon">📁</div>
+          <div class="label">Saved Recipes</div>
+          <span class="chev">›</span>
+        </a>
+        <a class="row" href="#favorites">
+          <div class="icon">⭐</div>
+          <div class="label">Favorite Recipes</div>
+          <span class="chev">›</span>
+        </a>
+      </section>
+
+      <div class="section-title">Settings</div>
+      <section class="list">
+        <a class="row" href="#payment">
+          <div class="icon">💳</div>
+          <div class="label">Payment Information</div>
+          <span class="chev">›</span>
+        </a>
+        <a class="row" href="#advanced">
+          <div class="icon">⚙️</div>
+          <div class="label">Advanced Settings</div>
+          <span class="chev">›</span>
+        </a>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" id="bottomNav">
+      <a class="nav-tab" href="#home">
+        <div class="nav-icon">🏠</div>
+        <div class="nav-label">Home</div>
+      </a>
+      <a class="nav-tab" href="#search">
+        <div class="nav-icon">🔍</div>
+        <div class="nav-label">Search</div>
+      </a>
+      <a class="nav-tab" href="#upload">
+        <div class="nav-icon">➕</div>
+        <div class="nav-label">Upload</div>
+      </a>
+      <a class="nav-tab" href="#favourites">
+        <div class="nav-icon">🩷</div>
+        <div class="nav-label">Favourites</div>
+      </a>
+      <a class="nav-tab active" href="#profile" aria-current="page">
+        <div class="nav-icon">👤</div>
+        <div class="nav-label">Profile</div>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.nav-tab');
+    function setActiveFromHash() {
+      const current = (location.hash || '#profile').replace('#','');
+      tabs.forEach(tab => {
+        const isActive = tab.getAttribute('href') === '#' + current;
+        tab.classList.toggle('active', isActive);
+      });
+    }
+    setActiveFromHash();
+    window.addEventListener('hashchange', setActiveFromHash);
+  </script>
 </body>
 </html>
