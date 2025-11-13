@@ -1,36 +1,37 @@
 {
-  "name": "Pan-Seared Steak",
-  "media": [
-    "/images/steak/step1.jpg",
-    "/images/steak/step2.jpg",
-    "/images/steak/step3.jpg"
+  "title": "Pan-Seared Steak",
+  "slideshowImages": [
+    "images/steak/step1.jpg",
+    "images/steak/step2.jpg",
+    "images/steak/step3.jpg"
+  ],
+  "ingredients": [
+    { "ingredient": "Steak", "unit": "1 piece" },
+    { "ingredient": "Coarse Salt", "unit": "to taste" },
+    { "ingredient": "Black Pepper", "unit": "to taste" },
+    { "ingredient": "Olive Oil", "unit": "1 tbsp" }
   ],
   "steps": [
     {
-      "title": "Preheat the Pan",
-      "instructions": [
-        "Heat a heavy skillet over medium-high heat.",
-        "Add a thin layer of oil once the pan is hot."
-      ],
-      "tips": [
-        "A hot pan gives you a better crust.",
-        "Try using a cast iron pan."
-      ],
-      "duration": 120
+      "text": "Pat both sides of the steak completely dry.",
+      "image": "images/steak/dry.jpg",
+      "time": "1 min"
     },
     {
-      "title": "Season the Steak",
-      "instructions": [
-        "Pat both sides of the steak dry.",
-        "Season evenly with coarse salt.",
-        "Add freshly ground black pepper.",
-        "Press lightly to help seasoning stick."
-      ],
-      "tips": [
-        "Drier surface gives better browning.",
-        "Season 10–15 minutes before cooking."
-      ],
-      "duration": 480
+      "text": "Season both sides evenly with coarse salt and freshly ground black pepper.",
+      "image": "images/steak/season.jpg",
+      "time": "8 mins"
+    },
+    {
+      "text": "Heat the pan over high heat and sear the steak on both sides.",
+      "image": "images/steak/sear.jpg",
+      "time": "4 mins"
+    },
+    {
+      "text": "Rest the steak for 5 minutes before slicing.",
+      "image": "images/steak/rest.jpg",
+      "time": "5 mins"
     }
-  ]
+  ],
+  "tags": ["High-Protein", "Quick"]
 }
