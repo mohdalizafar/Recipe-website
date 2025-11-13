@@ -1,1 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Mode</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== COOKING PAGE SPECIFIC STYLES ===== */
+        
+        /* Top Bar */
+        .cooking-top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
+        .cooking-back-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 15px;
+            color: #333;
+        }
+
+        .cooking-title-section {
+            flex: 1;
+            text-align: center;
+        }
+
+        .cooking-recipe-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .cooking-step-indicator {
+            font-size: 16px;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        /* Main Content Container */
+        .cooking-content-wrapper {
+            margin-top: 100px;
+            padding-bottom: 200px;
+        }
+
+        /* Media Section */
+        .cooking-media-section {
+            position: relative;
+            width: 100%;
+            height: 40vh;
+            min-height: 250px;
+            background: #f0f0f0;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .cooking-media-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 16px;
+        }
+
+        .cooking-media-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            font-size: 36px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cooking-media-arrow-left {
+            left: 15px;
+        }
+
+        .cooking-media-arrow-right {
+            right: 15px;
+        }
+
+        /* Step Instructions */
+        .cooking-instructions-section {
+            padding: 25px;
+            background: white;
+        }
+
+        .cooking-instructions-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .cooking-instructions-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cooking-instruction-item {
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            border-left: 4px solid #e0e0e0;
+            background: #f9f9f9;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .cooking-instruction-item.current {
+            border-left-color: #007AFF;
+            background: #e3f2fd;
+            font-weight: 500;
+        }
+
+        /* Tips Section */
+        .cooking-tips-section {
+            padding: 25px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .cooking-tips-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .tips-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .tips-title {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .tips-icon {
+            fill: #f7d65a;   /* warm yellow */
+        }
+
+        .cooking-tips-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .cooking-tips-icon {
+            font-size: 20px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .cooking-tips-content {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .cooking-tips-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+
+        .cooking-tips-item {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .cooking-tips-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #007AFF;
+            font-weight: bold;
+        }
+
+        .cooking-tips-duration {
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Bottom Control Bar */
+        .cooking-control-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* First Row: Timer Button */
+        .cooking-timer-btn {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #007AFF;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 28px;
+            font-weight: 600;
+            color: #007AFF;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cooking-timer-icon {
+            width: 28px;
+            height: 28px;
+            fill: #007AFF;
+        }
+
+        .cooking-timer-btn:hover {
+            background: #e3f2fd;
+            transform: scale(1.02);
+        }
+
+        .cooking-timer-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Second Row: Voice Buttons */
+        .cooking-voice-row {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .cooking-voice-btn {
+            flex: 1;
+            padding: 16px 20px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .cooking-voice-btn:hover {
+            background: #f5f5f5;
+            border-color: #007AFF;
+        }
+
+        /* Third Row: Navigation Buttons */
+        .cooking-nav-row {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .cooking-nav-btn {
+            padding: 16px 24px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #333;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .cooking-nav-btn.prev {
+            flex: 2;
+            padding: 16px 20px;
+            background: #f9f9f9;
+            color: #666;
+            border-color: #e0e0e0;
+        }
+
+        .cooking-nav-btn.prev:hover {
+            background: #f0f0f0;
+        }
+
+        .cooking-nav-btn.next {
+            flex: 8;
+            background: #007AFF;
+            color: white;
+            border-color: #007AFF;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .cooking-nav-btn.next:hover {
+            background: #0056b3;
+            transform: scale(1.02);
+        }
+
+        .cooking-nav-btn.next:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            .cooking-top-bar {
+                padding: 15px 18px;
+            }
+
+            .cooking-back-btn {
+                font-size: 24px;
+            }
+
+            .cooking-recipe-name {
+                font-size: 20px;
+            }
+
+            .cooking-step-indicator {
+                font-size: 14px;
+            }
+
+            .cooking-content-wrapper {
+                margin-top: 100px;
+            }
+
+            .cooking-media-section {
+                height: 35vh;
+                min-height: 200px;
+            }
+
+            .cooking-media-arrow {
+                width: 55px;
+                height: 55px;
+                font-size: 30px;
+            }
+
+            .cooking-instructions-section {
+                padding: 20px;
+            }
+
+            .cooking-instructions-title {
+                font-size: 20px;
+            }
+
+            .cooking-instruction-item {
+                font-size: 16px;
+                padding: 15px 18px;
+            }
+
+            .cooking-tips-section {
+                padding: 20px;
+            }
+
+            .cooking-tips-title {
+                font-size: 20px;
+            }
+
+            .tips-title {
+                font-size: 20px;
+            }
+
+            .cooking-tips-item {
+                font-size: 16px;
+            }
+
+            .cooking-tips-duration {
+                font-size: 16px;
+            }
+
+            .cooking-control-bar {
+                padding: 12px 15px;
+                gap: 10px;
+            }
+
+            .cooking-timer-btn {
+                padding: 16px 18px;
+                font-size: 24px;
+            }
+
+            .cooking-timer-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .cooking-voice-row {
+                gap: 10px;
+            }
+
+            .cooking-voice-btn {
+                padding: 14px 16px;
+                font-size: 16px;
+            }
+
+            .cooking-nav-row {
+                gap: 10px;
+            }
+
+            .cooking-nav-btn {
+                padding: 14px 18px;
+                font-size: 16px;
+            }
+
+            .cooking-nav-btn.next {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Bar -->
+        <div class="cooking-top-bar">
+            <button class="cooking-back-btn" onclick="goBack()">⬅︎</button>
+            <div class="cooking-title-section">
+                <h1 class="cooking-recipe-name">Recipe Name</h1>
+                <div class="cooking-step-indicator">STEP 1 OF 4</div>
+            </div>
+            <div style="width: 50px;"></div> <!-- Spacer for centering -->
+        </div>
+
+        <main class="content">
+            <div class="cooking-content-wrapper">
+                <!-- Media Section -->
+                <div class="cooking-media-section">
+                    <div class="cooking-media-placeholder">
+                        Image/Video Placeholder
+                    </div>
+                    <button class="cooking-media-arrow cooking-media-arrow-left">‹</button>
+                    <button class="cooking-media-arrow cooking-media-arrow-right">›</button>
+                </div>
+
+                <!-- Step Instructions -->
+                <div class="cooking-instructions-section">
+                    <h2 class="cooking-instructions-title">Instructions</h2>
+                    <ul class="cooking-instructions-list">
+                        <li class="cooking-instruction-item current">Pat both sides of the steak completely dry with paper towels.</li>
+                        <li class="cooking-instruction-item current">Season both sides evenly with coarse salt (Kosher salt).</li>
+                        <li class="cooking-instruction-item current">Add freshly ground black pepper.</li>
+                        <li class="cooking-instruction-item current">Gently press the seasoning into the meat so it adheres better.</li>
+                        <li class="cooking-instruction-item current">Let the steak rest for 10–15 minutes to allow the salt to penetrate and enhance flavor.</li>
+                    </ul>
+                </div>
+
+                <!-- Tips Section -->
+                <div class="cooking-tips-section">
+                    <div class="cooking-tips-header">
+                        <div class="tips-header">
+                            <svg class="tips-icon" width="22" height="22" viewBox="0 0 24 24">
+                                <path d="M9 21h6v-1H9v1zm3-19a7 7 0 00-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 001 1h6a1 1 0 001-1v-2.26A6.98 6.98 0 0020 9a7 7 0 00-7-7z"/>
+                            </svg>
+                            <span class="tips-title">Tips</span>
+                        </div>
+                        <span class="cooking-tips-icon">▼</span>
+                    </div>
+                    <div class="cooking-tips-content">
+                        <ul class="cooking-tips-list">
+                            <li class="cooking-tips-item">A drier surface gives a better crust when searing.</li>
+                            <li class="cooking-tips-item">Coarse salt is ideal and less likely to oversalt.</li>
+                            <li class="cooking-tips-item">Season 10–15 minutes before cooking.</li>
+                            <li class="cooking-tips-item">Optional: add a bit of black pepper or garlic powder for extra flavor.</li>
+                        </ul>
+                        <p class="cooking-tips-duration">(Duration: 8:00)</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Control Bar -->
+        <div class="cooking-control-bar">
+            <!-- First Row: Timer Button -->
+            <button class="cooking-timer-btn">
+                <svg class="cooking-timer-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                </svg>
+                08:00
+            </button>
+            
+            <!-- Second Row: Voice Buttons -->
+            <div class="cooking-voice-row">
+                <button class="cooking-voice-btn">🔊 Voice Narration</button>
+                <button class="cooking-voice-btn">🎤 Voice Command</button>
+            </div>
+            
+            <!-- Third Row: Navigation Buttons -->
+            <div class="cooking-nav-row">
+                <button class="cooking-nav-btn prev">Prev Step</button>
+                <button class="cooking-nav-btn next">Next Step</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
