@@ -1,0 +1,36 @@
+{
+  "name": "Pan-Seared Steak",
+  "media": [
+    "/images/steak/step1.jpg",
+    "/images/steak/step2.jpg",
+    "/images/steak/step3.jpg"
+  ],
+  "steps": [
+    {
+      "title": "Preheat the Pan",
+      "instructions": [
+        "Heat a heavy skillet over medium-high heat.",
+        "Add a thin layer of oil once the pan is hot."
+      ],
+      "tips": [
+        "A hot pan gives you a better crust.",
+        "Try using a cast iron pan."
+      ],
+      "duration": 120
+    },
+    {
+      "title": "Season the Steak",
+      "instructions": [
+        "Pat both sides of the steak dry.",
+        "Season evenly with coarse salt.",
+        "Add freshly ground black pepper.",
+        "Press lightly to help seasoning stick."
+      ],
+      "tips": [
+        "Drier surface gives better browning.",
+        "Season 10–15 minutes before cooking."
+      ],
+      "duration": 480
+    }
+  ]
+}
