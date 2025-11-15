@@ -247,9 +247,9 @@ function renderCurrentStep() {
         updateTimerButtonText(timerRemainingSeconds);
         
         // Remove any "time's up" styling
-        timerBtn.classList.remove('timer-times-up');
-        timerBtn.style.background = 'white';
-        timerBtn.style.color = '#007AFF'; // Reset to original blue color
+                   timerBtn.classList.remove('timer-times-up');
+                   timerBtn.style.background = 'white';
+                   timerBtn.style.color = '#FF8A00'; // Reset to original orange color
         
         // Ensure timer button has click handler
         setupTimerButton();
@@ -484,7 +484,7 @@ function toggleTimer() {
                 updateTimerButtonText(timerRemainingSeconds);
                 timerBtn.classList.remove('timer-times-up');
                 timerBtn.style.background = 'white';
-                timerBtn.style.color = '#007AFF';
+                timerBtn.style.color = '#FF8A00';
             }
         }
         return;
@@ -566,7 +566,7 @@ function speakInstructions() {
     const utterance = new SpeechSynthesisUtterance(step.text);
     
     // Configure voice settings
-    utterance.rate = 0.9; // Slightly slower for better comprehension
+    utterance.rate = 0.7; // Slower for better comprehension
     utterance.pitch = 1.0;
     utterance.volume = 1.0;
     
@@ -629,12 +629,12 @@ function updateVoiceNarrationButton(isSpeaking) {
     
     if (isSpeaking) {
         voiceBtn.textContent = '⏸️ Stop Narration';
-        voiceBtn.style.background = '#e3f2fd';
-        voiceBtn.style.borderColor = '#007AFF';
+        voiceBtn.style.background = '#FFF1DB';
+        voiceBtn.style.borderColor = '#FF8A00';
     } else {
         voiceBtn.textContent = '🔊 Voice Narration';
         voiceBtn.style.background = 'white';
-        voiceBtn.style.borderColor = '#e0e0e0';
+        voiceBtn.style.borderColor = '#E0C9A6';
     }
 }
 
