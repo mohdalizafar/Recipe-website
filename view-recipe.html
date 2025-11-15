@@ -292,7 +292,6 @@
     border-radius: 12px;
     font-size: 12px;
     font-weight: 600;
-    z-index: 2;
 }
 
 .step-content {
@@ -465,7 +464,7 @@
 
             <!-- Cook Mode Button -->
             <div class="content-cookModeButton">
-                <button class="cookModeButton" onclick="window.location.href = 'cooking-page.html'"">
+                <button class="cookModeButton" onclick=startCookMode()>
                     <span class="cookButtonText">COOK!</span>
                 </button>
             </div>
@@ -533,6 +532,10 @@ function loadRecipePage(data) {
     } else {
         document.getElementById('stepsSection').style.display = 'none';
     }
+}
+
+function startCookMode() {
+    window.location.href = "cooking-page.html?" + "recipe=" + urlParams.get('recipe')
 }
 
 function createTags(tags) {
