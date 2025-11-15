@@ -1,0 +1,56 @@
+{
+  "title": "Classic French Omelette",
+  "slideshowImages": [
+    "images/classic_french_omelette/step1.jpg",
+    "images/classic_french_omelette/step2.jpg",
+    "images/classic_french_omelette/step3.jpg",
+    "images/classic_french_omelette/step4.jpg"
+  ],
+
+  "ingredients": [
+    { "ingredient": "Eggs", "unit": "2 pcs" },
+    { "ingredient": "Salt", "unit": "2g" },
+    { "ingredient": "Vegetable Oil", "unit": "1 tsp" },
+    { "ingredient": "Black Pepper", "unit": "1 tsp" },
+    { "ingredient": "Bacon / Ham", "unit": "as needed" },
+    { "ingredient": "Bell Peppers", "unit": "as needed" }
+  ],
+
+  "steps": [
+    {
+      "text": "Beat the eggs with salt and pepper. Heat a non-stick pan with a small amount of oil over low heat, then pour in the beaten eggs.",
+      "image": "images/classic_french_omelette/step1.jpg",
+      "time": "2 mins",
+      "tips": [
+        "Use low heat to keep the omelette soft and tender.",
+        "Tilt and swirl the pan gently to help the egg cook evenly."
+      ]
+    },
+    {
+      "text": "Dice the bell peppers and ham/bacon. Melt a little butter in a pan and sauté the filling ingredients until fragrant.",
+      "image": "images/classic_french_omelette/step2.jpg",
+      "time": "3 mins",
+      "tips": [
+        "Do not overcook the filling to keep the vegetables crisp.",
+        "Add mushrooms if you want more flavor."
+      ]
+    },
+    {
+      "text": "When the omelette surface is half-set, add the sautéed filling on one side of the omelette.",
+      "image": "images/classic_french_omelette/step3.jpg",
+      "time": "1 min",
+      "tips": [
+        "Do not wait until the omelette is fully cooked, or it will not fold nicely."
+      ]
+    },
+    {
+      "text": "Fold the omelette gently over the filling. Turn off the heat and let it sit for a few seconds before serving.",
+      "image": "images/classic_french_omelette/step4.jpg",
+      "time": "1 min",
+      "tips": [
+        "A true French omelette should remain tender and slightly moist inside.",
+        "Sprinkle black pepper or herbs on top for extra flavor."
+      ]
+    }
+  ]
+}
