@@ -1,9 +1,9 @@
 {
   "title": "Pan-Seared Steak",
   "slideshowImages": [
-    "images/steak/slide 1.jpg",
-    "images/steak/slide 2.jpg",
-    "images/steak/slide 3.jpg"
+    "../images/steak/slide 1.jpg",
+    "../images/steak/slide 2.jpg",
+    "../images/steak/slide 3.jpg"
   ],
   "ingredients": [
     { "ingredient": "Steak", "unit": "1 piece" },
@@ -14,22 +14,22 @@
   "steps": [
     {
       "text": "Pat both sides of the steak completely dry.",
-      "image": "images/steak/slide 1.jpg",
+      "image": "../images/steak/slide 1.jpg",
       "time": "1 min"
     },
     {
       "text": "Season both sides evenly with coarse salt and freshly ground black pepper.",
-      "image": "images/steak/slide 2.jpg",
+      "image": "../images/steak/slide 2.jpg",
       "time": "8 mins"
     },
     {
       "text": "Heat the pan over high heat and sear the steak on both sides.",
-      "image": "images/steak/slide 3.jpg",
+      "image": "../images/steak/slide 3.jpg",
       "time": "4 mins"
     },
     {
       "text": "Rest the steak for 5 minutes before slicing.",
-      "image": "images/steak/slide 1.jpg",
+      "image": "../images/steak/slide 1.jpg",
       "time": "5 mins"
     }
   ],

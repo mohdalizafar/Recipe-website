@@ -1,9 +1,9 @@
 {
   "title": "Example Recipe",
   "slideshowImages": [
-    "images/meal_placeholder.png",
-    "images/meal_placeholder.png",
-    "images/meal_placeholder.png"
+    "../images/meal_placeholder.png",
+    "../images/meal_placeholder.png",
+    "../images/meal_placeholder.png"
   ],
   "ingredients": [
     {
@@ -22,22 +22,22 @@
   "steps": [
     {
       "text": "description of step 1",
-      "image": "images/meal_placeholder.png",
+      "image": "../images/meal_placeholder.png",
       "time": "3 mins"
     },
     {
       "text": "description of step 2",
-      "image": "images/meal_placeholder.png",
+      "image": "../images/meal_placeholder.png",
       "time": "1 min"
     },
     {
       "text": "description of step 3",
-      "image": "images/meal_placeholder.png",
+      "image": "../images/meal_placeholder.png",
       "time": "3 hours"
     },
     {
       "text": "description of step 4",
-      "image": "images/meal_placeholder.png",
+      "image": "../images/meal_placeholder.png",
       "time": "1/2 hour"
     }
   ],

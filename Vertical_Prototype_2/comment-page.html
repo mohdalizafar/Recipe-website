@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Comments</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      :root {
+        --brand: #7a1ebd;
+        --ink: #111827;
+        --sub: #6b7280;
+        --surface: #ffffff;
+        --card: #ffffff;
+        --line: #e5e7eb;
+        --shadow: 0 6px 24px rgba(0,0,0,.08);
+        --radius: 18px;
+      }
+      
+      body { 
+        background: #f7f7fb; 
+        color: var(--ink); 
+        font-family: system-ui, sans-serif; 
+        margin: 0;
+        padding: 0;
+      }
+
+      .back-btn {
+        position: absolute;
+        top: 20px; 
+        left: 16px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 60px; 
+        height: 60px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        font-size: 28px;
+        color: #333;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        z-index: 10; 
+      }
+      .back-btn:hover { 
+        background: #f3f4f6; 
+        transform: scale(1.08); 
+      }
+
+      .page-title {
+        text-align: center;
+        margin-top: 90px; 
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .producer {
+        text-align: center;
+        color: #555;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .favorite-btn {
+        position: absolute;
+        right: 0px; 
+        top: 140px; 
+        color: #e91e63;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 20px; 
+        background: #ffe6f0;
+        padding: 10px 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .favorite-btn:hover {
+        background: #ffb6c1;
+        transform: scale(1.05);
+      }
+
+      /* Ratings */
+      .rating-section {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .stars {
+        font-size: 28px;
+        color: gold;
+        margin: 5px 0;
+      }
+
+      .rating-bars {
+        margin: 15px auto;
+        font-size: 14px;
+        max-width: 1024px;
+      }
+
+      .rating-bars div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 6px 0;
+      }
+
+      .bar {
+        background: #ddd;
+        flex: 1;
+        height: 8px;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .fill {
+        background: #ffc107;
+        height: 100%;
+        width: 70%;
+      }
+
+      /* TAGS */
+      .tags-wrap {
+        max-width: 1024px;
+        margin: 8px auto 0;
+      }
+
+      .tags-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-start;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border: 2px solid #007aff;
+        border-radius: 20px;
+        background: white;
+        color: #007aff;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      /* comment input */
+      .comment-box {
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        padding: 12px;
+        margin: 20px auto;
+        max-width: 1024px;
+      }
+
+      .comment-toolbar {
+        display: flex;
+        gap: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+      }
+
+      .comment-input {
+        width: 100%;
+        border: none;
+        outline: none;
+        resize: none;
+        font-size: 14px;
+        min-height: 60px;
+      }
+
+      .comment-stars {
+        text-align: center;
+        color: gold;
+        margin-top: 10px;
+        font-size: 24px;
+      }
+
+      /* single comment */
+      .comment {
+        border-top: 1px solid #eee;
+        padding: 10px 20px;
+        max-width: 1024px;
+        margin: 0 auto;
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      .comment-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: #444;
+      }
+
+      .media-section {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .media-box {
+        width: 90px;
+        height: 90px;
+        background: #eee;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        font-size: 12px;
+        color: #555;
+      }
+
+      .reply-btn {
+        background: none;
+        border: none;
+        color: #007aff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="back-btn" onclick="goBack()">←</button>
+
+    <h1 class="page-title">Recipe Name</h1>
+    <p class="producer">By Producer</p>
+    <div class="favorite-btn">❤ Add to "My Favorite"</div>
+
+    <section class="rating-section">
+      <p>Rating: <strong>5.0</strong></p>
+      <div class="stars">★★★★★</div>
+      <p>1,234 ratings</p>
+    </section>
+
+    <div class="rating-bars">
+      <div>
+        <span>5 star</span>
+        <div class="bar"><div class="fill" style="width: 90%"></div></div>
+      </div>
+      <div>
+        <span>4 star</span>
+        <div class="bar"><div class="fill" style="width: 68%"></div></div>
+      </div>
+      <div>
+        <span>3 star</span>
+        <div class="bar"><div class="fill" style="width: 45%"></div></div>
+      </div>
+      <div>
+        <span>2 star</span>
+        <div class="bar"><div class="fill" style="width: 18%"></div></div>
+      </div>
+      <div>
+        <span>1 star</span>
+        <div class="bar"><div class="fill" style="width: 7%"></div></div>
+      </div>
+    </div>
+
+    <div class="tags-wrap">
+      <div class="tags-container">
+        <div class="tag">Vegan</div>
+        <div class="tag">Quick</div>
+        <div class="tag">Healthy</div>
+        <div class="tag">Lunch</div>
+        <div class="tag">High Protein</div>
+        <div class="tag">Budget</div>
+      </div>
+    </div>
+
+    <div class="comment-box">
+      <div class="comment-toolbar">
+        <button><b>B</b></button>
+        <button><i>I</i></button>
+        <button><u>U</u></button>
+        <button>🖼️</button>
+        <button>📎</button>
+      </div>
+      <textarea
+        class="comment-input"
+        placeholder="Your comment..."
+      ></textarea>
+      <div class="comment-stars">☆☆☆☆☆</div>
+    </div>
+
+    <div class="comment">
+      <div class="comment-header">
+        <span><strong>User Name</strong> • Jan 12, 2025</span>
+        <span>★★★★★</span>
+      </div>
+      <p>This recipe was amazing! I'll definitely make it again.</p>
+      <div class="comment-actions">
+        <button class="reply-btn">Reply ↓</button>
+        👍 10 👎 1
+      </div>
+    </div>
+
+    <div class="comment">
+      <div class="comment-header">
+        <span><strong>Another User</strong> • Jan 10, 2025</span>
+        <span>★★★★☆</span>
+      </div>
+      <p>Good recipe but could use more seasoning.</p>
+      <div class="media-section">
+        <div class="media-box">▶ Video</div>
+        <div class="media-box">Picture</div>
+        <div class="media-box">Picture</div>
+      </div>
+      <div class="comment-actions">
+        <button class="reply-btn">Reply ↓</button>
+        👍 50 👎 2
+      </div>
+    </div>
+   <script src="../script.js"></script>
+  </body>
+</html>

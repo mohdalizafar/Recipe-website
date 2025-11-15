@@ -1,0 +1,671 @@
+<!-- Known bugs
+ - Sometimes the step's info text overlaps the duration timer 
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Recipe</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+/* ===== SLIDESHOW COMPONENT ===== */
+.slideshow-container {
+    height: 25vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #f0f0f0;
+}
+
+.slideshow-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.slideshow-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: white;
+}
+
+.slideshow-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.slideshow-arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.slideshow-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.slideshow-arrow-left {
+    left: 15px;
+}
+
+.slideshow-arrow-right {
+    right: 15px;
+}
+
+@media (max-width: 768px) {
+    .slideshow-container {
+        height: 20vh;
+    }
+    .slideshow-dots {
+        bottom: 5px;
+    }
+    
+    .dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .slideshow-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+    
+    .slideshow-arrow-left {
+        left: 5px;
+    }
+    
+    .slideshow-arrow-right {
+        right: 5px;
+    }
+}
+
+/* ===== TITLE SECTIONS ===== */
+.content-title {
+    /* display: flex; */
+    padding: 20px;
+    text-align: center;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.content-title h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .content-title {
+        padding: 15px;
+    }
+    
+    .content-title h1 {
+        font-size: 20px;
+    }
+}
+
+
+/* ===== FAVOURITE BUTTON ===== */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+}
+
+.favourite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 90px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+}
+
+.heart-icon {
+    width: 28px;
+    height: 28px;
+    transition: all 0.3s ease;
+}
+
+.heart-icon path {
+    stroke: #e74c3c;
+    stroke-width: 2;
+    fill: none;
+    transition: all 0.3s ease;
+}
+
+.favourite-btn.active .heart-icon path {
+    fill: #e74c3c;
+    stroke: #e74c3c;
+}
+
+.favourite-btn:hover {
+    transform: scale(1.1);
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.favourite-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* ===== INGREDIENTS SECTION ===== */
+.content-ingredients {
+    padding: 20px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.content-ingredients h2 {
+    margin: 0 0 15px 0;
+    font-size: 20px;
+}
+
+.content-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Individual list items with class="list-item" */
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item-left {
+    font-weight: 500;
+    color: #333;
+}
+
+.list-item-right {
+    color: #007AFF;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .content-ingredients {
+        padding: 15px;
+    }
+    
+    .content-ingredients h2 {
+        font-size: 18px;
+    }
+    
+    .list-item {
+        padding: 10px 0;
+        font-size: 14px;
+    }
+}
+
+
+/* ===== STEPS SECTION ===== */
+.content-steps {
+    padding: 20px;
+}
+
+.content-steps h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.step-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    position: relative;
+}
+
+.step-header {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    background: #007AFF;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.step-content {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+.step-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.step-text {
+    flex: 1;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+.step-time {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    color: #666;
+    font-size: 12px;
+    font-weight: 500;
+    background: rgba(0,0,0,0.05);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+    .content-steps {
+        padding: 15px;
+    }
+    
+    .content-steps h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .steps-container {
+        gap: 15px;
+    }
+    
+    .step-card {
+        padding: 15px;
+    }
+    
+    .step-header {
+        top: 10px;
+        left: 15px;
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+    
+    .step-content {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 25px;
+    }
+    
+    .step-image {
+        width: 100%;
+        height: 150px;
+        order: -1;
+    }
+    
+    .step-time {
+        bottom: 10px;
+        right: 15px;
+        font-size: 11px;
+    }
+}
+
+
+/* ===== COOK MODE BUTTON ===== */
+.content-cookModeButton {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1000;
+}
+
+.cookModeButton {
+    width: 130px;
+    height: 40px;
+    border-radius: 15pt;
+    background: rgb(249, 158, 0);
+    border: 0px;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cookModeButton:hover {
+    background: #ffffff;
+    /* border: 3px solid rgb(249, 203, 0); */
+    color: rgb(249, 158, 0);
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0,122,255,0.4);
+}
+
+.cookModeButton:active {
+    transform: scale(0.95);
+}
+
+.cookButtonText {
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .content-cookModeButton {
+        bottom: 80px;
+    }
+}
+    </style>
+</head>
+<body>
+   <div class="container">
+        <main class="content">
+            <!-- Back Button -->
+            <button class="back-btn" onclick="goBack()">⬅︎</button>
+
+            <!-- Image Slideshow Section -->
+            <div class="slideshow-container" id="slideshow">
+                <div class="slideshow-track" id="slideshowTrack"></div>
+                <div class="slideshow-dots" id="slideshowDots"></div>
+                <button class="slideshow-arrow slideshow-arrow-left" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="slideshow-arrow slideshow-arrow-right" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+
+            <!-- Title Section with Favourites Button -->
+            <div class="content-title">
+                <div class="title-container">
+                    <h1 id="contentTitle">Loading...</h1>
+                    <button class="favourite-btn" id="favouriteBtn" onclick="toggleFavourite()">
+                        <svg class="heart-icon" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="tags-container" id="tags"></div>
+            
+            <!-- Ingredients Section -->
+            <div class="content-ingredients">
+                <h2>Ingredients</h2>
+                <ul class="content-list" id="contentList"></ul>
+            </div>
+            
+            <!-- Steps Section -->
+            <div class="content-steps" id="stepsSection">
+                <h2>Steps</h2>
+                <div class="steps-container" id="stepsContainer"></div>
+            </div>
+
+            <!-- Cook Mode Button -->
+            <div class="content-cookModeButton">
+                <button class="cookModeButton" onclick=startCookMode()>
+                    <span class="cookButtonText">COOK!</span>
+                </button>
+            </div>
+        </main>
+        <nav class="bottom-nav" id="bottomNav"></nav>
+    </div>
+    <script src="../script.js"></script>
+    <script>
+// Get the file parameter from URL
+const urlParams = new URLSearchParams(window.location.search);
+const fileKey = urlParams.get('recipe');
+
+// Map file keys to actual file names by adding .txt extension
+const fileName = fileKey ? '../recipes/' + fileKey + '.json' : '../recipes/recipe_template.json';
+
+// load the file
+fetch(fileName)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('File not found');
+        }
+        return response.text();
+    })
+    .then(data => {
+        // The info from the file is parsed and used to design the web page
+        loadRecipePage(data);
+    })
+    .catch(error => {
+        document.getElementById('contentArea').innerHTML = 
+            '<div class="error">Content not available: ' + fileName + '</div>';
+    });
+
+function loadRecipePage(data) {
+    const parsed = JSON.parse(data);
+    // title
+    if (parsed.title) {
+        document.getElementById('contentTitle').textContent = parsed.title;
+        document.title = parsed.title;
+    }
+
+    // tags
+    if (parsed.tags && parsed.tags.length > 0) {
+        createTags(parsed.tags);
+    } else {
+        document.getElementById('tags').style.display = 'none';
+    }
+
+    // slideshow
+    if (parsed.slideshowImages && parsed.slideshowImages.length > 0) {
+        createSlideshow(parsed.slideshowImages);
+    } else {
+        document.getElementById('slideshow').style.display = 'none';
+    }
+
+    // ingredient list
+    if (parsed.ingredients) {
+        createList(parsed.ingredients);
+    } else {
+        document.querySelector('.content-ingredients').style.display = 'none';
+    }
+
+    // list of steps
+    if (parsed.steps && parsed.steps.length > 0) {
+        createSteps(parsed.steps);
+    } else {
+        document.getElementById('stepsSection').style.display = 'none';
+    }
+}
+
+function startCookMode() {
+    window.location.href = "cooking-page.html?" + "recipe=" + urlParams.get('recipe')
+}
+
+function createTags(tags) {
+    const container = document.getElementById('tags');
+    
+    tags.forEach(tag => {
+        const tagElement = document.createElement('span');
+        tagElement.className = 'tag';
+        tagElement.textContent = tag;
+        container.appendChild(tagElement);
+    });
+}
+
+function createList(ingredients) {
+    const list = document.getElementById('contentList');
+    
+    ingredients.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'list-item';
+        li.innerHTML = `
+            <div class="list-item-left">${item.ingredient}</div>
+            <div class="list-item-right">${item.unit}</div>
+        `;
+        list.appendChild(li);
+    });
+}
+
+function createSteps(steps) {
+    const container = document.getElementById('stepsContainer');
+    
+    steps.forEach((step, index) => {
+        const stepCard = document.createElement('div');
+        stepCard.className = 'step-card';
+        
+        stepCard.innerHTML = `
+            <div class="step-header">Step ${index + 1}</div>
+            <div class="step-content">
+                <img src="${step.image}" alt="Step ${index + 1}" class="step-image" onerror="this.style.display='none'">
+                <div class="step-text">${step.text}</div>
+            </div>
+            <div class="step-time">${step.time}</div>
+        `;
+        
+        container.appendChild(stepCard);
+    });
+}
+
+let currentSlide = 0;
+let slideshowInterval;
+
+function changeSlide(direction) {
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length === 0) return;
+    
+    currentSlide += direction;
+    
+    // Loop around if at ends
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+    }
+    
+    goToSlide(currentSlide);
+    
+    // Reset the auto-advance timer
+    startSlideshow();
+}
+
+function goToSlide(index) {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const track = document.getElementById('slideshowTrack');
+    
+    if (slides.length === 0) return;
+    
+    currentSlide = index;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+}
+
+function startSlideshow() {
+    clearInterval(slideshowInterval);
+    slideshowInterval = setInterval(() => {
+        changeSlide(1);
+    }, 5000);
+}
+
+function createSlideshow(images) {
+    const track = document.getElementById('slideshowTrack');
+    const dots = document.getElementById('slideshowDots');
+    
+    images.forEach((image, index) => {
+        // Create slide
+        const slide = document.createElement('div');
+        slide.className = 'slide';
+        slide.innerHTML = `<img src="${image}" alt="Slide ${index + 1}">`;
+        track.appendChild(slide);
+        
+        // Create dot
+        const dot = document.createElement('span');
+        dot.className = 'dot';
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dots.appendChild(dot);
+    });
+    
+    // Hide arrows if only one slide
+    const arrows = document.querySelectorAll('.slideshow-arrow');
+    if (images.length <= 1) {
+        arrows.forEach(arrow => arrow.style.display = 'none');
+    }
+    
+    // Start slideshow
+    startSlideshow();
+}
+
+function toggleFavourite() {
+    const favouriteBtn = document.getElementById('favouriteBtn');
+    const heartIcon = favouriteBtn.querySelector('.heart-icon');
+    
+    favouriteBtn.classList.toggle('active');
+    
+    if (heartIcon.tagName === 'SPAN') {
+        heartIcon.textContent = favouriteBtn.classList.contains('active') ? '♥' : '♡';
+    }
+}
+    </script>
+</body>
+</html>

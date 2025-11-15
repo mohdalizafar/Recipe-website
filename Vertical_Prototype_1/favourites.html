@@ -1,0 +1,658 @@
+<!-- Known bugs
+ - tags can't be clicked
+ - none of the filter features are implemented
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourites</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+.heading-container h1 {
+    padding: 20px;
+    text-align: center;
+}
+.heading-container h2 {
+    padding: 10px;
+}
+/* Heading Styles */
+.heading-container h1 {
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+/* Filter Section */
+.filter-section {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.filter-section h2 {
+    padding: 10px 0;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Filter Row Layout */
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Search Bar */
+.search-bar {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: #007AFF;
+}
+
+/* Dropdown Styles */
+.filter-dropdown {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.filter-dropdown:focus {
+    outline: none;
+    border-color: #007AFF;
+}
+
+/* Tags Container */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tag {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag:hover {
+    background: #007AFF;
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Recipe Cards Grid */
+.favourites-container {
+    padding: 0 20px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.recipe-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.recipe-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-decoration: none;
+    color: inherit;
+}
+
+.recipe-card-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background: #f5f5f5;
+}
+
+.recipe-card-content {
+    padding: 15px;
+}
+
+.recipe-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.recipe-card-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #666;
+}
+
+.recipe-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rating-stars {
+    color: #ffc107;
+}
+
+.difficulty-badge {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.difficulty-easy {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.difficulty-medium {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.difficulty-hard {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.recipe-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.recipe-card-tag {
+    padding: 2px 6px;
+    border: 1px solid #007AFF;
+    border-radius: 8px;
+    font-size: 10px;
+    color: #007AFF;
+    background: white;
+}
+
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .heading-container h1 {
+        padding: 15px;
+        font-size: 24px;
+    }
+
+    .filter-section {
+        padding: 0 15px 15px;
+    }
+
+    .filter-section h2 {
+        font-size: 16px;
+    }
+
+    .filter-row {
+        gap: 10px;
+    }
+
+    .filter-group {
+        min-width: 100%;
+    }
+
+    .favourites-container {
+        padding: 0 15px 15px;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .recipe-card-image {
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .favourites-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Remove Favourite Button */
+.remove-favourite {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    color: #ff4444;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    /* z-index: 10; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+
+.remove-favourite:hover {
+    background: #ff4444;
+    color: white;
+    transform: scale(1.1);
+}
+
+.remove-favourite:active {
+    transform: scale(0.95);
+}
+
+
+.recipe-card {
+    position: relative;
+}
+
+/* Remove Favourite Button with Tooltip */
+.remove-favourite {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    color: #ff4444;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+
+.remove-favourite:hover {
+    background: #ff4444;
+    color: white;
+    transform: scale(1.1);
+}
+
+.remove-favourite:active {
+    transform: scale(0.95);
+}
+
+/* Tooltip Styles */
+.remove-favourite::after {
+    content: "Remove";
+    position: absolute;
+    bottom: -35px;
+    left: 0%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 20;
+}
+
+.remove-favourite::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #333;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 20;
+}
+
+.remove-favourite:hover::after,
+.remove-favourite:hover::before {
+    opacity: 1;
+}
+
+/* Make recipe card position relative for absolute positioning */
+.recipe-card {
+    position: relative;
+    /* ... rest of your existing styles ... */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main class="content">
+            <!-- Back Button -->
+            <button class="back-btn" onclick="goBack()">⬅︎</button>
+
+            <!-- Main Heading -->
+            <div class="heading-container">
+                <h1>Favourites</h1>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <h2>Filter</h2>
+                
+                <!-- Search Bar -->
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Search Recipes</label>
+                        <input type="text" class="search-bar" placeholder="Type to search...">
+                    </div>
+                </div>
+
+                <!-- Dropdown Filters -->
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Difficulty</label>
+                        <select class="filter-dropdown">
+                            <option value="">Any Difficulty</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>User Rating</label>
+                        <select class="filter-dropdown">
+                            <option value="">Any Rating</option>
+                            <option value="5">★★★★★ (5 stars)</option>
+                            <option value="4">★★★★☆ (4+ stars)</option>
+                            <option value="3">★★★☆☆ (3+ stars)</option>
+                            <option value="2">★★☆☆☆ (2+ stars)</option>
+                            <option value="1">★☆☆☆☆ (1+ star)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Filter Tags -->
+                <div class="filter-group">
+                    <label>Filter by Tags</label>
+                    <div class="tags-container">
+                        <span class="tag">Vegan</span>
+                        <span class="tag">Vegetarian</span>
+                        <span class="tag">Halal</span>
+                        <span class="tag">Kosher</span>
+                        <span class="tag">Gluten-free</span>
+                        <span class="tag">Dairy-free</span>
+                        <span class="tag">Dessert</span>
+                        <span class="tag" style="border: 2px solid #ff0000; color: #ff0000;">+ Custom</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favourites List -->
+            <div class="favourites-container">
+                <!-- Recipe Card -->
+                <a href="view-recipe.html?recipe=recipe_template" class="recipe-card">
+                    <button class="remove-favourite" onclick="removeRecipe(event, this)">×</button>
+                    <img src="../images/meal_placeholder.png" alt="Example Recipe" class="recipe-card-image">
+                    <div class="recipe-card-content">
+                        <div class="recipe-card-title">Example Recipe</div>
+                        <div class="recipe-card-meta">
+                            <div class="recipe-card-rating">
+                                <span class="rating-stars">★★★★★</span>
+                                <span>(4.8)</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-medium">Medium</span>
+                        </div>
+                        <div class="recipe-card-tags">
+                            <span class="recipe-card-tag">Dessert</span>
+                            <span class="recipe-card-tag">Vegetarian</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Recipe Card -->
+                <a href="view-recipe.html?recipe=recipe_template" class="recipe-card">
+                    <button class="remove-favourite" onclick="removeRecipe(event, this)">×</button>
+                    <img src="../images/meal_placeholder.png" alt="Example Recipe" class="recipe-card-image">
+                    <div class="recipe-card-content">
+                        <div class="recipe-card-title">Example Recipe</div>
+                        <div class="recipe-card-meta">
+                            <div class="recipe-card-rating">
+                                <span class="rating-stars">★★★★★</span>
+                                <span>(4.8)</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-easy">Easy</span>
+                        </div>
+                        <div class="recipe-card-tags">
+                            <span class="recipe-card-tag">Vegan</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Recipe Card -->
+                <a href="view-recipe.html?recipe=recipe_template" class="recipe-card">
+                    <button class="remove-favourite" onclick="removeRecipe(event, this)">×</button>
+                    <img src="../images/meal_placeholder.png" alt="Example Recipe" class="recipe-card-image">
+                    <div class="recipe-card-content">
+                        <div class="recipe-card-title">Example Recipe</div>
+                        <div class="recipe-card-meta">
+                            <div class="recipe-card-rating">
+                                <span class="rating-stars">★★★★★</span>
+                                <span>(4.8)</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-hard">Hard</span>
+                        </div>
+                        <div class="recipe-card-tags">
+                            <span class="recipe-card-tag">Dessert</span>
+                            <span class="recipe-card-tag">Halal</span>
+                            <span class="recipe-card-tag">Gluten-free</span>
+                            <span class="recipe-card-tag">Vegetarian</span>
+                            <span class="recipe-card-tag">Kosher</span>
+                            <span class="recipe-card-tag">Dairy-free</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Recipe Card -->
+                <a href="view-recipe.html?recipe=recipe_template" class="recipe-card">
+                    <button class="remove-favourite" onclick="removeRecipe(event, this)">×</button>
+                    <img src="../images/meal_placeholder.png" alt="Example Recipe" class="recipe-card-image">
+                    <div class="recipe-card-content">
+                        <div class="recipe-card-title">Example Recipe</div>
+                        <div class="recipe-card-meta">
+                            <div class="recipe-card-rating">
+                                <span class="rating-stars">★★★★★</span>
+                                <span>(4.8)</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-medium">Medium</span>
+                        </div>
+                        <div class="recipe-card-tags">
+                            <span class="recipe-card-tag">Dessert</span>
+                            <span class="recipe-card-tag">Vegetarian</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Recipe Card -->
+                <a href="view-recipe.html?recipe=recipe_template" class="recipe-card">
+                    <button class="remove-favourite" onclick="removeRecipe(event, this)">×</button>
+                    <img src="../images/meal_placeholder.png" alt="Example Recipe" class="recipe-card-image">
+                    <div class="recipe-card-content">
+                        <div class="recipe-card-title">Example Recipe</div>
+                        <div class="recipe-card-meta">
+                            <div class="recipe-card-rating">
+                                <span class="rating-stars">★★★★★</span>
+                                <span>(4.8)</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-medium">Medium</span>
+                        </div>
+                        <div class="recipe-card-tags">
+                            <span class="recipe-card-tag">Dessert</span>
+                            <span class="recipe-card-tag">Vegetarian</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Recipe Card -->
+                <a href="view-recipe.html?recipe=recipe_template" class="recipe-card">
+                    <button class="remove-favourite" onclick="removeRecipe(event, this)">×</button>
+                    <img src="../images/meal_placeholder.png" alt="Example Recipe" class="recipe-card-image">
+                    <div class="recipe-card-content">
+                        <div class="recipe-card-title">Example Recipe</div>
+                        <div class="recipe-card-meta">
+                            <div class="recipe-card-rating">
+                                <span class="rating-stars">★★★★★</span>
+                                <span>(4.8)</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-medium">Medium</span>
+                        </div>
+                        <div class="recipe-card-tags">
+                            <span class="recipe-card-tag">Dessert</span>
+                            <span class="recipe-card-tag">Vegetarian</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Recipe Card -->
+                <a href="view-recipe.html?recipe=recipe_template" class="recipe-card">
+                    <button class="remove-favourite" onclick="removeRecipe(event, this)">×</button>
+                    <img src="../images/meal_placeholder.png" alt="Example Recipe" class="recipe-card-image">
+                    <div class="recipe-card-content">
+                        <div class="recipe-card-title">Example Recipe</div>
+                        <div class="recipe-card-meta">
+                            <div class="recipe-card-rating">
+                                <span class="rating-stars">★★★★★</span>
+                                <span>(4.8)</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-medium">Medium</span>
+                        </div>
+                        <div class="recipe-card-tags">
+                            <span class="recipe-card-tag">Dessert</span>
+                            <span class="recipe-card-tag">Vegetarian</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Recipe Card -->
+                <a href="view-recipe.html?recipe=recipe_template" class="recipe-card">
+                    <button class="remove-favourite" onclick="removeRecipe(event, this)">×</button>
+                    <img src="../images/meal_placeholder.png" alt="Example Recipe" class="recipe-card-image">
+                    <div class="recipe-card-content">
+                        <div class="recipe-card-title">Example Recipe</div>
+                        <div class="recipe-card-meta">
+                            <div class="recipe-card-rating">
+                                <span class="rating-stars">★★★★★</span>
+                                <span>(4.8)</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-medium">Medium</span>
+                        </div>
+                        <div class="recipe-card-tags">
+                            <span class="recipe-card-tag">Dessert</span>
+                            <span class="recipe-card-tag">Vegetarian</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Recipe Card -->
+                <a href="view-recipe.html?recipe=recipe_template" class="recipe-card">
+                    <button class="remove-favourite" onclick="removeRecipe(event, this)">×</button>
+                    <img src="../images/meal_placeholder.png" alt="Example Recipe" class="recipe-card-image">
+                    <div class="recipe-card-content">
+                        <div class="recipe-card-title">Example Recipe</div>
+                        <div class="recipe-card-meta">
+                            <div class="recipe-card-rating">
+                                <span class="rating-stars">★★★★★</span>
+                                <span>(4.8)</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-medium">Medium</span>
+                        </div>
+                        <div class="recipe-card-tags">
+                            <span class="recipe-card-tag">Dessert</span>
+                            <span class="recipe-card-tag">Vegetarian</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- no more recipe cards -->
+            </div>
+        </main>
+        <nav class="bottom-nav" id="bottomNav"></nav>
+    </div>
+    <script src="../script.js"></script>
+</body>
+</html>
+<script>
+    function removeRecipe(event, button) {
+        // Prevent the link from navigating when remove button is clicked
+        event.preventDefault();
+        event.stopPropagation();
+        
+        // Get the recipe card element
+        const recipeCard = button.closest('.recipe-card');
+        
+        // Add fade-out animation
+        recipeCard.style.opacity = '0';
+        recipeCard.style.transform = 'scale(0.8)';
+        
+        // Remove from DOM after animation
+        setTimeout(() => {
+            recipeCard.remove();
+            
+            // Optional: Show message if all recipes are removed
+            const remainingCards = document.querySelectorAll('.recipe-card');
+            if (remainingCards.length === 0) {
+                const container = document.querySelector('.favourites-container');
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>All recipes removed from favourites</p>
+                        <p>Refresh the page to see them again</p>
+                    </div>
+                `;
+            }
+        }, 300);
+    }
+</script>

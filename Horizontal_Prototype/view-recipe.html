@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Recipe</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <style>
 /* ===== SLIDESHOW COMPONENT ===== */
 .slideshow-container {
@@ -471,14 +471,14 @@
         </main>
         <nav class="bottom-nav" id="bottomNav"></nav>
     </div>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
     <script>
 // Get the file parameter from URL
 const urlParams = new URLSearchParams(window.location.search);
 const fileKey = urlParams.get('recipe');
 
 // Map file keys to actual file names by adding .txt extension
-const fileName = fileKey ? 'recipes/' + fileKey + '.json' : 'recipes/recipe_template.json';
+const fileName = fileKey ? '../recipes/' + fileKey + '.json' : '../recipes/recipe_template.json';
 
 // load the file
 fetch(fileName)

@@ -101,7 +101,7 @@ function loadRecipe() {
     }
     
     // Map file keys to actual file names by adding .json extension
-    const fileName = 'recipes/' + fileKey + '.json';
+    const fileName = '../recipes/' + fileKey + '.json';
     
     // Load the file
     fetch(fileName)
@@ -172,7 +172,7 @@ function renderCurrentStep() {
     }
     
     // Build HTML for current step
-    const stepImage = step.image || 'images/meal_placeholder.png';
+    const stepImage = step.image || '../images/meal_placeholder.png';
     const stepText = step.text || '';
     const stepTime = step.time || '';
     

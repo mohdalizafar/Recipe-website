@@ -1,11 +1,11 @@
 {
   "title": "Creamy Mushroom Soup",
   "slideshowImages": [
-    "images/mushroom_soup/step1.jpg",
-    "images/mushroom_soup/step2.jpg",
-    "images/mushroom_soup/step3.jpg",
-    "images/mushroom_soup/step4.jpg",
-    "images/mushroom_soup/step5.jpg"
+    "../images/mushroom_soup/step1.jpg",
+    "../images/mushroom_soup/step2.jpg",
+    "../images/mushroom_soup/step3.jpg",
+    "../images/mushroom_soup/step4.jpg",
+    "../images/mushroom_soup/step5.jpg"
   ],
   "ingredients": [
     { "ingredient": "Mushrooms", "unit": "3 pieces" },
@@ -22,7 +22,7 @@
   "steps": [
     {
       "text": "Slice mushrooms, finely chop the onion, and cut the celery into small pieces.",
-      "image": "images/mushroom_soup/step1.jpg",
+      "image": "../images/mushroom_soup/step1.jpg",
       "time": "2 mins",
       "tips": [
         "Mushrooms shrink significantly, so slice them slightly thicker."
@@ -30,7 +30,7 @@
     },
     {
       "text": "Melt 20g butter in a pot and sauté mushrooms, onion, and celery until softened and fragrant.",
-      "image": "images/mushroom_soup/step2.jpg",
+      "image": "../images/mushroom_soup/step2.jpg",
       "time": "4 mins",
       "tips": [
         "Low to medium heat works best to prevent burning the butter."
@@ -38,7 +38,7 @@
     },
     {
       "text": "Add 20g butter and 25g flour to form a roux. Stir continuously until lightly golden.",
-      "image": "images/mushroom_soup/step3.jpg",
+      "image": "../images/mushroom_soup/step3.jpg",
       "time": "2 mins",
       "tips": [
         "A smooth roux prevents lumps in the final soup."
@@ -46,7 +46,7 @@
     },
     {
       "text": "Slowly add water and milk while stirring until the mixture becomes smooth. Bring to a gentle simmer.",
-      "image": "images/mushroom_soup/step4.jpg",
+      "image": "../images/mushroom_soup/step4.jpg",
       "time": "5 mins",
       "tips": [
         "Add milk gradually to prevent curdling."
@@ -54,7 +54,7 @@
     },
     {
       "text": "Season with salt, white pepper, and black pepper. Continue simmering until the soup thickens.",
-      "image": "images/mushroom_soup/step5.jpg",
+      "image": "../images/mushroom_soup/step5.jpg",
       "time": "3 mins",
       "tips": [
         "For a creamier texture, blend part of the soup and stir it back in."
