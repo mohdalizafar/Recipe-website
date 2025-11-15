@@ -32,7 +32,7 @@
       text-align: center; 
       margin-bottom: 16px; 
       position: relative; 
-      height: 90px; /* thicker top bar */
+      height: 90px; 
       display: flex; 
       align-items: center; 
       justify-content: center; 
@@ -41,23 +41,6 @@
     }
     .topbar h1 { font-size: 22px; font-weight: 700; }
 
-    /* back button */
-    .back-btn {
-      position: absolute;
-      top: 10px; /* slightly moved up */
-      left: 16px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 50%;
-      width: 60px; height: 60px; /* bigger button */
-      display: flex; align-items: center; justify-content: center;
-      font-size: 28px;
-      color: #333;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .back-btn:hover { background: #f3f4f6; transform: scale(1.08); }
 
     .profile-card {
       background: var(--card);
@@ -92,38 +75,12 @@
     .row .label { font-size: 15px; font-weight: 600; }
     .row .chev { margin-left: auto; color: #9ca3af; }
 
-    /* bottom nav bar */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      background: #fff;
-      border-top: 1px solid #ddd;
-      padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
-      z-index: 999;
-    }
-    .bottom-nav a {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #444;
-      font-size: 13px;
-    }
-    .bottom-nav a .nav-icon { font-size: 22px; margin-bottom: 2px; }
-    .bottom-nav a.active { color: var(--brand); font-weight: 600; }
   </style>
 </head>
 <body>
   <div class="container">
     <main class="content">
       <div class="topbar">
-        <button class="back-btn" onclick="history.back()">←</button>
         <h1>Profile Page</h1>
       </div>
 
@@ -178,28 +135,7 @@
       </section>
     </main>
 
-    <nav class="bottom-nav" id="bottomNav">
-      <a class="nav-tab" href="#home">
-        <div class="nav-icon">🏠</div>
-        <div class="nav-label">Home</div>
-      </a>
-      <a class="nav-tab" href="#search">
-        <div class="nav-icon">🔍</div>
-        <div class="nav-label">Search</div>
-      </a>
-      <a class="nav-tab" href="#upload">
-        <div class="nav-icon">➕</div>
-        <div class="nav-label">Upload</div>
-      </a>
-      <a class="nav-tab" href="#favourites">
-        <div class="nav-icon">🩷</div>
-        <div class="nav-label">Favourites</div>
-      </a>
-      <a class="nav-tab active" href="#profile" aria-current="page">
-        <div class="nav-icon">👤</div>
-        <div class="nav-label">Profile</div>
-      </a>
-    </nav>
+    <nav class="bottom-nav" id="bottomNav"></nav>
   </div>
 
  <script src="script.js"></script>
