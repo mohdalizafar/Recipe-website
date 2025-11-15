@@ -1,0 +1,52 @@
+{
+  "title": "Classic French Omelette",
+  "slideshowImages": [
+    "images/omelette/step1.jpg",
+    "images/omelette/step2.jpg",
+    "images/omelette/step3.jpg",
+    "images/omelette/step4.jpg",
+    "images/omelette/step5.jpg"
+  ],
+  "ingredients": [
+    { "ingredient": "Eggs", "unit": "2 pcs" },
+    { "ingredient": "Salt", "unit": "2 g" },
+    { "ingredient": "Milk or Cooking Cream", "unit": "1 tbsp" },
+    { "ingredient": "Black Pepper", "unit": "1 pinch" },
+    { "ingredient": "Butter", "unit": "a small knob" },
+    { "ingredient": "Cooked Ham", "unit": "a little (optional)" },
+    { "ingredient": "Bell Pepper", "unit": "a little (optional)" }
+  ],
+  "steps": [
+    {
+      "text": "Crack the eggs into a bowl, add salt, milk (or cream), and black pepper. Whisk until smooth and slightly frothy.",
+      "image": "images/omelette/step1.jpg",
+      "time": "2 mins",
+      "tips": ["Whisking more makes the omelette fluffier."]
+    },
+    {
+      "text": "Heat a non-stick pan over medium-low heat. Add a small knob of butter and let it fully melt without browning.",
+      "image": "images/omelette/step2.jpg",
+      "time": "1 min",
+      "tips": ["Butter should melt gently—if it browns, the heat is too high."]
+    },
+    {
+      "text": "Pour in the egg mixture. Use a spatula to gently stir the eggs while shaking the pan, creating small soft curds.",
+      "image": "images/omelette/step3.jpg",
+      "time": "3 mins",
+      "tips": ["Keep heat low to avoid browning the eggs."]
+    },
+    {
+      "text": "Once the eggs begin to set but the surface is still shiny, stop stirring. Add ham or peppers if using.",
+      "image": "images/omelette/step4.jpg",
+      "time": "1 min",
+      "tips": ["The perfect French omelette is custardy—not fully dry."]
+    },
+    {
+      "text": "Tilt the pan and gently fold the omelette toward the center. Slide it onto a plate with the seam side down.",
+      "image": "images/omelette/step5.jpg",
+      "time": "1 min",
+      "tips": ["Fold gently to keep the inside creamy."]
+    }
+  ],
+  "tags": ["Breakfast", "High-Protein", "Quick"]
+}
