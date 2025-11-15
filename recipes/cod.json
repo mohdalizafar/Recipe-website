@@ -1,11 +1,11 @@
 {
   "title": "Orange-Miso Glazed Black Cod with Sesame Rice",
   "slideshowImages": [
-    "images/cod/slide 1.jpg",
-    "images/cod/slide 2.jpg",
-    "images/cod/slide 3.jpg",
-    "images/cod/slide 4.jpg",
-    "images/cod/slide 5.jpg"
+    "images/cod/1.jpg",
+    "images/cod/2.jpg",
+    "images/cod/3.jpg",
+    "images/cod/4.jpg",
+    "images/cod/5.jpg"
   ],
   "ingredients": [
     { "ingredient": "Black cod (sablefish) fillets", "unit": "2 (6 oz each)" },
@@ -25,37 +25,37 @@
   "steps": [
     {
       "text": "Make the glaze by whisking together white miso, orange juice, mirin, soy sauce, honey, sesame oil, garlic, and ginger until smooth.",
-      "image": "images/cod/slide 1.jpg",
+      "image": "images/cod/1.jpg",
       "time": "5 mins"
     },
     {
       "text": "Pat the cod fillets dry and place them in a shallow dish. Spoon half the glaze over the fish, turning to coat. Reserve the remaining glaze for basting.",
-      "image": "images/cod/slide 2.jpg",
+      "image": "images/cod/2.jpg",
       "time": "3 mins"
     },
     {
-      "text": "Marinate the fish in the refrigerator for 20–30 minutes to let flavors penetrate.",
-      "image": "images/cod/slide 3.jpg",
+      "text": "Marinate the fish in the refrigerator for 20-30 minutes to let flavors penetrate.",
+      "image": "images/cod/3.jpg",
       "time": "30 mins"
     },
     {
       "text": "Preheat the oven to 425°F (220°C). Line a baking sheet with foil and oil lightly to prevent sticking.",
-      "image": "images/cod/slide 4.jpg",
+      "image": "images/cod/4.jpg",
       "time": "10 mins"
     },
     {
-      "text": "Place the fillets skin-side down on the prepared sheet. Roast for 8–10 minutes until the fish is opaque and flakes easily, basting once or twice with the reserved glaze during the last few minutes.",
-      "image": "images/cod/slide 5.jpg",
+      "text": "Place the fillets skin-side down on the prepared sheet. Roast for 8-10 minutes until the fish is opaque and flakes easily, basting once or twice with the reserved glaze during the last few minutes.",
+      "image": "images/cod/5.jpg",
       "time": "10 mins"
     },
     {
       "text": "While the fish roasts, fluff the cooked short-grain rice and toss with a drizzle of sesame oil, toasted sesame seeds, and a pinch of salt.",
-      "image": "images/cod/slide 1.jpg",
+      "image": "images/cod/1.jpg",
       "time": "3 mins"
     },
     {
       "text": "Transfer rice to bowls, top with a glazed cod fillet, scatter sliced scallions and a little citrus zest over the top, and serve immediately.",
-      "image": "images/cod/slide 2.jpg",
+      "image": "images/cod/2.jpg",
       "time": "2 mins"
     }
   ],
