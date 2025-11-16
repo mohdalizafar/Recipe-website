@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cooking Mode</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <style>
         /* ===== COOKING PAGE SPECIFIC STYLES ===== */
         
         /* Top Bar */
         .cooking-top-bar {
-            position: fixed;
+            position: sticky;
             top: 0;
             left: 0;
             right: 0;
@@ -224,7 +224,7 @@
 
         /* Bottom Control Bar */
         .cooking-control-bar {
-            position: fixed;
+            position: sticky;
             bottom: 0;
             left: 0;
             right: 0;
@@ -451,51 +451,9 @@
             }
         }
     </style>
-    <style>
-        /* Mobile Preview Container Wrapper */
-        body {
-            background: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .mobile-preview-wrapper {
-            max-width: 450px;
-            width: 100%;
-            min-height: 100vh;
-            background: white;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Adjust fixed elements to work within wrapper */
-        .cooking-top-bar {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            right: auto;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 450px;
-        }
-
-        .cooking-control-bar {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            right: auto;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 450px;
-        }
-    </style>
 </head>
 <body>
-    <div class="mobile-preview-wrapper">
-        <div class="container">
+    <div class="container">
         <!-- Top Bar -->
         <div class="cooking-top-bar">
             <button class="cooking-back-btn" onclick="goBack()">⬅︎</button>
@@ -576,7 +534,6 @@
             </div>
         </div>
 
-        </div>
     </div>
     <script src="../script.js"></script>
 </body>
