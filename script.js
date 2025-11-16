@@ -770,3 +770,62 @@ document.addEventListener('DOMContentLoaded', function() {
         loadRecipe();
     }
 });
+
+
+// Search and filter functions
+
+const searchInput = document.getElementById("searchInput");
+const recipeCards = document.querySelectorAll(".recipe-card");
+const categoryPills = document.querySelectorAll(".category-pill");
+
+let activeFilter = null;
+let activeSearch = "";
+
+function applyFilters() {
+    recipeCards.forEach(card => {
+      const name = card.dataset.name.toLowerCase();
+      const type = card.dataset.type.toLowerCase();
+  
+      const matchesSearch =
+        !activeSearch ||
+        name.includes(activeSearch) ||
+        type.includes(activeSearch);
+  
+      const matchesCategory =
+        !activeFilter || type.includes(activeFilter);
+  
+
+      if (matchesSearch && matchesCategory) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+  
+
+  searchInput.addEventListener("input", function () {
+    activeSearch = this.value.toLowerCase().trim();
+    applyFilters();
+  });
+  
+  
+
+  categoryPills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      const filter = pill.dataset.filter.toLowerCase();
+
+      if (activeFilter === filter) {
+        activeFilter = null;
+        categoryPills.forEach(p => p.classList.remove("bg-[#1a73e8]", "text-white"));
+      } else {
+        activeFilter = filter;
+  
+ 
+        categoryPills.forEach(p => p.classList.remove("bg-[#1a73e8]", "text-white"));
+        pill.classList.add("bg-[#1a73e8]", "text-white");
+      }
+  
+      applyFilters();
+    });
+  });
