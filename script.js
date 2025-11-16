@@ -1,4 +1,6 @@
+// ==========================
 // Navigation configuration
+// ==========================
 const navConfig = [
     { 
         id: 'home',
@@ -68,18 +70,118 @@ function initNavigation() {
     });
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initNavigation();
-    
-    // Load recipe if on cooking page
-    const currentPage = window.location.pathname.split('/').pop() || window.location.href.split('/').pop();
-    if (currentPage.includes('cooking-page')) {
-        loadRecipe();
-    }
-});
+/* ===============================
+   Home page: load recipes from JSON
+   =============================== */
 
-// ===== COOKING PAGE RECIPE LOADING =====
+/**
+ * Keys for recipe files in ../recipes/
+ * classic_french_omelette  -> ../recipes/classic_french_omelette.json
+ * (add more keys here as you create more JSON files)
+ */
+const recipeKeys = [
+    'omelette',
+    'mushroom_soup',
+    'pasta',
+    'spaghetti',
+    'steak',
+    'cod',
+];
+
+// Build one recipe card HTML from recipe JSON + slug
+function buildRecipeCard(recipe, slug) {
+    const title = recipe.title || 'Untitled Recipe';
+
+    const imageSrc =
+        (recipe.slideshowImages && recipe.slideshowImages[0]) ||
+        (recipe.steps && recipe.steps[0] && recipe.steps[0].image) ||
+        '';
+
+    // Use JSON image path as-is; your example uses "../images/..."
+    const img = imageSrc || '';
+
+    // First few ingredients
+    const ingredients = (recipe.ingredients || []).slice(0, 3);
+    const ingredientLines = ingredients.map(ing => {
+        const name = ing.ingredient || '';
+        const unit = ing.unit ? ` (${ing.unit})` : '';
+        return `<li>${name}${unit}</li>`;
+    }).join('');
+
+    // Basic meta info (you can expand later)
+    const step0 = recipe.steps && recipe.steps[0];
+    const timeText = (step0 && step0.time) ? step0.time : '10 mins';
+    const difficulty = 'Easy'; // could be added to JSON later
+
+    // Link to recipe page for that recipe
+    const href = `view-recipe.html?recipe=${encodeURIComponent(slug)}`;
+
+    return `
+      <a href="${href}" class="card-link">
+        <article class="card">
+          <div class="card-head">
+            <span>${title}</span>
+            <span class="rating">★ 5.0</span>
+          </div>
+          <div class="card-img">
+            ${img ? `<img src="${img}" alt="${title}">` : 'No image'}
+          </div>
+          <div class="card-body">
+            <ul>
+              ${ingredientLines || '<li>No ingredients listed</li>'}
+            </ul>
+            <div class="diff">${timeText} • ${difficulty}</div>
+          </div>
+        </article>
+      </a>
+    `;
+}
+
+async function loadHomeRecipes() {
+    const grid = document.getElementById('recipeGrid');
+    if (!grid) return; // not on homepage
+
+    try {
+        const cards = [];
+
+        for (const key of recipeKeys) {
+            const filePath = `../recipes/${key}.json`;
+
+            try {
+                const res = await fetch(filePath);
+                if (!res.ok) {
+                    console.error('Failed to fetch', filePath, res.status);
+                    continue;
+                }
+                const json = await res.json();
+                cards.push(buildRecipeCard(json, key));
+            } catch (err) {
+                console.error('Error loading recipe', filePath, err);
+            }
+        }
+
+        if (!cards.length) {
+            grid.innerHTML = '<p>No recipes found.</p>';
+            return;
+        }
+
+        grid.innerHTML = cards.join('');
+    } catch (err) {
+        console.error('Error loading recipes', err);
+        grid.innerHTML = '<p>Failed to load recipes.</p>';
+    }
+}
+
+function initHomeRecipes() {
+    const grid = document.getElementById('recipeGrid');
+    if (!grid) return; // only run on pages that have the grid
+    loadHomeRecipes();
+}
+
+// ===============================
+// COOKING PAGE RECIPE LOADING
+// ===============================
+
 // Global variables for step-by-step mode
 let currentRecipe = null;
 let currentStepIndex = 0;
@@ -247,9 +349,9 @@ function renderCurrentStep() {
         updateTimerButtonText(timerRemainingSeconds);
         
         // Remove any "time's up" styling
-                   timerBtn.classList.remove('timer-times-up');
-                   timerBtn.style.background = 'white';
-                   timerBtn.style.color = '#FF8A00'; // Reset to original orange color
+        timerBtn.classList.remove('timer-times-up');
+        timerBtn.style.background = 'white';
+        timerBtn.style.color = '#FF8A00'; // Reset to original orange color
         
         // Ensure timer button has click handler
         setupTimerButton();
@@ -381,16 +483,13 @@ function updateTimerButtonText(seconds) {
     // Determine what text to show
     const displayText = seconds === 0 && !timerIsRunning ? ' TIME\'S UP' : ' ' + formatTime(seconds);
     
-    // Insert text node right after SVG icon
     // Create text node
     const textNode = document.createTextNode(displayText);
     
     // Insert after SVG icon
     if (svgIcon.nextSibling) {
-        // Insert before the next sibling
         timerBtn.insertBefore(textNode, svgIcon.nextSibling);
     } else {
-        // No next sibling, append at the end (which is after SVG)
         timerBtn.appendChild(textNode);
     }
 }
@@ -462,9 +561,6 @@ function startTimer() {
             timerBtn.classList.add('timer-times-up');
             timerBtn.style.background = '#ffcc00';
             timerBtn.style.color = '#cc0000';
-            
-            // Keep the "time's up" state (don't remove after 2 seconds)
-            // User can click again to restart if needed
         }
     }, 1000);
 }
@@ -650,11 +746,8 @@ function setupVoiceNarration() {
     
     // Load voices (some browsers need this)
     if (speechSynthesis) {
-        // Chrome needs voices to be loaded
         if (speechSynthesis.getVoices().length === 0) {
-            speechSynthesis.addEventListener('voiceschanged', () => {
-                // Voices are now loaded
-            });
+            speechSynthesis.addEventListener('voiceschanged', () => {});
         }
     }
     
@@ -663,7 +756,17 @@ function setupVoiceNarration() {
         voiceBtn.setAttribute('data-voice-listener', 'true');
         voiceBtn.addEventListener('click', toggleVoiceNarration);
     }
-    
-    // Stop speech when step changes
-    // This is handled in renderCurrentStep by calling stopSpeech
 }
+
+// ===============================
+// DOMContentLoaded bootstrap
+// ===============================
+document.addEventListener('DOMContentLoaded', function() {
+    initNavigation();
+    initHomeRecipes();  // will do nothing on non-home pages
+    
+    const currentPage = window.location.pathname.split('/').pop() || window.location.href.split('/').pop();
+    if (currentPage.includes('cooking-page')) {
+        loadRecipe();
+    }
+});
