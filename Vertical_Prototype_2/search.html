@@ -1,19 +1,269 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
-    <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-    <div class="container">
-        <main class="content">
-            <h1>Search Page</h1>
-            <p>Search content goes here</p>
-        </main>
-        <nav class="bottom-nav" id="bottomNav"></nav>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+    />
+
+    <title>Search Page</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <style>
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+    .nav-icon {
+      font-size: 22px;
+    }
+
+    .nav-text {
+      font-size: 10px;
+      margin-top: 2px;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;     
+}
+.nav-item.active .nav-text {
+  color: #1a73e8; /* Blue */
+  font-weight: 700;
+}
+
+.nav-item.active .nav-icon {
+  color: #1a73e8;
+}
+
+  </style>
+
+  <body class="bg-[#f3f4f6] flex justify-center">
+    <div
+      class="relative flex h-auto min-h-screen w-full max-w-[450px] flex-col bg-white justify-between group/design-root overflow-x-hidden"
+      style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'
+    >
+      <div>
+        <!-- Header -->
+        <div class="flex items-center bg-white p-4 pb-2 justify-between">
+          <h5 class="text-[#111811] text-4xl font-bold flex-1 text-center pl-12">
+            Search Recipes
+          </h5>
+          <div class="flex w-12 items-center justify-end">
+            <button
+              class="flex cursor-pointer items-center justify-center rounded-lg h-12 bg-transparent text-[#111811] text-base font-bold"
+            >
+              <div data-icon="Plus" data-size="24px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
+                  <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="px-4 py-3">
+          <label class="flex flex-col h-12 w-full max-w-xl mx-auto">
+            <div class="flex items-stretch rounded-lg h-full w-full">
+              <div
+                class="text-[#618961] flex bg-[#f0f4f0] items-center justify-center pl-4 rounded-l-lg"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
+                  <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32Z"></path>
+                </svg>
+              </div>
+              <input
+                placeholder="Search recipes"
+                class="form-input flex w-full flex-1 rounded-lg bg-[#f0f4f0] px-4 focus:outline-0 placeholder:text-[#618961]"
+              />
+            </div>
+          </label>
+        </div>
+
+        <!-- Categories -->
+        <div class="flex gap-3 p-3 overflow-x-auto scrollbar-hide">
+  
+            <div class="flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0">
+              <p class="text-sm font-medium">Vegetarian</p>
+            </div>
+          
+            <div class="flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0">
+              <p class="text-sm font-medium">Kosher</p>
+            </div>
+          
+            <div class="flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0">
+              <p class="text-sm font-medium">Halal</p>
+            </div>
+          
+            <div class="flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0">
+              <p class="text-sm font-medium">Gluten-free</p>
+           </div>
+          
+            <div class="flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0">
+              <p class="text-sm font-medium">Non-Vegetarian</p>
+            </div>
+          
+            <div class="flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0">
+              <p class="text-sm font-medium">Seafood</p>
+            </div>
+          
+          </div>
+          
+
+        <!-- Popular Recipes -->
+        <h2 class="text-[#111811] text-[22px] font-bold px-4 pb-3 pt-5">Popular Recipes</h2>
+        <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+
+            <!-- Avocado Toast -->
+            <div class="flex flex-col gap-3 pb-3 recipe-card"
+                 data-name="avocado toast"
+                 data-type="breakfast vegetarian  easy">
+              <div
+                class="bg-center bg-cover aspect-square rounded-lg"
+                style='background-image:url("../images/search-images/avacado.jpg");'>
+              </div>
+              <p class="text-base font-medium">Avocado Toast</p>
+              <p class="text-[#618961] text-xs">Gordon Ramsey</p>
+            </div>
+          
+            <!-- Smoothie Bowl -->
+            <div class="flex flex-col gap-3 pb-3 recipe-card"
+                 data-name="smoothie bowl"
+                 data-type="breakfast vegan  cold">
+              <div
+                class="bg-center bg-cover aspect-square rounded-lg"
+                style='background-image:url("../images/search-images/smoothie.jpg");'>
+              </div>
+              <p class="text-base font-medium">Smoothie Bowl</p>
+              <p class="text-[#618961] text-xs">Wolfgang Puck</p>
+            </div>
+          
+            <!-- Overnight Oats -->
+            <div class="flex flex-col gap-3 pb-3 recipe-card"
+                 data-name="overnight oats"
+                 data-type="breakfast vegetarian  easy gluten-free">
+              <div
+                class="bg-center bg-cover aspect-square rounded-lg"
+                style='background-image:url("../images/search-images/oats.jpg");'>
+              </div>
+              <p class="text-base font-medium">Overnight Oats</p>
+              <p class="text-[#618961] text-xs">Jamie Oliver</p>
+            </div>
+          
+          </div>
+          
+
+        <!-- Favorites Section -->
+    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">Favorites</h2>
+
+    <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+
+        <!-- Napolitan Pasta -->
+        <div class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
+             data-name="napolitan pasta"
+             data-type="non-vegetarian">
+          <div class="aspect-[3/4] bg-cover bg-center rounded-lg"
+               style='background-image:url("../images/search-images/Pasta.jpg")'></div>
+          <p class="text-[#111811] text-base font-medium leading-tight">Napolitan Pasta</p>
+          <p class="text-[#618961] text-xs">Giovanni Auditore</p>
+        </div>
+      
+        <!-- French Omelette -->
+        <div class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
+             data-name="french omelette"
+             data-type="vegetarian kosher halal">
+          <div class="aspect-[3/4] bg-cover bg-center rounded-lg"
+               style='background-image:url("../images/search-images/French-omlette.jpg")'></div>
+          <p class="text-[#111811] text-base font-medium leading-tight">French Omelette</p>
+          <p class="text-[#618961] text-xs">Maxime Renault</p>
+        </div>
+      
+        <!-- Mushroom Soup -->
+        <div class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
+             data-name="mushroom soup"
+             data-type="vegetarian kosher halal gluten-free">
+          <div class="aspect-[3/4] bg-cover bg-center rounded-lg"
+               style='background-image:url("../images/search-images/mushroom-soup.jpg")'></div>
+          <p class="text-[#111811] text-base font-medium leading-tight">Mushroom Soup</p>
+          <p class="text-[#618961] text-xs">William Stine</p>
+        </div>
+      
+        <!-- Scottish Cod Recipe -->
+        <div class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
+             data-name="scottish cod recipe"
+             data-type="seafood kosher halal gluten-free">
+          <div class="aspect-[3/4] bg-cover bg-center rounded-lg"
+               style='background-image:url("../images/search-images/cod-recipe.jpg")'></div>
+          <p class="text-[#111811] text-base font-medium leading-tight">Scottish Cod Recipe</p>
+          <p class="text-[#618961] text-xs">Noel B.</p>
+        </div>
+      
+      </div>
+      
+      
+
+    <!-- Past Viewed-->
+    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">Viewed Recently</h2>
+
+    <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+
+          
+      <div class="shrink-0 w-40 flex flex-col gap-2">
+        <div class="aspect-[3/4] bg-cover bg-center rounded-lg"
+          style='background-image:url("../images/search-images/jalapeno-popper.jpg")'>
+        </div>
+        <p class="text-[#111811] text-base font-medium leading-tight">Jalapeno poppers</p>
+        <p class="text-[#618961] text-xs">Frank Lucas</p>
+      </div>
+    
+      <div class="shrink-0 w-40 flex flex-col gap-2">
+        <div class="aspect-[3/4] bg-cover bg-center rounded-lg"
+          style='background-image:url("../images/search-images/cheeseburger.jpg")'>
+        </div>
+        <p class="text-[#111811] text-base font-medium leading-tight">Cheesburger</p>
+        <p class="text-[#618961] text-xs">Harley Samwell</p>
+      </div>
+    
+      <div class="shrink-0 w-40 flex flex-col gap-2">
+        <div class="aspect-[3/4] bg-cover bg-center rounded-lg"
+          style='background-image:url("../images/search-images/Lasagna.jpg")'>
+        </div>
+        <p class="text-[#111811] text-base font-medium leading-tight">Bourdeaux Lasagna</p>
+        <p class="text-[#618961] text-xs">Edward Neville</p>
+      </div>
+    
+      <div class="shrink-0 w-40 flex flex-col gap-2">
+        <div class="aspect-[3/4] bg-cover bg-center rounded-lg"
+          style='background-image:url("../images/search-images/Macaron.jpg")'>
+        </div>
+        <p class="text-[#111811] text-base font-medium leading-tight">Strawberry Macaron</p>
+        <p class="text-[#618961] text-xs">Slim Lou</p>
+      </div>
     </div>
-    <script src="../script.js"></script>
-</body>
+      <script src="../script.js"></script>
+
+      <div class="h-5 bg-white"></div>
+
+      <!-- Bottom Navigation -->
+      <nav id="bottomNav" class="fixed bottom-0   w-full max-w-[450px] h-16 bg-white border-t border-gray-300 flex justify-around items-center"></nav>
+
+    </div>
+  </body>
 </html>
