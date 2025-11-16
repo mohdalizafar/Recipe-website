@@ -419,6 +419,63 @@
         bottom: 80px;
     }
 }
+/* Comments Button Section */
+.comments-button-section {
+    padding: 0 20px 15px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.comments-btn {
+    background: #f8f9fa;
+    border: 2px solid #007AFF;
+    color: #007AFF;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0,122,255,0.15);
+}
+
+.comments-btn:hover {
+    background: #007AFF;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,122,255,0.25);
+}
+
+.comments-btn:active {
+    transform: translateY(0);
+}
+
+.comments-icon {
+    font-size: 18px;
+}
+
+.comments-text {
+    font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .comments-button-section {
+        padding: 0 15px 12px;
+    }
+    
+    .comments-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .comments-icon {
+        font-size: 16px;
+    }
+}
     </style>
 </head>
 <body>
@@ -445,6 +502,14 @@
                         </svg>
                     </button>
                 </div>
+            </div>
+
+            <!-- Comments Button -->
+            <div class="comments-button-section">
+                <button class="comments-btn" onclick="viewComments()">
+                    <span class="comments-icon">💬</span>
+                    <span class="comments-text">View Comments</span>
+                </button>
             </div>
 
             <!-- Tags -->
@@ -532,6 +597,10 @@ function loadRecipePage(data) {
     } else {
         document.getElementById('stepsSection').style.display = 'none';
     }
+}
+
+function viewComments() {    
+    window.location.href = `comment-page.html?recipe=` + fileKey;
 }
 
 function startCookMode() {
