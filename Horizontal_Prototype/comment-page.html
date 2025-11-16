@@ -231,95 +231,97 @@
     </style>
   </head>
   <body>
-    <button class="back-btn" onclick="goBack()">←</button>
+      <div class="container">
+          <button class="back-btn" onclick="goBack()">←</button>
 
-    <h1 class="page-title">Recipe Name</h1>
-    <p class="producer">By Producer</p>
-    <div class="favorite-btn">❤ Add to "My Favorite"</div>
+          <h1 class="page-title">Recipe Name</h1>
+          <p class="producer">By Producer</p>
+          <div class="favorite-btn">❤ Add to "My Favorite"</div>
 
-    <section class="rating-section">
-      <p>Rating: <strong>5.0</strong></p>
-      <div class="stars">★★★★★</div>
-      <p>1,234 ratings</p>
-    </section>
+          <section class="rating-section">
+              <p>Rating: <strong>5.0</strong></p>
+              <div class="stars">★★★★★</div>
+              <p>1,234 ratings</p>
+          </section>
 
-    <div class="rating-bars">
-      <div>
-        <span>5 star</span>
-        <div class="bar"><div class="fill" style="width: 90%"></div></div>
-      </div>
-      <div>
-        <span>4 star</span>
-        <div class="bar"><div class="fill" style="width: 68%"></div></div>
-      </div>
-      <div>
-        <span>3 star</span>
-        <div class="bar"><div class="fill" style="width: 45%"></div></div>
-      </div>
-      <div>
-        <span>2 star</span>
-        <div class="bar"><div class="fill" style="width: 18%"></div></div>
-      </div>
-      <div>
-        <span>1 star</span>
-        <div class="bar"><div class="fill" style="width: 7%"></div></div>
-      </div>
-    </div>
+          <div class="rating-bars">
+              <div>
+                  <span>5 star</span>
+                  <div class="bar"><div class="fill" style="width: 90%"></div></div>
+              </div>
+              <div>
+                  <span>4 star</span>
+                  <div class="bar"><div class="fill" style="width: 68%"></div></div>
+              </div>
+              <div>
+                  <span>3 star</span>
+                  <div class="bar"><div class="fill" style="width: 45%"></div></div>
+              </div>
+              <div>
+                  <span>2 star</span>
+                  <div class="bar"><div class="fill" style="width: 18%"></div></div>
+              </div>
+              <div>
+                  <span>1 star</span>
+                  <div class="bar"><div class="fill" style="width: 7%"></div></div>
+              </div>
+          </div>
 
-    <div class="tags-wrap">
-      <div class="tags-container">
-        <div class="tag">Vegan</div>
-        <div class="tag">Quick</div>
-        <div class="tag">Healthy</div>
-        <div class="tag">Lunch</div>
-        <div class="tag">High Protein</div>
-        <div class="tag">Budget</div>
-      </div>
-    </div>
+          <div class="tags-wrap">
+              <div class="tags-container">
+                  <div class="tag">Vegan</div>
+                  <div class="tag">Quick</div>
+                  <div class="tag">Healthy</div>
+                  <div class="tag">Lunch</div>
+                  <div class="tag">High Protein</div>
+                  <div class="tag">Budget</div>
+              </div>
+          </div>
 
-    <div class="comment-box">
-      <div class="comment-toolbar">
-        <button><b>B</b></button>
-        <button><i>I</i></button>
-        <button><u>U</u></button>
-        <button>🖼️</button>
-        <button>📎</button>
-      </div>
-      <textarea
-        class="comment-input"
-        placeholder="Your comment..."
-      ></textarea>
-      <div class="comment-stars">☆☆☆☆☆</div>
-    </div>
+          <div class="comment-box">
+              <div class="comment-toolbar">
+                  <button><b>B</b></button>
+                  <button><i>I</i></button>
+                  <button><u>U</u></button>
+                  <button>🖼️</button>
+                  <button>📎</button>
+              </div>
+              <textarea class="comment-input"
+                        placeholder="Your comment..."></textarea>
+              <div class="comment-stars">☆☆☆☆☆</div>
+          </div>
 
-    <div class="comment">
-      <div class="comment-header">
-        <span><strong>User Name</strong> • Jan 12, 2025</span>
-        <span>★★★★★</span>
-      </div>
-      <p>This recipe was amazing! I'll definitely make it again.</p>
-      <div class="comment-actions">
-        <button class="reply-btn">Reply ↓</button>
-        👍 10 👎 1
-      </div>
-    </div>
+          <div class="comment">
+              <div class="comment-header">
+                  <span><strong>User Name</strong> • Jan 12, 2025</span>
+                  <span>★★★★★</span>
+              </div>
+              <p>This recipe was amazing! I'll definitely make it again.</p>
+              <div class="comment-actions">
+                  <button class="reply-btn">Reply ↓</button>
+                  👍 10 👎 1
+              </div>
+          </div>
 
-    <div class="comment">
-      <div class="comment-header">
-        <span><strong>Another User</strong> • Jan 10, 2025</span>
-        <span>★★★★☆</span>
+          <div class="comment">
+              <div class="comment-header">
+                  <span><strong>Another User</strong> • Jan 10, 2025</span>
+                  <span>★★★★☆</span>
+              </div>
+              <p>Good recipe but could use more seasoning.</p>
+              <div class="media-section">
+                  <div class="media-box">▶ Video</div>
+                  <div class="media-box">Picture</div>
+                  <div class="media-box">Picture</div>
+              </div>
+              <div class="comment-actions">
+                  <button class="reply-btn">Reply ↓</button>
+                  👍 50 👎 2
+              </div>
+              <!--<nav class="bottom-nav" id="bottomNav"></nav>-->
+          </div>
+          <nav class="bottom-nav" id="bottomNav"></nav>
       </div>
-      <p>Good recipe but could use more seasoning.</p>
-      <div class="media-section">
-        <div class="media-box">▶ Video</div>
-        <div class="media-box">Picture</div>
-        <div class="media-box">Picture</div>
-      </div>
-      <div class="comment-actions">
-        <button class="reply-btn">Reply ↓</button>
-        👍 50 👎 2
-      </div>
-    </div>
-   <script src="../script.js"></script>
+      <script src="../script.js"></script>
   </body>
 </html>
