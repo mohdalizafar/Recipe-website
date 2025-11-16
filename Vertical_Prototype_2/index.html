@@ -7,23 +7,102 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <div class="container">
+    <!--<div class="container">
         <main class="content">
             <h1>Home Page</h1>
-            <p>Welcome to the home page</p>
-
-            <!-- example of how to link to a recipe from anywhere. -->
-            <!-- just add a link to view-recipe.html with a ? followed by -->
-            <!-- recipe=name_of_recipe_file (the same filename as in the recipes folder) -->
-            <!-- also add the recipe in the correct format in the recipes folder -->
-            <a href="view-recipe.html?recipe=recipe_template">Example Recipe</a>
-            <a href="view-recipe.html?recipe=steak">Steak</a>
-            <a href="view-recipe.html?recipe=spaghetti">Spaghetti</a>
-            <a href="view-recipe.html?recipe=cod">Cod</a>
+            <p>Welcome to the home page</p>-->
+    <!-- example of how to link to a recipe from anywhere. -->
+    <!-- just add a link to view-recipe.html with a ? followed by -->
+    <!-- recipe=name_of_recipe_file (the same filename as in the recipes folder) -->
+    <!-- also add the recipe in the correct format in the recipes folder -->
+    <!--<a href="view-recipe.html?recipe=recipe_template">Example Recipe</a>
 
         </main>
         <nav class="bottom-nav" id="bottomNav"></nav>
     </div>
+    <script src="script.js"></script>-->
+  
+
+    <div class="container">
+        <!-- Top search bar -->
+        <!--<div class="appbar">
+        <div style="width:38px;height:38px;display:grid;place-items:center;">🔍</div>
+        <div class="search-pill">Search recipes</div>
+    </div>-->
+        <div class="appbar" style="justify-content:center; padding:16px 0;">
+            <h1 style="font-size:22px; font-weight:700; color:#c10404;">MacCooks</h1>
+        </div>
+
+        <!-- Scrollable content area -->
+        <main class="content">
+            <div class="grid">
+                <!-- Card 1 -->
+                <article class="card">
+                    <div class="card-head"><span>Avocado Toast</span><span class="rating"></span></div>
+                    <div class="card-img">
+                        <img src="../images/avocado.jpg" alt="Avocado Toast">
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Avocado</li>
+                            <li>Sourdough <span class="badge">V</span></li>
+                            <li>Chili flakes <span class="badge">Vg</span></li>
+                        </ul>
+                        <div class="diff">Difficulty: ★★☆☆☆</div>
+                    </div>
+                </article>
+                <!-- Card 2 -->
+                <article class="card">
+                    <div class="card-head"><span>Penne Arrabbiata</span><span class="rating"></span></div>
+                    <div class="card-img">
+                        <img src="../images/penne.jpg" alt="Avocado Toast">
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Pasta <span class="badge">V</span></li>
+                            <li>Tomato <span class="badge">Vg</span></li>
+                            <li>Garlic</li>
+                        </ul>
+                        <div class="diff">Difficulty: ★☆☆☆☆</div>
+                    </div>
+                </article>
+                <!-- Card 3 -->
+                <article class="card">
+                    <div class="card-head"><span>Chicken Tikka</span><span class="rating"></span></div>
+                    <div class="card-img">
+                        <img src="../images/chicken.jpg" alt="Avocado Toast">
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Chicken <span class="badge">H</span></li>
+                            <li>Yogurt</li>
+                        </ul>
+                        <div class="diff">Difficulty: ★★★☆☆</div>
+                    </div>
+                </article>
+                <!-- Card 4 -->
+                <article class="card">
+                    <div class="card-head"><span>Greek Salad</span><span class="rating"></span></div>
+                    <div class="card-img">
+                        <img src="../images/salad.jpg" alt="Avocado Toast">
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Cucumber</li>
+                            <li>Feta <span class="badge">V</span></li>
+                            <li>Olives</li>
+                        </ul>
+                        <div class="diff">Difficulty: ★★☆☆☆</div>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom navigation populated by script.js config -->
+    <nav id="bottomNav" class="bottom-nav" aria-label="App navigation"></nav>
+
+    <!-- External JS -->
     <script src="../script.js"></script>
 </body>
 </html>
