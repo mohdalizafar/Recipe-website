@@ -6,7 +6,9 @@
     "../images/classic_french_omelette/step3.jpg",
     "../images/classic_french_omelette/step4.jpg"
   ],
-
+  "rating": "★ 1.0",
+  "difficulty": "Easy",
+  "time": "10 mins",
   "ingredients": [
     { "ingredient": "Eggs", "unit": "2 pcs" },
     { "ingredient": "Salt", "unit": "2g" },

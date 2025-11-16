@@ -6,6 +6,9 @@
     "../images/pasta/step3.jpg",
     "../images/pasta/step4.jpg"
   ],
+  "rating": "★★★ 3.4",
+  "difficulty": "Easy",
+  "time": "45 mins",
   "ingredients": [
     { "ingredient": "Spaghetti", "unit": "250g" },
     { "ingredient": "Tomato", "unit": "1 pc" },
@@ -30,7 +33,7 @@
       "time": "8 mins",
       "tips": [
         "The finer the vegetables are chopped, the sweeter and smoother the sauce will be.",
-        "If you don’t have fresh tomato, you can replace part of it with extra tomato sauce."
+        "If you don't have fresh tomato, you can replace part of it with extra tomato sauce."
       ]
     },
     {

@@ -7,6 +7,9 @@
     "../images/mushroom_soup/step4.jpg",
     "../images/mushroom_soup/step5.jpg"
   ],
+  "rating": "★★★★ 3.7",
+  "difficulty": "Easy",
+  "time": "15 mins",
   "ingredients": [
     { "ingredient": "Mushrooms", "unit": "3 pieces" },
     { "ingredient": "Yellow Onion", "unit": "1/10 piece" },
