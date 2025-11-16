@@ -218,7 +218,7 @@ body {
         box-shadow: 0 0 20px rgba(0,0,0,0.1); 
         background: white;
     }
-
+    
     
     .bottom-nav {
         width: 100%;
@@ -227,3 +227,10 @@ body {
         right: 0;
         margin: auto;
     }
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
