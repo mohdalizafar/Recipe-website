@@ -7,6 +7,9 @@
     "../images/spaghetti/4.jpg",
     "../images/spaghetti/5.jpg"
   ],
+  "rating": "★★★ 2.9",
+  "difficulty": "Medium",
+  "time": "25 mins",
   "ingredients": [
     { "ingredient": "Spaghetti", "unit": "8 oz" },
     { "ingredient": "Cherry tomatoes, halved", "unit": "1 cup" },

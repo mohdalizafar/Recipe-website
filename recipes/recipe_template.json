@@ -5,6 +5,9 @@
     "../images/meal_placeholder.png",
     "../images/meal_placeholder.png"
   ],
+  "rating": "★★★★★ 5.0",
+  "difficulty": "Medium",
+  "time": "10 hours",
   "ingredients": [
     {
       "ingredient": "cereal",

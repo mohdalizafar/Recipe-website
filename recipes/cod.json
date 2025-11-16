@@ -7,6 +7,9 @@
     "../images/cod/4.jpg",
     "../images/cod/5.jpg"
   ],
+  "rating": "★★★★★ 4.8",
+  "difficulty": "Hard",
+  "time": "1 hour",
   "ingredients": [
     { "ingredient": "Black cod (sablefish) fillets", "unit": "2 (6 oz each)" },
     { "ingredient": "White miso paste", "unit": "2 tbsp" },

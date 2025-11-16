@@ -5,6 +5,9 @@
     "../images/steak/slide 2.jpg",
     "../images/steak/slide 3.jpg"
   ],
+  "rating": "★★★★★ 5.0",
+  "difficulty": "Medium",
+  "time": "20 mins",
   "ingredients": [
     { "ingredient": "Steak", "unit": "1 piece" },
     { "ingredient": "Coarse Salt", "unit": "to taste" },
