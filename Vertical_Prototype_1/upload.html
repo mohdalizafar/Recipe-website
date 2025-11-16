@@ -1,19 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a Recipe</title>
+
+    <!-- Your shared styles -->
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+
+    <!-- Floating back button -->
+    <!--<button class="back-btn" aria-label="Go back" onclick="goBack()">←</button>-->
+
     <div class="container">
-        <main class="content">
-            <h1>Upload Page</h1>
-            <p>Upload content goes here</p>
+        <div class="appbar" style="justify-content:center; padding:16px 0;">
+            <h1 style="font-size:22px; font-weight:700; color:#c10404;">Add a Recipe</h1>
+        </div>
+        <main class="content" style="padding: 16px 16px 90px;">
+            <!--<h1 style="margin-bottom: 16px;">Add a Recipe</h1>-->
+
+
+            <!-- Title -->
+            <section style="margin-bottom: 16px;">
+                <label for="title" style="display:block; font-weight:600; margin-bottom:6px;">
+                    Title:
+                </label>
+                <input id="title" type="text"
+                       placeholder="e.g., Avocado Toast"
+                       style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;">
+            </section>
+
+            <!-- Difficulty -->
+            <section style="margin-bottom: 16px;">
+                <p style="font-weight:600; margin-bottom:6px;">Difficulty:</p>
+                <div style="display:flex; gap:8px;">
+                    <button type="button"
+                            style="flex:1; padding:8px 10px; border-radius:16px; border:1px solid #ddd; background:#f7f7f7;">
+                        Easy
+                    </button>
+                    <button type="button"
+                            style="flex:1; padding:8px 10px; border-radius:16px; border:1px solid #ddd; background:#f7f7f7;">
+                        Medium
+                    </button>
+                    <button type="button"
+                            style="flex:1; padding:8px 10px; border-radius:16px; border:1px solid #ddd; background:#f7f7f7;">
+                        Hard
+                    </button>
+                </div>
+            </section>
+
+            <!-- Prep time -->
+            <section style="margin-bottom: 20px;">
+                <label for="prep-time" style="display:block; font-weight:600; margin-bottom:6px;">
+                    Prep Time:
+                </label>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <input id="prep-time" type="number" min="0"
+                           style="flex:0 0 90px; padding:8px; border-radius:8px; border:1px solid #ddd;">
+                    <span>minutes</span>
+                </div>
+            </section>
+
+            <!-- Ingredients + Tags row -->
+            <section style="display:flex; gap:16px; margin-bottom:20px;">
+                <!-- Ingredients -->
+                <div style="flex:1;">
+                    <p style="font-weight:600; margin-bottom:6px;">Ingredients:</p>
+                    <ol style="padding-left:18px; margin-bottom:10px;">
+                        <li><input type="text" style="width:100%; border:0; border-bottom:1px solid #ddd; padding:4px 0;"></li>
+                        <li><input type="text" style="width:100%; border:0; border-bottom:1px solid #ddd; padding:4px 0;"></li>
+                        <li><input type="text" style="width:100%; border:0; border-bottom:1px solid #ddd; padding:4px 0;"></li>
+                    </ol>
+                    <button type="button"
+                            style="padding:8px 10px; border-radius:8px; border:1px solid #ddd; background:#f7f7f7; font-size:14px;">
+                        Add Ingredient
+                    </button>
+                </div>
+
+                <!-- Tags -->
+                <div style="flex:1;">
+                    <p style="font-weight:600; margin-bottom:6px;">Tags:</p>
+                    <div class="tags-container" style="padding:0;">
+                        <span class="tag">Vegan</span>
+                        <span class="tag">Vegetarian</span>
+                        <span class="tag">Kosher</span>
+                        <span class="tag">Halal</span>
+                        <span class="tag">Gluten-free</span>
+                        <span class="tag">Custom</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Steps -->
+            <section style="margin-bottom:20px;">
+                <p style="font-weight:600; margin-bottom:6px;">Steps:</p>
+                <ol style="padding-left:18px; margin-bottom:10px;">
+                    <li>
+                        <textarea style="width:100%; min-height:60px; padding:8px; border-radius:8px; border:1px solid #ddd;"></textarea>
+                    </li>
+                </ol>
+                <button type="button"
+                        style="padding:8px 10px; border-radius:8px; border:1px solid #ddd; background:#f7f7f7; font-size:14px;">
+                    Add Step
+                </button>
+            </section>
+
+            <!-- Upload photo -->
+            <section style="margin-bottom:24px;">
+                <p style="font-weight:600; margin-bottom:6px;">Upload a photo:</p>
+                <button type="button"
+                        style="width:60px; height:60px; border-radius:12px; border:1px solid #bbb; background:#f7f7f7; font-size:28px;">
+                    +
+                </button>
+            </section>
+
+            <!-- Post button -->
+            <section style="text-align:right;">
+                <button type="button"
+                        style="padding:10px 20px; border-radius:20px; border:none; background:#007AFF; color:white; font-weight:600; font-size:16px;">
+                    Post!
+                </button>
+            </section>
         </main>
-        <nav class="bottom-nav" id="bottomNav"></nav>
     </div>
+
+    <!-- Bottom navigation (same as other pages) -->
+    <nav id="bottomNav" class="bottom-nav" aria-label="App navigation"></nav>
+
+    <!-- Shared navigation / back-js -->
     <script src="../script.js"></script>
 </body>
 </html>
