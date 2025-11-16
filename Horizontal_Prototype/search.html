@@ -25,6 +25,9 @@
     .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+::-webkit-scrollbar {
+    width: 0 !important;
+}
 
     .nav-icon {
       font-size: 22px;
@@ -56,7 +59,7 @@
 
   <body class="bg-[#f3f4f6] flex justify-center">
     <div
-      class="relative flex h-auto min-h-screen w-full max-w-[450px] flex-col bg-white justify-between group/design-root overflow-x-hidden"
+      class="relative flex h-auto min-h-screen w-full max-w-[450px] flex-col bg-white justify-between group/design-root overflow-x-hidden pb-18"
       style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'
     >
       <div>
@@ -102,6 +105,9 @@
   
             <div class="flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0">
               <p class="text-sm font-medium">Vegetarian</p>
+            </div>
+            <div class="flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0">
+              <p class="text-sm font-medium">Authors</p>
             </div>
           
             <div class="flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0">
@@ -255,6 +261,67 @@
         </div>
         <p class="text-[#111811] text-base font-medium leading-tight">Strawberry Macaron</p>
         <p class="text-[#618961] text-xs">Slim Lou</p>
+      </div>
+    </div>
+
+    <!-- Popular authors-->
+    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">Popular authors</h2>
+
+    <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+      <!-- Marco Pierre -->
+      <div
+        class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
+        data-name="Marco Pierre White"
+        data-type="authors"
+      >
+        <div
+          class="aspect-square bg-cover bg-center rounded-lg"
+          style='background-image:url("../images/search-images/marco.jpg")'
+        ></div>
+        <p class="text-[#111811] text-base font-medium leading-tight">Marco Pierre White</p>
+       
+      </div>
+    
+      <!-- Wolfgang Puck -->
+      <div
+        class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
+        data-name="Wolfgang Puck"
+        data-type="authors"
+      >
+        <div
+          class="aspect-square bg-cover bg-center rounded-lg"
+          style='background-image:url("../images/search-images/wolfgang.jpg")'
+        ></div>
+        <p class="text-[#111811] text-base font-medium leading-tight">Wolfgang Puck</p>
+       
+      </div>
+    
+      <!-- Gordon ramsay -->
+      <div
+        class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
+        data-name="Gordon Ramsay"
+        data-type="authors"
+      >
+        <div
+          class="aspect-square bg-cover bg-center rounded-lg"
+          style='background-image:url("../images/search-images/gordon.jpg")'
+        ></div>
+        <p class="text-[#111811] text-base font-medium leading-tight">Gordon Ramsay</p>
+       
+      </div>
+    
+      <!-- Jamie oliver-->
+      <div
+        class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
+        data-name="Jamie Oliver"
+        data-type="authors"
+      >
+        <div
+          class="aspect-square bg-cover bg-center rounded-lg"
+          style='background-image:url("../images/search-images/jamie.jpg")'
+        ></div>
+        <p class="text-[#111811] text-base font-medium leading-tight">Jamie Oliver</p>
+       
       </div>
     </div>
       <script src="../script.js"></script>
