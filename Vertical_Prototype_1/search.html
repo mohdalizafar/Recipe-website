@@ -8,7 +8,6 @@
       onload="this.rel='stylesheet'"
       href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
     />
-    <link rel="stylesheet" href="../style.css">
 
     <title>Search Page</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
@@ -54,7 +53,12 @@ body {
     color: #666;
     font-size: 12px;
     flex: 1;
-    transition: color 0.2s;
+    
+    transition: color 0.2s, transform 0.2s ease;
+    
+}
+.nav-item:hover {
+    transform: scale(1.1);
 }
 
 .nav-item.active {
@@ -95,10 +99,10 @@ body {
 
   <body class="bg-[#f3f4f6] flex justify-center">
     <div
-      class="relative flex h-auto min-h-screen w-full max-w-[450px] flex-col bg-white justify-between group/design-root overflow-x-hidden pb-24"
+      class="relative flex h-auto min-h-screen w-full max-w-[450px] flex-col bg-white justify-between group/design-root overflow-x-hidden"
       style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'
     >
-      <div>
+      <div class="pb-28">
         <!-- Header -->
         <div class="flex items-center bg-white p-4 pb-2 justify-between">
           <h5 class="text-[#111811] text-4xl font-bold flex-1 text-center pl-12">
@@ -398,7 +402,7 @@ body {
     <!-- Popular authors-->
     <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">Popular authors</h2>
 
-    <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+    <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide pb-2">
       <!-- Marco Pierre -->
       <div
         class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
@@ -456,6 +460,8 @@ body {
       </div>
     </div>
     
+      </div>
+
       <script src="../script.js"></script>
 
       <div class="h-5 bg-white"></div>

@@ -16,7 +16,7 @@
   </head>
 
   <style>
-    .nav-item {
+   .nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +25,12 @@
     color: #666;
     font-size: 12px;
     flex: 1;
-    transition: color 0.2s;
+    
+    transition: color 0.2s, transform 0.2s ease;
+    
+}
+.nav-item:hover {
+    transform: scale(1.1);
 }
 
 .nav-item.active {
@@ -73,7 +78,7 @@
       <div>
         <!-- Header -->
         <div class="flex items-center bg-white p-4 pb-2 justify-between">
-          <h5 class="text-[#111811] text-4xl font-bold flex-1 text-center pl-12">
+          <h5 class="text-[#111811] text-4xl font-bold flex-1 text-center pl-12" style="color:#c10404;">
             Search Recipes
           </h5>
           <div class="flex w-12 items-center justify-end">
@@ -142,7 +147,10 @@
           
 
         <!-- Popular Recipes -->
-        <h2 class="text-[#111811] text-[22px] font-bold px-4 pb-3 pt-5">Popular Recipes</h2>
+        <h2 class="text-[22px] font-bold px-4 pb-3 pt-5" style="color:#c10404;">
+          Popular Recipes
+        </h2>
+        
         <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
 
             <!-- steak -->
@@ -193,7 +201,10 @@
           
 
         <!-- Favorites Section -->
-    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">Favorites</h2>
+        <h2 class="text-[22px] font-bold px-4 pb-3 pt-5" style="color:#c10404;">
+          Favorites
+        </h2>
+        
 
     <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
 
@@ -242,8 +253,10 @@
       
 
     <!-- Past Viewed-->
-    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">Viewed Recently</h2>
-
+    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5" style="color:#c10404;">
+      Viewed Recently
+    </h2>
+    
     <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
 
           
@@ -281,7 +294,10 @@
     </div>
 
     <!-- Popular authors-->
-    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">Popular authors</h2>
+    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5" style="color:#c10404;">
+      Popular authors
+    </h2>
+    
 
     <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
       <!-- Marco Pierre -->
