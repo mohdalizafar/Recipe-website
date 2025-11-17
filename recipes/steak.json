@@ -16,25 +16,47 @@
   ],
   "steps": [
     {
-      "text": "Pat both sides of the steak completely dry.",
+      "instructions": [
+        "Place steak on paper towels.",
+        "Press gently to remove surface moisture.",
+        "Ensure both sides are completely dry."
+      ],
       "image": "../images/steak/slide 1.jpg",
       "time": "1 min"
     },
     {
-      "text": "Season both sides evenly with coarse salt and freshly ground black pepper.",
+      "instructions": [
+        "Sprinkle coarse salt evenly on both sides.",
+        "Add freshly ground black pepper.",
+        "Lightly pat seasoning to help it adhere."
+      ],
       "image": "../images/steak/slide 2.jpg",
       "time": "8 mins"
     },
     {
-      "text": "Heat the pan over high heat and sear the steak on both sides.",
+      "instructions": [
+        "Heat a pan on high until very hot.",
+        "Add a small amount of olive oil.",
+        "Place steak into pan without moving it.",
+        "Flip once a crust has formed."
+      ],
       "image": "../images/steak/slide 3.jpg",
       "time": "4 mins"
     },
     {
-      "text": "Rest the steak for 5 minutes before slicing.",
+      "instructions": [
+        "Transfer steak onto a plate.",
+        "Let it rest for at least 5 minutes.",
+        "Slice and serve once juices redistribute."
+      ],
       "image": "../images/steak/slide 1.jpg",
       "time": "5 mins"
     }
+  ],
+  "tips": [
+    "Dry steak gives a stronger sear and better crust.",
+    "Do not flip too early — wait until it naturally releases from the pan.",
+    "Resting prevents juices from leaking out when slicing."
   ],
   "tags": ["High-Protein", "Quick"]
 }

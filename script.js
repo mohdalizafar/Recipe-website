@@ -275,8 +275,35 @@ function renderCurrentStep() {
     
     // Build HTML for current step
     const stepImage = step.image || '../images/meal_placeholder.png';
-    const stepText = step.text || '';
     const stepTime = step.time || '';
+    
+    // Check for new format: step.instructions (array) or fallback to step.text
+    const hasInstructions = step.instructions && Array.isArray(step.instructions) && step.instructions.length > 0;
+    const hasText = step.text && step.text.trim().length > 0;
+    
+    // Build instructions HTML
+    let instructionsHTML = '';
+    let instructionsSectionVisible = true;
+    
+    if (hasInstructions) {
+        // New format: loop through instructions array and create separate boxes
+        instructionsHTML = step.instructions.map(instruction => {
+            const instructionText = instruction.trim();
+            if (!instructionText) return '';
+            return `<div class="cooking-instruction-item">${instructionText}</div>`;
+        }).filter(html => html !== '').join('');
+        
+        // Hide section if instructions array is empty after filtering
+        if (!instructionsHTML) {
+            instructionsSectionVisible = false;
+        }
+    } else if (hasText) {
+        // Fallback: use step.text (old format)
+        instructionsHTML = `<div class="cooking-instruction-item current">${step.text}</div>`;
+    } else {
+        // No instructions or text available, hide the section
+        instructionsSectionVisible = false;
+    }
     
     // Get tips: prefer step-specific tips, fallback to recipe-level tips
     const tips = (step.tips && Array.isArray(step.tips) && step.tips.length > 0) 
@@ -303,12 +330,12 @@ function renderCurrentStep() {
             <img class="cooking-media" src="${stepImage}" alt="Step ${currentStepIndex + 1}">
         </div>
         
+        ${instructionsSectionVisible ? `
         <div class="cooking-instructions-section">
             <h2 class="cooking-instructions-title">Instructions</h2>
-            <div class="cooking-instruction-item current">
-                ${stepText}
-            </div>
+            ${instructionsHTML}
         </div>
+        ` : ''}
         
         <div class="cooking-tips-section">
             <div class="cooking-tips-header">
@@ -646,7 +673,21 @@ function speakInstructions() {
     }
     
     const step = currentRecipe.steps[currentStepIndex];
-    if (!step || !step.text) {
+    if (!step) {
+        return;
+    }
+    
+    // Get text to speak: prefer instructions array, fallback to text
+    let textToSpeak = '';
+    if (step.instructions && Array.isArray(step.instructions) && step.instructions.length > 0) {
+        // New format: join all instructions with periods
+        textToSpeak = step.instructions.filter(inst => inst && inst.trim()).join('. ');
+    } else if (step.text && step.text.trim()) {
+        // Fallback: use step.text (old format)
+        textToSpeak = step.text;
+    }
+    
+    if (!textToSpeak) {
         return;
     }
     
@@ -659,7 +700,7 @@ function speakInstructions() {
     }
     
     // Create utterance
-    const utterance = new SpeechSynthesisUtterance(step.text);
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
     
     // Configure voice settings
     utterance.rate = 0.7; // Slower for better comprehension
@@ -725,12 +766,10 @@ function updateVoiceNarrationButton(isSpeaking) {
     
     if (isSpeaking) {
         voiceBtn.textContent = '⏸️ Stop Narration';
-        voiceBtn.style.background = '#FFF1DB';
-        voiceBtn.style.borderColor = '#FF8A00';
+        voiceBtn.classList.add('speaking');
     } else {
         voiceBtn.textContent = '🔊 Voice Narration';
-        voiceBtn.style.background = 'white';
-        voiceBtn.style.borderColor = '#E0C9A6';
+        voiceBtn.classList.remove('speaking');
     }
 }
 
