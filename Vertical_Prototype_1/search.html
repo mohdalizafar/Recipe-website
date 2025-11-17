@@ -7,6 +7,7 @@
       onload="this.rel='stylesheet'"
       href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
     />
+    <link rel="stylesheet" href="../style.css">
 
     <title>Search Page</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
@@ -26,6 +27,23 @@ body {
 body {
     -ms-overflow-style: none;
 }
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100%;
+    max-width: 450px;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 64px;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+}
+
 .nav-item {
     display: flex;
     flex-direction: column;
@@ -44,7 +62,7 @@ body {
 
 .nav-icon {
     font-size: 20px;
-    margin-bottom: 4px;
+    margin-bottom: 0px;
 }
 
 .nav-text {
@@ -440,7 +458,8 @@ body {
       <div class="h-5 bg-white"></div>
 
       <!-- Bottom Navigation -->
-      <nav id="bottomNav" class="fixed bottom-0   w-full max-w-[450px] h-16 bg-white border-t border-gray-300 flex justify-around items-center"></nav>
+      <nav id="bottomNav" class="bottom-nav" aria-label="App navigation"></nav>
+
 
     </div>
   </body>
