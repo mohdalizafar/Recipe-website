@@ -23,34 +23,80 @@
   ],
   "steps": [
     {
-      "text": "Bring a large pot of salted water to a rolling boil and add the spaghetti. Cook according to package directions until al dente.",
+      "instructions": [
+        "Bring a large pot of salted water to a boil.",
+        "Add spaghetti and cook until al dente based on package instructions.",
+        "Do not overcook — it will finish briefly in the sauce."
+      ],
       "image": "../images/spaghetti/1.jpg",
-      "time": "10 mins"
+      "time": "10 mins",
+      "tips": [
+        "Water should taste slightly salty like seawater.",
+        "Stir occasionally to prevent sticking."
+      ]
     },
     {
-      "text": "While the pasta cooks, heat olive oil in a large skillet over medium. Add minced garlic and red pepper flakes; sauté until fragrant, about 30-45 seconds.",
+      "instructions": [
+        "Heat olive oil in a skillet over medium heat.",
+        "Add minced garlic and red pepper flakes.",
+        "Sauté until fragrant (do not brown)."
+      ],
       "image": "../images/spaghetti/2.jpg",
-      "time": "1 min"
+      "time": "1 min",
+      "tips": [
+        "Garlic turns bitter if overcooked.",
+        "Lower heat if sizzling too aggressively."
+      ]
     },
     {
-      "text": "Add cherry tomatoes to the skillet and cook until they soften and begin to release their juices, about 4-5 minutes. Season with a pinch of salt.",
+      "instructions": [
+        "Add cherry tomatoes into the skillet.",
+        "Cook until softened and juicy.",
+        "Season lightly with salt."
+      ],
       "image": "../images/spaghetti/2.jpg",
-      "time": "5 mins"
+      "time": "5 mins",
+      "tips": [
+        "Gently press tomatoes to help release juices.",
+        "Sweet cherry tomatoes work best for flavor balance."
+      ]
     },
     {
-      "text": "Reserve 1/2 cup of the pasta cooking water, then drain the spaghetti.",
+      "instructions": [
+        "Before draining, reserve 1/2 cup pasta cooking water.",
+        "Drain spaghetti thoroughly."
+      ],
       "image": "../images/spaghetti/4.jpg",
-      "time": "1 min"
+      "time": "1 min",
+      "tips": [
+        "Starchy pasta water helps bind and thicken sauce."
+      ]
     },
     {
-      "text": "Toss the drained spaghetti into the skillet with the tomatoes. Add lemon juice and a splash of reserved pasta water as needed to create a light sauce. Cook together for 1-2 minutes so the flavors meld.",
+      "instructions": [
+        "Add drained spaghetti to the tomato skillet.",
+        "Pour in lemon juice and a splash of reserved pasta water.",
+        "Toss gently to form a glossy, light sauce."
+      ],
       "image": "../images/spaghetti/3.jpg",
-      "time": "2 mins"
+      "time": "2 mins",
+      "tips": [
+        "Adjust sauce thickness with pasta water — a little goes a long way.",
+        "Taste and rebalance with lemon or salt."
+      ]
     },
     {
-      "text": "Remove from heat and finish with grated Parmesan (if using) and torn basil. Adjust seasoning with salt and more lemon if desired, then serve immediately.",
+      "instructions": [
+        "Turn off heat and sprinkle grated Parmesan (optional).",
+        "Tear basil by hand and mix in gently.",
+        "Serve immediately."
+      ],
       "image": "../images/spaghetti/5.jpg",
-      "time": "1 min"
+      "time": "1 min",
+      "tips": [
+        "Do not cook basil — keep it fresh for aroma.",
+        "Add extra lemon for a brighter flavor profile."
+      ]
     }
   ],
   "tags": ["Vegetarian", "Quick"]
