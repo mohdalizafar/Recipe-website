@@ -16,22 +16,32 @@
 
   <style>
     .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-    }
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #666;
+    font-size: 12px;
+    flex: 1;
+    transition: color 0.2s;
+}
 
-    .nav-icon {
-      font-size: 22px;
-    }
+.nav-item.active {
+    color: #007AFF;
+}
 
-    .nav-text {
-      font-size: 10px;
-      margin-top: 2px;
-    }
+.nav-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.nav-text {
+    font-weight: 500;
+}
+    .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
     .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -49,14 +59,7 @@
   overscroll-behavior-x: contain;
   touch-action: pan-x pinch-zoom;
 }
-.nav-item.active .nav-text {
-  color: #1a73e8; /* Blue */
-  font-weight: 700;
-}
 
-.nav-item.active .nav-icon {
-  color: #1a73e8;
-}
 
 
   </style>
@@ -141,32 +144,39 @@
         <h2 class="text-[#111811] text-[22px] font-bold px-4 pb-3 pt-5">Popular Recipes</h2>
         <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
 
-            <!-- Avocado Toast -->
-            <div class="flex flex-col gap-3 pb-3 recipe-card"
+            <!-- steak -->
+            <div
+            class="shrink-0 w-40  flex flex-col gap-3 pb-3 recipe-card"
+
                  data-name="avocado toast"
-                 data-type="breakfast vegetarian  easy">
+                 data-type="nonvegetarian  kosher halal gluten-free">
               <div
                 class="bg-center bg-cover aspect-square rounded-lg"
-                style='background-image:url("../images/search-images/avacado.jpg");'>
+                style='background-image:url("../images/search-images/pan-seared\ steak.jpg");'>
               </div>
-              <p class="text-base font-medium">Avocado Toast</p>
+              <p class="text-base font-medium">Pan-seared Steak</p>
               <p class="text-[#618961] text-xs">Gordon Ramsey</p>
             </div>
+            
           
-            <!-- Smoothie Bowl -->
-            <div class=" flex flex-col gap-3 pb-3 recipe-card"
+            <!-- Spaghetti Bolognese -->
+            
+            <div class="shrink-0 w-40  flex flex-col gap-3 pb-3 recipe-card"
                  data-name="smoothie bowl"
                  data-type="breakfast vegan  cold">
               <div
                 class="bg-center bg-cover aspect-square rounded-lg"
-                style='background-image:url("../images/search-images/smoothie.jpg");'>
+                style='background-image:url("../images/search-images/Pasta.jpg");'>
               </div>
-              <p class="text-base font-medium">Smoothie Bowl</p>
+              <p class="text-base font-medium">Spaghetti Bolognese</p>
               <p class="text-[#618961] text-xs">Wolfgang Puck</p>
             </div>
+
+            
+            
           
             <!-- Overnight Oats -->
-            <div class="flex flex-col gap-3 pb-3 recipe-card"
+            <div class="shrink-0 w-40  flex flex-col gap-3 pb-3 recipe-card"
                  data-name="overnight oats"
                  data-type="breakfast vegetarian  easy gluten-free">
               <div
@@ -179,6 +189,7 @@
           
           </div>
           
+          
 
         <!-- Favorites Section -->
     <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">Favorites</h2>
@@ -190,8 +201,8 @@
              data-name="napolitan pasta"
              data-type="non-vegetarian">
           <div class="aspect-[3/4] bg-cover bg-center rounded-lg"
-               style='background-image:url("../images/search-images/Pasta.jpg")'></div>
-          <p class="text-[#111811] text-base font-medium leading-tight">Napolitan Pasta</p>
+               style='background-image:url("../images/search-images/Onionpasta.jpg")'></div>
+          <p class="text-[#111811] text-base font-medium leading-tight">Lemon Garlic Pasta</p>
           <p class="text-[#618961] text-xs">Giovanni Auditore</p>
         </div>
       
