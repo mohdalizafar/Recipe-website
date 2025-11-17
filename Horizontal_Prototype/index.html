@@ -5,8 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="../style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=Quicksand:wght@500;600&display=swap');
+
+        body {
+            margin: 0;
+            background: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Nunito', 'Quicksand', sans-serif;
+        }
+
+        .mobile-shell {
+            width: 100%;
+            max-width: 450px;
+            min-height: 100vh;
+            background: #FFFFFF;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+    </style>
 </head>
 <body>
+    <div class="mobile-shell">
     <div class="container">
         <!-- Top search bar -->
         <div class="appbar" style="justify-content:center; padding:16px 0;">
@@ -24,5 +48,6 @@
 
     <!-- External JS -->
     <script src="../script.js"></script>
+    </div>
 </body>
 </html>
