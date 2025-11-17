@@ -65,51 +65,49 @@
       }
 
       .favourite-btn {
-          position: absolute;
-          top: 208px;
-          right: 1150px;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 10px;
-          border-radius: 90px;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 46px;
-          height: 46px;
+        position: absolute;
+        top: 208px;
+        right: 1150px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 90px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
       }
 
       .heart-icon {
-          width: 28px;
-          height: 28px;
-          transition: all 0.3s ease;
+        width: 28px;
+        height: 28px;
+        transition: all 0.3s ease;
       }
 
       .heart-icon path {
-          stroke: #e74c3c;
-          stroke-width: 2;
-          fill: none;
-          transition: all 0.3s ease;
+        stroke: #e74c3c;
+        stroke-width: 2;
+        fill: none;
+        transition: all 0.3s ease;
       }
 
       .favourite-btn.active .heart-icon path {
-          fill: #e74c3c;
-          stroke: #e74c3c;
+        fill: #e74c3c;
+        stroke: #e74c3c;
       }
 
       .favourite-btn:hover {
-          transform: scale(1.1);
-          background: rgba(231, 76, 60, 0.1);
+        transform: scale(1.1);
+        background: rgba(231, 76, 60, 0.1);
       }
 
       .favourite-btn:active {
-          transform: scale(0.95);
+        transform: scale(0.95);
       }
 
-
-      /* Ratings */
       .rating-section {
         text-align: center;
         margin-top: 20px;
@@ -263,7 +261,6 @@
               </svg>
           </button>
 
-            <!-- Tags -->
             <div class="tags-container" id="tags"></div>
 
           <h1 class="page-title" id="recipeTitle">Recipe Name</h1>
@@ -380,7 +377,7 @@
             document.getElementById('recipeStars').textContent = starsText;
 
             const tagsContainer = document.getElementById('tagsContainer');
-            tagsContainer.innerHTML = ''; // Clear static tags
+            tagsContainer.innerHTML = '';
             if (recipe.tags && recipe.tags.length > 0) {
               recipe.tags.forEach(tag => {
                 const tagElement = document.createElement('div');
