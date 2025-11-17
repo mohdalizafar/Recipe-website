@@ -7,17 +7,109 @@
 
     <!-- Your shared styles -->
     <link rel="stylesheet" href="../style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=Quicksand:wght@500;600&display=swap');
+
+        body {
+            margin: 0;
+            background: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Nunito', 'Quicksand', sans-serif;
+        }
+
+        .mobile-shell {
+            width: 100%;
+            max-width: 450px;
+            min-height: 100vh;
+            background: #FFFFFF;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .upload-page button {
+            transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+        }
+
+        .upload-page button:hover {
+            background: #fff8ec !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-page button:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-primary-cta {
+            width: 130px;
+            height: 40px;
+            border-radius: 15pt;
+            background: rgb(249, 158, 0);
+            border: 0;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .upload-primary-cta:hover {
+            background: #ffb44a;
+            box-shadow: 0 6px 16px rgba(0,122,255,0.35);
+            transform: scale(1.05);
+        }
+
+        .upload-primary-cta:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .upload-toast {
+            position: fixed;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(249, 158, 0, 0.4);
+            color: #C85A00;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 999px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .upload-toast.show {
+            animation: upload-toast-fade 2.2s ease forwards;
+        }
+
+        @keyframes upload-toast-fade {
+            0% { opacity: 0; transform: translateX(-50%) translateY(6px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            70% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+        }
+    </style>
 </head>
 <body>
 
     <!-- Floating back button -->
     <!--<button class="back-btn" aria-label="Go back" onclick="goBack()">←</button>-->
 
+    <div class="mobile-shell">
+    <div class="upload-toast" id="uploadToast">Recipe Posted!</div>
     <div class="container">
         <div class="appbar" style="justify-content:center; padding:16px 0;">
-            <h1 style="font-size:22px; font-weight:700; color:#c10404;">Add a Recipe</h1>
+            <h1 style="font-size:22px; font-weight:700; color:#c10404; font-family:'Quicksand', 'Nunito', sans-serif;">Add a Recipe</h1>
         </div>
-        <main class="content" style="padding: 16px 16px 90px;">
+        <main class="content upload-page" style="padding: 16px 16px 90px;">
             <!--<h1 style="margin-bottom: 16px;">Add a Recipe</h1>-->
 
 
@@ -116,9 +208,8 @@
             </section>
 
             <!-- Post button -->
-            <section style="text-align:right;">
-                <button type="button"
-                        style="padding:10px 20px; border-radius:20px; border:none; background:#007AFF; color:white; font-weight:600; font-size:16px;">
+            <section style="text-align:center;">
+                <button type="button" class="upload-primary-cta" id="postButton">
                     Post!
                 </button>
             </section>
@@ -130,5 +221,20 @@
 
     <!-- Shared navigation / back-js -->
     <script src="../script.js"></script>
+    <script>
+        (function() {
+            const postBtn = document.getElementById('postButton');
+            const toast = document.getElementById('uploadToast');
+
+            if (postBtn && toast) {
+                postBtn.addEventListener('click', () => {
+                    toast.classList.remove('show');
+                    void toast.offsetWidth;
+                    toast.classList.add('show');
+                });
+            }
+        })();
+    </script>
+    </div>
 </body>
 </html>
