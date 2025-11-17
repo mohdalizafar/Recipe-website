@@ -23,14 +23,25 @@
         font-family: system-ui, sans-serif; 
         margin: 0;
         padding: 0;
+        display: flex;
+        justify-content: center;
       }
 
+      .container {
+        max-width: 480px;
+        width: 100%;
+        background: white;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      /* Back button */
       .back-btn {
-        position: fixed;
-        top: 20px;
-        left: 1070px;
-        width: 50px;
-        height: 50px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         background: white;
         border: none;
@@ -41,8 +52,7 @@
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
-        font-size: 20px;
-        font-weight: bold;
+        font-size: 18px;
         color: #333;
       }
       .back-btn:hover { 
@@ -52,8 +62,8 @@
 
       .page-title {
         text-align: center;
-        margin-top: 90px; 
-        font-size: 24px;
+        margin-top: 50px; 
+        font-size: 22px;
         font-weight: bold;
       }
 
@@ -61,37 +71,51 @@
         text-align: center;
         color: #555;
         font-size: 14px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      /* Rating section adjustments */
+      .rating-section {
+        text-align: center;
+        margin-top: 0;
+        padding: 0 20px;
+      }
+
+      .rating-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-size: 18px;
+      }
+
+      .stars {
+        font-size: 24px;
+        color: gold;
+        margin: 0;
+      }
+
+      .rating-value {
+        font-weight: bold;
       }
 
       .favourite-btn {
-        position: absolute;
-        top: 208px;
-        right: 1150px;
         background: none;
         border: none;
         cursor: pointer;
-        padding: 10px;
-        border-radius: 90px;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 46px;
-        height: 46px;
+        padding: 0;
+        display: inline-flex;
       }
 
       .heart-icon {
-        width: 28px;
-        height: 28px;
-        transition: all 0.3s ease;
+        width: 24px;
+        height: 24px;
       }
 
       .heart-icon path {
         stroke: #e74c3c;
         stroke-width: 2;
         fill: none;
-        transition: all 0.3s ease;
       }
 
       .favourite-btn.active .heart-icon path {
@@ -99,30 +123,15 @@
         stroke: #e74c3c;
       }
 
-      .favourite-btn:hover {
-        transform: scale(1.1);
-        background: rgba(231, 76, 60, 0.1);
-      }
-
-      .favourite-btn:active {
-        transform: scale(0.95);
-      }
-
-      .rating-section {
-        text-align: center;
-        margin-top: 20px;
-      }
-
-      .stars {
-        font-size: 28px;
-        color: gold;
-        margin: 5px 0;
+      .ratings-count {
+        font-size: 14px;
+        color: #666;
+        margin-top: 4px;
       }
 
       .rating-bars {
-        margin: 15px auto;
+        margin: 15px 20px;
         font-size: 14px;
-        max-width: 1024px;
       }
 
       .rating-bars div {
@@ -143,47 +152,49 @@
       .fill {
         background: #ffc107;
         height: 100%;
-        width: 70%;
       }
 
       .tags-wrap {
-        max-width: 1024px;
-        margin: 8px auto 0;
+        margin: 0 20px 20px;
       }
 
       .tags-container {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        justify-content: flex-start;
+        justify-content: center;
       }
 
       .tag {
-        display: inline-block;
-        padding: 6px 12px;
-        border: 2px solid #007aff;
+        padding: 4px 12px;
+        border: 1px solid #007aff;
         border-radius: 20px;
-        background: white;
+        background: #e6f2ff;
         color: #007aff;
         font-size: 14px;
         font-weight: 500;
-        white-space: nowrap;
       }
 
       .comment-box {
         border: 1px solid #ccc;
         border-radius: 12px;
         padding: 12px;
-        margin: 20px auto;
-        max-width: 1024px;
+        margin: 0 20px 20px;
+        background: white;
       }
 
       .comment-toolbar {
         display: flex;
         gap: 10px;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 8px;
         margin-bottom: 8px;
+      }
+
+      .format-btn {
+        background: none;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        color: #666;
       }
 
       .comment-input {
@@ -192,219 +203,402 @@
         outline: none;
         resize: none;
         font-size: 14px;
-        min-height: 60px;
+        min-height: 40px;
+        margin-bottom: 8px;
       }
 
       .comment-stars {
         text-align: center;
+        color: #ccc;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .star {
+        display: inline-block;
+        transition: color 0.2s;
+      }
+
+      .star.selected {
         color: gold;
-        margin-top: 10px;
-        font-size: 24px;
       }
 
       .comment {
+        padding: 12px 20px;
         border-top: 1px solid #eee;
-        padding: 10px 20px;
-        max-width: 1024px;
-        margin: 0 auto;
       }
 
       .comment-header {
         display: flex;
         justify-content: space-between;
         font-size: 14px;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
+      }
+
+      .comment-user {
+        font-weight: bold;
+      }
+
+      .comment-rating {
+        color: gold;
+      }
+
+      .comment-text {
+        margin-bottom: 8px;
+        font-size: 15px;
       }
 
       .comment-actions {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
         font-size: 13px;
-        color: #444;
+        color: #007aff;
       }
 
-      .media-section {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .media-box {
-        width: 90px;
-        height: 90px;
-        background: #eee;
-        display: grid;
-        place-items: center;
-        border-radius: 8px;
-        font-size: 12px;
-        color: #555;
-      }
-
-      .reply-btn {
+      .reply-btn, .like-btn, .dislike-btn {
         background: none;
         border: none;
-        color: #007aff;
-        font-weight: bold;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .media-preview {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .media-item {
+        background: #f0f0f0;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        color: #666;
+      }
+
+      /* Bottom nav  */
+      .bottom-nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 0;
+        height: 60px;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: #666;
+        font-size: 12px;
+        transition: color 0.2s;
+      }
+
+      .nav-item.active {
+        color: #007AFF;
+      }
+
+      .nav-icon {
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+
+      .nav-text {
+        font-weight: 500;
+      }
+
+      @media (min-width: 481px) {
+        .container {
+          border-left: 1px solid #e0e0e0;
+          border-right: 1px solid #e0e0e0;
+          box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
       }
     </style>
   </head>
   <body>
-      <div class="container">
-          <button class="back-btn" onclick="goBack()">←</button>
+    <div class="container">
+      <button class="back-btn" onclick="goBack()">←</button>
 
+      <h1 class="page-title">Tomato Pork Spaghetti</h1>
+      <p class="producer">By Producer</p>
+
+      <div class="rating-section">
+        <div class="rating-header">
+          <span class="rating-value">Rating: 3.4</span>
+          <span class="stars">★★★☆☆</span>
           <button class="favourite-btn" id="favouriteBtn" onclick="toggleFavourite()">
-              <svg class="heart-icon" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
+            <svg class="heart-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.03L12 21.35Z"/>
+            </svg>
           </button>
-
-            <div class="tags-container" id="tags"></div>
-
-          <h1 class="page-title" id="recipeTitle">Recipe Name</h1>
-          <p class="producer">By Producer</p>
-
-          <section class="rating-section">
-              <p>Rating: <strong id="recipeRating">5.0</strong></p>
-              <div class="stars" id="recipeStars">★★★★★</div>
-              <p>1,234 ratings</p>
-          </section>
-
-          <div class="rating-bars">
-              <div>
-                  <span>5 star</span>
-                  <div class="bar"><div class="fill" style="width: 90%"></div></div>
-              </div>
-              <div>
-                  <span>4 star</span>
-                  <div class="bar"><div class="fill" style="width: 68%"></div></div>
-              </div>
-              <div>
-                  <span>3 star</span>
-                  <div class="bar"><div class="fill" style="width: 45%"></div></div>
-              </div>
-              <div>
-                  <span>2 star</span>
-                  <div class="bar"><div class="fill" style="width: 18%"></div></div>
-              </div>
-              <div>
-                  <span>1 star</span>
-                  <div class="bar"><div class="fill" style="width: 7%"></div></div>
-              </div>
-          </div>
-
-          <div class="tags-wrap">
-              <div class="tags-container" id="tagsContainer"></div>
-          </div>
-
-          <div class="comment-box">
-              <div class="comment-toolbar">
-                  <button><b>B</b></button>
-                  <button><i>I</i></button>
-                  <button><u>U</u></button>
-                  <button>🖼️</button>
-                  <button>📎</button>
-              </div>
-              <textarea class="comment-input"
-                        placeholder="Your comment..."></textarea>
-              <div class="comment-stars">☆☆☆☆☆</div>
-          </div>
-
-          <div class="comment">
-              <div class="comment-header">
-                  <span><strong>User Name</strong> • Jan 12, 2025</span>
-                  <span>★★★★★</span>
-              </div>
-              <p>This recipe was amazing! I'll definitely make it again.</p>
-              <div class="comment-actions">
-                  <button class="reply-btn">Reply ↓</button>
-                  👍 10 👎 1
-              </div>
-          </div>
-
-          <div class="comment">
-              <div class="comment-header">
-                  <span><strong>Another User</strong> • Jan 10, 2025</span>
-                  <span>★★★★☆</span>
-              </div>
-              <p>Good recipe but could use more seasoning.</p>
-              <div class="media-section">
-                  <div class="media-box">▶ Video</div>
-                  <div class="media-box">Picture</div>
-                  <div class="media-box">Picture</div>
-              </div>
-              <div class="comment-actions">
-                  <button class="reply-btn">Reply ↓</button>
-                  👍 50 👎 2
-              </div>
-          </div>
-          <nav class="bottom-nav" id="bottomNav"></nav>
+        </div>
+        <div class="ratings-count">1,234 ratings</div>
       </div>
-      <script src="../script.js"></script>
-      <script>
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const recipeKey = urlParams.get('recipe');
+      <div class="rating-bars">
+        <div>5 star <div class="bar"><div class="fill" style="width: 90%;"></div></div></div>
+        <div>4 star <div class="bar"><div class="fill" style="width: 60%;"></div></div></div>
+        <div>3 star <div class="bar"><div class="fill" style="width: 40%;"></div></div></div>
+        <div>2 star <div class="bar"><div class="fill" style="width: 20%;"></div></div></div>
+        <div>1 star <div class="bar"><div class="fill" style="width: 10%;"></div></div></div>
+      </div>
 
-        if (recipeKey) {
-          loadRecipeComments(recipeKey);
-        } else {
-          console.error('No recipe specified in URL');
-          document.getElementById('recipeTitle').textContent = 'Recipe Not Found';
-        }
+      <div class="tags-wrap">
+        <div class="tags-container">
+          <span class="tag">Pasta</span>
+          <span class="tag">Tomato</span>
+          <span class="tag">Main Dish</span>
+        </div>
+      </div>
 
-        async function loadRecipeComments(key) {
-          const filePath = `../recipes/${key}.json`;
-          try {
-            const res = await fetch(filePath);
-            if (!res.ok) {
-              throw new Error(`Failed to fetch recipe: ${res.status}`);
-            }
-            const recipe = await res.json();
+      <div class="comment-box">
+        <div class="comment-toolbar">
+          <button class="format-btn"><b>B</b></button>
+          <button class="format-btn"><i>I</i></button>
+          <button class="format-btn"><u>U</u></button>
+          <button class="format-btn">🖼️</button>
+        </div>
+        <textarea id="commentInput" class="comment-input" placeholder="Your comment..."></textarea>
+        <div class="comment-stars">
+          <span class="star" data-value="1">☆</span>
+          <span class="star" data-value="2">☆</span>
+          <span class="star" data-value="3">☆</span>
+          <span class="star" data-value="4">☆</span>
+          <span class="star" data-value="5">☆</span>
+        </div>
+      </div>
 
-            document.getElementById('recipeTitle').textContent = recipe.title || 'Untitled Recipe';
+      <div id="commentsSection">
+        <div class="comment" data-comment-id="static1">
+          <div class="comment-header">
+            <span class="comment-user">User Name</span> • Jan 12, 2025
+            <span class="comment-rating">★★★★★</span>
+          </div>
+          <p class="comment-text">This recipe was amazing! I'll definitely make it again.</p>
+          <div class="comment-actions">
+            <button class="reply-btn">Reply ↓</button>
+            <button class="like-btn" onclick="handleLike('static1')">👍 <span class="like-count">10</span></button>
+            <button class="dislike-btn" onclick="handleDislike('static1')">👎 <span class="dislike-count">1</span></button>
+          </div>
+        </div>
 
-            const ratingMatch = recipe.rating ? recipe.rating.match(/(\d+\.?\d*)$/) : null;
-            const ratingNum = ratingMatch ? parseFloat(ratingMatch[1]) : 5.0;
-            document.getElementById('recipeRating').textContent = ratingNum.toFixed(1);
+        <div class="comment" data-comment-id="static2">
+          <div class="comment-header">
+            <span class="comment-user">Another User</span> • Jan 10, 2025
+            <span class="comment-rating">★★★☆☆</span>
+          </div>
+          <p class="comment-text">Good recipe but could use more seasoning.</p>
+          <div class="comment-actions">
+            <button class="reply-btn">Reply ↓</button>
+            <button class="like-btn" onclick="handleLike('static2')">👍 <span class="like-count">2</span></button>
+            <button class="dislike-btn" onclick="handleDislike('static2')">👎 <span class="dislike-count">0</span></button>
+          </div>
+          <div class="media-preview">
+            <div class="media-item">▶️ Video</div>
+            <div class="media-item">Picture</div>
+            <div class="media-item">Picture</div>
+          </div>
+        </div>
+      </div>
 
-            const fullStars = Math.floor(ratingNum);
-            const halfStar = ratingNum % 1 >= 0.5 ? '½' : '';
-            const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-            const starsText = '★'.repeat(fullStars) + halfStar + '☆'.repeat(emptyStars);
-            document.getElementById('recipeStars').textContent = starsText;
+      <div class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-text">Home</span>
+        </a>
+        <a href="search.html" class="nav-item">
+          <span class="nav-icon">🔍</span>
+          <span class="nav-text">Search</span>
+        </a>
+        <a href="upload.html" class="nav-item">
+          <span class="nav-icon">➕</span>
+          <span class="nav-text">Upload</span>
+        </a>
+        <a href="favourites.html" class="nav-item">
+          <span class="nav-icon">🩷</span>
+          <span class="nav-text">Favourites</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+          <span class="nav-icon">👤</span>
+          <span class="nav-text">Profile</span>
+        </a>
+      </div>
+    </div>
 
-            const tagsContainer = document.getElementById('tagsContainer');
-            tagsContainer.innerHTML = '';
-            if (recipe.tags && recipe.tags.length > 0) {
-              recipe.tags.forEach(tag => {
-                const tagElement = document.createElement('div');
-                tagElement.className = 'tag';
-                tagElement.textContent = tag;
-                tagsContainer.appendChild(tagElement);
-              });
-            } else {
-              tagsContainer.innerHTML = '<p>No tags available.</p>';
-            }
-
-          } catch (err) {
-            console.error('Error loading recipe for comments:', err);
-            document.getElementById('recipeTitle').textContent = 'Failed to Load Recipe';
-          }
-        }
+    <script>
+      function goBack() {
+        window.history.back();
+      }
 
       function toggleFavourite() {
         const favouriteBtn = document.getElementById('favouriteBtn');
-        const heartIcon = favouriteBtn.querySelector('.heart-icon');
-        
         favouriteBtn.classList.toggle('active');
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const recipeKey = urlParams.get('recipe') || 'pasta';  
+
+      // Load saved comments and likes
+      window.addEventListener('load', async () => {
+        await loadRecipeData();
+        loadSavedComments(recipeKey);
+        loadSavedLikes(recipeKey);
+      });
+
+      async function loadRecipeData() {
+        try {
+          const response = await fetch(`../recipes/${recipeKey}.json`);
+          const data = await response.json();
+          document.querySelector('.page-title').textContent = data.title;
+          const ratingParts = data.rating.split(' ');
+          const stars = ratingParts[0];
+          const num = ratingParts[1];
+          document.querySelector('.stars').textContent = stars + (stars.length < 5 ? '☆'.repeat(5 - stars.length) : '');
+          document.querySelector('.rating-value').textContent = `Rating: ${num}`;
+          // Tags
+          const tagsContainer = document.querySelector('.tags-container');
+          tagsContainer.innerHTML = '';
+          data.tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = 'tag';
+            span.textContent = tag;
+            tagsContainer.appendChild(span);
+          });
+        } catch (error) {
+          console.error('Failed to load recipe data:', error);
+        }
+      }
+
+      // Load saved comments from localStorage
+      function loadSavedComments(key) {
+        const savedComments = JSON.parse(localStorage.getItem(`comments_${key}`)) || [];
+        const commentsSection = document.getElementById('commentsSection');
         
-        if (heartIcon.tagName === 'SPAN') {
-            heartIcon.textContent = favouriteBtn.classList.contains('active') ? '♥' : '♡';
+        savedComments.forEach((comment, index) => {
+          addCommentToDOM(comment.text, comment.stars, comment.date, `dynamic${index}`);
+        });
+      }
+
+      // Add a comment to the DOM
+      function addCommentToDOM(text, stars, date, commentId) {
+        const commentsSection = document.getElementById('commentsSection');
+        const newComment = document.createElement('div');
+        newComment.className = 'comment';
+        newComment.dataset.commentId = commentId;
+        newComment.innerHTML = `
+          <div class="comment-header">
+            <span class="comment-user">Your Name</span> • ${date}
+            <span class="comment-rating">${stars}</span>
+          </div>
+          <p class="comment-text">${text}</p>
+          <div class="comment-actions">
+            <button class="reply-btn">Reply ↓</button>
+            <button class="like-btn" onclick="handleLike('${commentId}')">👍 <span class="like-count">0</span></button>
+            <button class="dislike-btn" onclick="handleDislike('${commentId}')">👎 <span class="dislike-count">0</span></button>
+          </div>
+        `;
+        commentsSection.appendChild(newComment);
+      }
+
+      // Setup clickable stars for rating
+      const stars = document.querySelectorAll('.star');
+      let selectedRating = 0;
+
+      stars.forEach(star => {
+        star.addEventListener('click', function() {
+          selectedRating = parseInt(this.dataset.value);
+          updateStars(selectedRating);
+        });
+      });
+
+      function updateStars(rating) {
+        stars.forEach((star, index) => {
+          if (index < rating) {
+            star.textContent = '★';
+            star.classList.add('selected');
+          } else {
+            star.textContent = '☆';
+            star.classList.remove('selected');
+          }
+        });
+      }
+
+      // Listener for submit 
+      document.getElementById('commentInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          submitComment();
+        }
+      });
+
+      function submitComment() {
+        const commentInput = document.getElementById('commentInput');
+        const text = commentInput.value.trim();
+        const starsText = Array.from(stars).map(star => star.textContent).join('');
+        
+        if (text && selectedRating > 0) {
+          const now = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          const savedComments = JSON.parse(localStorage.getItem(`comments_${recipeKey}`)) || [];
+          const commentId = `dynamic${savedComments.length}`;
+          addCommentToDOM(text, starsText, now, commentId);
+          
+          savedComments.push({ text, stars: starsText, date: now });
+          localStorage.setItem(`comments_${recipeKey}`, JSON.stringify(savedComments));
+          
+          commentInput.value = '';
+          updateStars(0);
+          selectedRating = 0;
+        } else {
+          alert('Please enter a comment and select a rating.');
+        }
+      }
+
+      // Like/dislike
+      function handleLike(commentId) {
+        updateVote(commentId, 'like');
+      }
+
+      function handleDislike(commentId) {
+        updateVote(commentId, 'dislike');
+      }
+
+      function updateVote(commentId, type) {
+        const commentElem = document.querySelector(`[data-comment-id="${commentId}"]`);
+        const countSpan = commentElem.querySelector(`.${type}-count`);
+        let count = parseInt(countSpan.textContent) || 0;
+        count++;
+        countSpan.textContent = count;
+
+        const savedVotes = JSON.parse(localStorage.getItem(`votes_${recipeKey}`)) || {};
+        if (!savedVotes[commentId]) savedVotes[commentId] = { like: 0, dislike: 0 };
+        savedVotes[commentId][type] = count;
+        localStorage.setItem(`votes_${recipeKey}`, JSON.stringify(savedVotes));
+      }
+
+      // Load saved likes/dislikes
+      function loadSavedLikes(key) {
+        const savedVotes = JSON.parse(localStorage.getItem(`votes_${key}`)) || {};
+        for (const commentId in savedVotes) {
+          const commentElem = document.querySelector(`[data-comment-id="${commentId}"]`);
+          if (commentElem) {
+            const likeSpan = commentElem.querySelector('.like-count');
+            const dislikeSpan = commentElem.querySelector('.dislike-count');
+            likeSpan.textContent = savedVotes[commentId].like || 0;
+            dislikeSpan.textContent = savedVotes[commentId].dislike || 0;
           }
         }
-      </script>
+      }
+
+    </script>
   </body>
 </html>
