@@ -22,12 +22,7 @@
       justify-content: center;
       font-size: 12px;
     }
-    .scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-::-webkit-scrollbar {
-    width: 0 !important;
-}
+    
 
     .nav-icon {
       font-size: 22px;
@@ -40,11 +35,19 @@
     .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+::-webkit-scrollbar {
+    width: 0 !important;
+}
+    .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
 
 .scrollbar-hide {
   -ms-overflow-style: none;  
-  scrollbar-width: none;     
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pinch-zoom;
 }
 .nav-item.active .nav-text {
   color: #1a73e8; /* Blue */
@@ -54,6 +57,7 @@
 .nav-item.active .nav-icon {
   color: #1a73e8;
 }
+
 
   </style>
 
@@ -150,7 +154,7 @@
             </div>
           
             <!-- Smoothie Bowl -->
-            <div class="flex flex-col gap-3 pb-3 recipe-card"
+            <div class=" flex flex-col gap-3 pb-3 recipe-card"
                  data-name="smoothie bowl"
                  data-type="breakfast vegan  cold">
               <div
