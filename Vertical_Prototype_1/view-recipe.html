@@ -422,14 +422,13 @@
 /* Comments Button Section */
 .comments-button-section {
     padding: 0 20px 15px;
-    text-align: center;
-    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
 }
 
 .comments-btn {
     background: #f8f9fa;
-    border: 2px solid #007AFF;
-    color: #007AFF;
+    border: 2px solid #333333;
+    color: #333333;
     padding: 12px 24px;
     border-radius: 25px;
     font-size: 16px;
@@ -504,14 +503,6 @@
                 </div>
             </div>
 
-            <!-- Comments Button -->
-            <div class="comments-button-section">
-                <button class="comments-btn" onclick="viewComments()">
-                    <span class="comments-icon">💬</span>
-                    <span class="comments-text">View Comments</span>
-                </button>
-            </div>
-
             <!-- Tags -->
             <div class="tags-container" id="tags"></div>
             
@@ -525,6 +516,14 @@
             <div class="content-steps" id="stepsSection">
                 <h2>Steps</h2>
                 <div class="steps-container" id="stepsContainer"></div>
+            </div>
+
+            <!-- Comments Button -->
+            <div class="comments-button-section">
+                <button class="comments-btn" onclick="viewComments()">
+                    <span class="comments-icon">💬</span>
+                    <span class="comments-text">View Comments</span>
+                </button>
             </div>
 
             <!-- Cook Mode Button -->
