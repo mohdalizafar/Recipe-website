@@ -856,13 +856,13 @@ function applyFilters() {
 
       if (activeFilter === filter) {
         activeFilter = null;
-        categoryPills.forEach(p => p.classList.remove("bg-[#1a73e8]", "text-white"));
+        categoryPills.forEach(p => p.classList.remove("bg-[#1a73e8]", "text-black"));
       } else {
         activeFilter = filter;
   
  
-        categoryPills.forEach(p => p.classList.remove("bg-[#1a73e8]", "text-white"));
-        pill.classList.add("bg-[#1a73e8]", "text-white");
+        categoryPills.forEach(p => p.classList.remove("bg-[#1a73e8]", "text-red"));
+        pill.classList.add("bg-[#1a73e8]", "text-black");
       }
   
       applyFilters();
