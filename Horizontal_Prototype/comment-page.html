@@ -122,7 +122,6 @@
         width: 70%;
       }
 
-      /* TAGS */
       .tags-wrap {
         max-width: 1024px;
         margin: 8px auto 0;
@@ -147,7 +146,6 @@
         white-space: nowrap;
       }
 
-      /* comment input */
       .comment-box {
         border: 1px solid #ccc;
         border-radius: 12px;
@@ -180,7 +178,6 @@
         font-size: 24px;
       }
 
-      /* single comment */
       .comment {
         border-top: 1px solid #eee;
         padding: 10px 20px;
@@ -234,13 +231,13 @@
       <div class="container">
           <button class="back-btn" onclick="goBack()">←</button>
 
-          <h1 class="page-title">Recipe Name</h1>
+          <h1 class="page-title" id="recipeTitle">Recipe Name</h1>
           <p class="producer">By Producer</p>
           <div class="favorite-btn">❤ Add to "My Favorite"</div>
 
           <section class="rating-section">
-              <p>Rating: <strong>5.0</strong></p>
-              <div class="stars">★★★★★</div>
+              <p>Rating: <strong id="recipeRating">5.0</strong></p>
+              <div class="stars" id="recipeStars">★★★★★</div>
               <p>1,234 ratings</p>
           </section>
 
@@ -268,14 +265,7 @@
           </div>
 
           <div class="tags-wrap">
-              <div class="tags-container">
-                  <div class="tag">Vegan</div>
-                  <div class="tag">Quick</div>
-                  <div class="tag">Healthy</div>
-                  <div class="tag">Lunch</div>
-                  <div class="tag">High Protein</div>
-                  <div class="tag">Budget</div>
-              </div>
+              <div class="tags-container" id="tagsContainer"></div>
           </div>
 
           <div class="comment-box">
@@ -318,10 +308,61 @@
                   <button class="reply-btn">Reply ↓</button>
                   👍 50 👎 2
               </div>
-              <!--<nav class="bottom-nav" id="bottomNav"></nav>-->
           </div>
           <nav class="bottom-nav" id="bottomNav"></nav>
       </div>
       <script src="../script.js"></script>
+      <script>
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const recipeKey = urlParams.get('recipe');
+
+        if (recipeKey) {
+          loadRecipeComments(recipeKey);
+        } else {
+          console.error('No recipe specified in URL');
+          document.getElementById('recipeTitle').textContent = 'Recipe Not Found';
+        }
+
+        async function loadRecipeComments(key) {
+          const filePath = `../recipes/${key}.json`;
+          try {
+            const res = await fetch(filePath);
+            if (!res.ok) {
+              throw new Error(`Failed to fetch recipe: ${res.status}`);
+            }
+            const recipe = await res.json();
+
+            document.getElementById('recipeTitle').textContent = recipe.title || 'Untitled Recipe';
+
+            const ratingMatch = recipe.rating ? recipe.rating.match(/(\d+\.?\d*)$/) : null;
+            const ratingNum = ratingMatch ? parseFloat(ratingMatch[1]) : 5.0;
+            document.getElementById('recipeRating').textContent = ratingNum.toFixed(1);
+
+            const fullStars = Math.floor(ratingNum);
+            const halfStar = ratingNum % 1 >= 0.5 ? '½' : '';
+            const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+            const starsText = '★'.repeat(fullStars) + halfStar + '☆'.repeat(emptyStars);
+            document.getElementById('recipeStars').textContent = starsText;
+
+            const tagsContainer = document.getElementById('tagsContainer');
+            tagsContainer.innerHTML = ''; // Clear static tags
+            if (recipe.tags && recipe.tags.length > 0) {
+              recipe.tags.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = 'tag';
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+              });
+            } else {
+              tagsContainer.innerHTML = '<p>No tags available.</p>';
+            }
+
+          } catch (err) {
+            console.error('Error loading recipe for comments:', err);
+            document.getElementById('recipeTitle').textContent = 'Failed to Load Recipe';
+          }
+        }
+      </script>
   </body>
 </html>
