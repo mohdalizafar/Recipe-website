@@ -27,12 +27,38 @@
         }
 
         .cooking-back-btn {
-            background: none;
             border: none;
-            font-size: 28px;
+            padding: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
             cursor: pointer;
-            padding: 8px 15px;
-            color: #3A2F27;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 158, 80, 0.33);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            color: #ffffff;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .cooking-back-btn:hover {
+            background: rgba(255, 158, 80, 0.43);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .cooking-back-btn:active {
+            background: rgba(255, 158, 80, 0.40);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+            transform: scale(0.98);
+        }
+
+        .cooking-back-icon {
+            width: 20px;
+            height: 20px;
         }
 
         .cooking-title-section {
@@ -484,7 +510,16 @@
     <div class="container">
         <!-- Top Bar -->
         <div class="cooking-top-bar">
-            <button class="cooking-back-btn" onclick="goBack()">⬅︎</button>
+            <button class="cooking-back-btn" onclick="goBack()" aria-label="Back">
+                <svg class="cooking-back-icon" viewBox="0 0 24 24">
+                    <path d="M14 6 L8 12 L14 18"
+                          fill="none"
+                          stroke="#ffffff"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round" />
+                </svg>
+            </button>
             <div class="cooking-title-section">
                 <h1 class="cooking-recipe-name">Recipe Name</h1>
                 <div class="cooking-step-indicator">STEP 1 OF 4</div>
