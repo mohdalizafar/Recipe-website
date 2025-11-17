@@ -1,5 +1,6 @@
 <html>
   <head>
+    <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
     <link
       rel="stylesheet"
@@ -27,22 +28,28 @@ body {
 body {
     -ms-overflow-style: none;
 }
-
 .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 100%;
-    max-width: 450px;
-    z-index: 9999;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 64px;
-    background: white;
-    border-top: 1px solid #e5e7eb;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 450px;
+
+  z-index: 9999;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 64px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
 }
+.container-fixed {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 
 .nav-item {
     display: flex;
@@ -93,8 +100,8 @@ body {
 
   <body class="bg-[#f3f4f6] flex justify-center">
     <div
-      class="relative flex h-auto min-h-screen w-full max-w-[450px] flex-col bg-white justify-between group/design-root overflow-x-hidden pb-24"
-      style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'
+      class="relative flex h-auto min-h-screen w-full max-w-[450px] flex-col bg-white justify-between group/design-root overflow-x-hidden pb-[120px] container-fixed"
+      style="position: relative;"
     >
       <div>
         <!-- Header -->
