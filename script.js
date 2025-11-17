@@ -987,7 +987,7 @@ function applyFilters() {
   });
   
   
-
+/*
   categoryPills.forEach(pill => {
     pill.addEventListener("click", () => {
       const filter = pill.dataset.filter.toLowerCase();
@@ -1006,3 +1006,33 @@ function applyFilters() {
       applyFilters();
     });
   });
+  */
+
+  categoryPills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      const filter = pill.dataset.filter.toLowerCase();
+  
+      if (activeFilter === filter) {
+        activeFilter = null;
+  
+        categoryPills.forEach(p => {
+          p.classList.remove("bg-[#1a73e8]", "pill-active");
+          
+        });
+  
+      } else {
+        
+        activeFilter = filter;
+  
+        
+        categoryPills.forEach(p => {
+          p.classList.remove("bg-[#1a73e8]", "pill-active");
+        });
+  
+        pill.classList.add("bg-[#1a73e8]", "pill-active");
+      }
+  
+      applyFilters();
+    });
+  });
+  
