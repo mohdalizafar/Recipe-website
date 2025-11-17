@@ -88,9 +88,84 @@ const recipeKeys = [
     'cod',
 ];
 
+// Convert text to Title Case
+function toTitleCase(str) {
+    if (!str) return '';
+    return str.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+}
+
+// Truncate text with ellipsis if exceeds max length
+function truncateText(text, maxLength = 22) {
+    if (!text) return '';
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength - 1) + '…';
+}
+
+// Global tag style map (tagName → color class)
+const tagStyleMap = {
+    'Breakfast': 'tag-breakfast',
+    'Quick': 'tag-quick',
+    'ProteinRich': 'tag-protein',
+    'Comfort': 'tag-comfort',
+    'Vegetarian': 'tag-vegetarian',
+    'Healthy': 'tag-healthy',
+    'Italian': 'tag-italian',
+    'Creamy': 'tag-creamy',
+    'Hard': 'tag-hard',
+    'Seafood': 'tag-seafood'
+};
+
+// Get tag CSS class from tag name
+function getTagClass(tagName) {
+    return tagStyleMap[tagName] || 'tag-default';
+}
+
+// Render a single tag chip
+function renderTag(tagName) {
+    const tagClass = getTagClass(tagName);
+    return `<span class="recipe-tag-chip ${tagClass}">${tagName}</span>`;
+}
+
+// Recipe metadata mapping
+const recipeMetadata = {
+    'omelette': {
+        rating: '4.8',
+        difficulty: 'Easy',
+        tags: ['Breakfast', 'Quick', 'ProteinRich']
+    },
+    'mushroom_soup': {
+        rating: '4.7',
+        difficulty: 'Easy',
+        tags: ['Comfort', 'Vegetarian', 'Healthy']
+    },
+    'pasta': {
+        rating: '4.9',
+        difficulty: 'Medium',
+        tags: ['Italian', 'Creamy', 'Comfort']
+    },
+    'spaghetti': {
+        rating: '4.6',
+        difficulty: 'Easy',
+        tags: ['Italian', 'Quick', 'Vegetarian']
+    },
+    'steak': {
+        rating: '4.9',
+        difficulty: 'Hard',
+        tags: ['ProteinRich', 'Hard', 'Comfort']
+    },
+    'cod': {
+        rating: '4.7',
+        difficulty: 'Medium',
+        tags: ['Seafood', 'Healthy', 'ProteinRich']
+    }
+};
+
 // Build one recipe card HTML from recipe JSON + slug
 function buildRecipeCard(recipe, slug) {
-    const title = recipe.title || 'Untitled Recipe';
+    // Format title: Title Case, allow emoji support, max 28 chars for emoji-friendly display
+    const rawTitle = recipe.title || 'Untitled Recipe';
+    const titleCaseTitle = toTitleCase(rawTitle);
+    const truncatedTitle = truncateText(titleCaseTitle, 28);
 
     const imageSrc =
         (recipe.slideshowImages && recipe.slideshowImages[0]) ||
@@ -108,10 +183,22 @@ function buildRecipeCard(recipe, slug) {
         return `<li>${name}${unit}</li>`;
     }).join('');
 
-    // Basic meta info (you can expand later)
+    // Basic meta info
     const step0 = recipe.steps && recipe.steps[0];
     const timeText = (step0 && step0.time) ? step0.time : '10 mins';
-    const difficulty = 'Easy'; // could be added to JSON later
+
+    // Get metadata from mapping or use defaults
+    const metadata = recipeMetadata[slug] || {
+        rating: recipe.rating ? recipe.rating.split(' ')[1] || '5.0' : '5.0',
+        difficulty: 'Easy',
+        tags: []
+    };
+    const rating = metadata.rating;
+    const difficulty = metadata.difficulty;
+    const tags = metadata.tags || [];
+
+    // Build tags HTML using unified tag system
+    const tagsHTML = tags.length > 0 ? tags.map(tag => renderTag(tag)).join('') : '';
 
     // Link to recipe page for that recipe
     const href = `view-recipe.html?recipe=${encodeURIComponent(slug)}`;
@@ -119,18 +206,25 @@ function buildRecipeCard(recipe, slug) {
     return `
       <a href="${href}" class="card-link">
         <article class="card">
-          <div class="card-head">
-            <span>${title}</span>
-            <span class="rating">★ 5.0</span>
-          </div>
           <div class="card-img">
-            ${img ? `<img src="${img}" alt="${title}">` : 'No image'}
+            ${img ? `<img src="${img}" alt="${truncatedTitle}" class="card-image">` : 'No image'}
+            <div class="rating-badge">⭐ ${rating}</div>
+          </div>
+          <div class="card-head">
+            <span class="card-title">${truncatedTitle}</span>
+            <div class="card-meta">
+              <span class="card-rating">⭐ ${rating}</span>
+              <span class="card-difficulty">🥄 ${difficulty}</span>
+            </div>
+            ${tagsHTML ? `<div class="card-tags">${tagsHTML}</div>` : ''}
           </div>
           <div class="card-body">
             <ul>
               ${ingredientLines || '<li>No ingredients listed</li>'}
             </ul>
-            <div class="diff">${timeText} • ${difficulty}</div>
+            <div class="card-badges">
+              <span class="mini-badge time-badge">⏱ ${timeText}</span>
+            </div>
           </div>
         </article>
       </a>
@@ -798,11 +892,55 @@ function setupVoiceNarration() {
 }
 
 // ===============================
+// ===============================
+// WELCOME OVERLAY MODAL
+// ===============================
+
+function initWelcomeOverlay() {
+    // Only show on index.html (home page)
+    const currentPage = window.location.pathname.split('/').pop() || window.location.href.split('/').pop();
+    if (currentPage !== 'index.html') {
+        return;
+    }
+
+    const welcomeOverlay = document.getElementById('welcomeOverlay');
+    const welcomeButton = document.getElementById('welcomeButton');
+    
+    if (!welcomeOverlay || !welcomeButton) {
+        return;
+    }
+
+    // Check if user has seen the welcome modal in this session
+    const hasSeenWelcome = sessionStorage.getItem('maccooks_welcome_seen');
+    
+    if (!hasSeenWelcome) {
+        // Show overlay after a short delay for smooth animation
+        setTimeout(() => {
+            welcomeOverlay.classList.add('show');
+        }, 100);
+    }
+
+    // Handle button click to dismiss overlay
+    welcomeButton.addEventListener('click', () => {
+        welcomeOverlay.classList.remove('show');
+        sessionStorage.setItem('maccooks_welcome_seen', 'true');
+    });
+
+    // Optional: Allow clicking outside to dismiss (uncomment if needed)
+    // welcomeOverlay.addEventListener('click', (e) => {
+    //     if (e.target === welcomeOverlay) {
+    //         welcomeOverlay.classList.remove('show');
+    //         sessionStorage.setItem('maccooks_welcome_seen', 'true');
+    //     }
+    // });
+}
+
 // DOMContentLoaded bootstrap
 // ===============================
 document.addEventListener('DOMContentLoaded', function() {
     initNavigation();
     initHomeRecipes();  // will do nothing on non-home pages
+    initWelcomeOverlay(); // Initialize welcome overlay
     
     const currentPage = window.location.pathname.split('/').pop() || window.location.href.split('/').pop();
     if (currentPage.includes('cooking-page')) {

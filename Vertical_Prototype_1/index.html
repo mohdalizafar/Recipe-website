@@ -34,7 +34,7 @@
     <div class="container">
         <!-- Top search bar -->
         <div class="appbar" style="justify-content:center; padding:16px 0;">
-            <h1 style="font-size:22px; font-weight:700; color:#c10404;">MacCooks</h1>
+            <h1 style="font-size:24px; font-weight:900; color:#c10404; letter-spacing:-0.5px;">MacCooks</h1>
         </div>
 
         <!-- Scrollable content area -->
@@ -45,6 +45,15 @@
 
     <!-- Bottom navigation populated by script.js config -->
     <nav id="bottomNav" class="bottom-nav" aria-label="App navigation"></nav>
+
+    <!-- Welcome Overlay Modal -->
+    <div id="welcomeOverlay" class="welcome-overlay">
+        <div class="welcome-card">
+            <h2 class="welcome-title">Welcome to MacCooks! 🍳</h2>
+            <p class="welcome-subtitle">Discover tasty recipes and cook with confidence.</p>
+            <button id="welcomeButton" class="welcome-button">Let's Cook!</button>
+        </div>
+    </div>
 
     <!-- External JS -->
     <script src="../script.js"></script>

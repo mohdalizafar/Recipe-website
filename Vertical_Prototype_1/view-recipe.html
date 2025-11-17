@@ -759,13 +759,46 @@ function startCookMode() {
 
 function createTags(tags) {
     const container = document.getElementById('tags');
+    if (!container) return;
     
-    tags.forEach(tag => {
-        const tagElement = document.createElement('span');
-        tagElement.className = 'tag';
-        tagElement.textContent = tag;
-        container.appendChild(tagElement);
-    });
+    // Get recipe key from URL to use unified tag system
+    const urlParams = new URLSearchParams(window.location.search);
+    const recipeKey = urlParams.get('recipe');
+    
+    // Use tags from recipeMetadata if available, otherwise use tags from recipe data
+    let tagsToDisplay = tags;
+    if (recipeKey && typeof recipeMetadata !== 'undefined' && recipeMetadata[recipeKey] && recipeMetadata[recipeKey].tags) {
+        tagsToDisplay = recipeMetadata[recipeKey].tags;
+    }
+    
+    // Use unified tag system from script.js
+    if (typeof renderTag === 'function') {
+        tagsToDisplay.forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.innerHTML = renderTag(tag);
+            const chip = tagElement.firstElementChild;
+            if (chip) {
+                container.appendChild(chip);
+            }
+        });
+    } else if (typeof getTagClass === 'function') {
+        // Fallback: use getTagClass if available
+        tagsToDisplay.forEach(tag => {
+            const tagElement = document.createElement('span');
+            const tagClass = getTagClass(tag);
+            tagElement.className = 'recipe-tag-chip ' + tagClass;
+            tagElement.textContent = tag;
+            container.appendChild(tagElement);
+        });
+    } else {
+        // Final fallback: use default styling
+        tagsToDisplay.forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.className = 'recipe-tag-chip tag-default';
+            tagElement.textContent = tag;
+            container.appendChild(tagElement);
+        });
+    }
 }
 
 function createList(ingredients) {
