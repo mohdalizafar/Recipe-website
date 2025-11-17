@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cooking Mode</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <style>
         /* ===== COOKING PAGE SPECIFIC STYLES ===== */
         
@@ -12,12 +12,14 @@
         .cooking-top-bar {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 450px;
             background: white;
             border-bottom: 1px solid #e0e0e0;
             padding: 15px 20px;
-            z-index: 1000;
+            z-index: 2000;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -53,7 +55,7 @@
         /* Main Content Container */
         .cooking-content-wrapper {
             margin-top: 100px;
-            padding-bottom: 200px;
+            padding-bottom: 220px;
         }
 
         /* Media Section */
@@ -226,12 +228,14 @@
         .cooking-control-bar {
             position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 450px;
             background: white;
             border-top: 1px solid #e0e0e0;
             padding: 15px 20px;
-            z-index: 1000;
+            z-index: 2000;
             display: flex;
             flex-direction: column;
             gap: 12px;

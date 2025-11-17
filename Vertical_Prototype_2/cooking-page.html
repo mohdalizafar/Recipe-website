@@ -10,15 +10,16 @@
         
         /* Top Bar */
         .cooking-top-bar {
-            position: sticky;
+            position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
+            max-width: 450px;
             background: #FAF5EF;
             border-bottom: 1px solid #E0C9A6;
             padding: 15px 20px;
-            z-index: 1000;
+            z-index: 2000;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -55,7 +56,7 @@
         /* Main Content Container */
         .cooking-content-wrapper {
             margin-top: 100px;
-            padding-bottom: 200px;
+            padding-bottom: 220px;
             max-width: 100%;
             overflow-x: hidden;
         }
@@ -197,15 +198,16 @@
 
         /* Bottom Control Bar */
         .cooking-control-bar {
-            position: sticky;
+            position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
+            max-width: 450px;
             background: #FAF5EF;
             border-top: 1px solid #E0C9A6;
             padding: 15px 20px;
-            z-index: 1000;
+            z-index: 2000;
             display: flex;
             flex-direction: column;
             gap: 12px;
