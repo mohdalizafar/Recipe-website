@@ -17,42 +17,58 @@
     { "ingredient": "Bacon / Ham", "unit": "as needed" },
     { "ingredient": "Bell Peppers", "unit": "as needed" }
   ],
-
   "steps": [
     {
-      "text": "Beat the eggs with salt and pepper. Heat a non-stick pan with a small amount of oil over low heat, then pour in the beaten eggs.",
+      "instructions": [
+        "Crack eggs into a bowl and season with salt and black pepper.",
+        "Beat until the mixture becomes smooth and slightly frothy.",
+        "Heat a non-stick pan over low heat and add a small amount of oil.",
+        "Pour the beaten eggs into the pan and gently move the pan to spread evenly."
+      ],
       "image": "../images/classic_french_omelette/step1.jpg",
       "time": "2 mins",
       "tips": [
-        "Use low heat to keep the omelette soft and tender.",
-        "Tilt and swirl the pan gently to help the egg cook evenly."
+        "Low heat is essential to maintain a soft, custard-like texture.",
+        "Gently swirl or stir while cooking to avoid over-setting the bottom."
       ]
     },
     {
-      "text": "Dice the bell peppers and ham/bacon. Melt a little butter in a pan and sauté the filling ingredients until fragrant.",
+      "instructions": [
+        "Dice bell peppers and bacon or ham into small, even pieces.",
+        "Add a small amount of butter to a separate pan over medium heat.",
+        "Sauté the filling ingredients until lightly fragrant but not browned."
+      ],
       "image": "../images/classic_french_omelette/step2.jpg",
       "time": "3 mins",
       "tips": [
-        "Do not overcook the filling to keep the vegetables crisp.",
-        "Add mushrooms if you want more flavor."
+        "Avoid overcooking vegetables to preserve texture.",
+        "Optional: add finely diced mushrooms for additional umami."
       ]
     },
     {
-      "text": "When the omelette surface is half-set, add the sautéed filling on one side of the omelette.",
+      "instructions": [
+        "Check if the omelette surface is softly set but still slightly creamy.",
+        "Place the warm filling onto one side of the omelette in a neat line."
+      ],
       "image": "../images/classic_french_omelette/step3.jpg",
       "time": "1 min",
       "tips": [
-        "Do not wait until the omelette is fully cooked, or it will not fold nicely."
+        "Do not wait until the omelette fully sets or folding will crack the surface."
       ]
     },
     {
-      "text": "Fold the omelette gently over the filling. Turn off the heat and let it sit for a few seconds before serving.",
+      "instructions": [
+        "Use a spatula to gently fold the omelette over the filling.",
+        "Turn off heat and allow the omelette to rest for a few seconds.",
+        "Transfer to a plate without flipping to preserve the smooth surface."
+      ],
       "image": "../images/classic_french_omelette/step4.jpg",
       "time": "1 min",
       "tips": [
-        "A true French omelette should remain tender and slightly moist inside.",
-        "Sprinkle black pepper or herbs on top for extra flavor."
+        "A classic French omelette should remain pale yellow and moist inside.",
+        "Sprinkle fresh herbs or black pepper on top before serving if desired."
       ]
     }
-  ]
+  ],
+  "tags": ["Breakfast", "Soft-Texture", "Egg-Based"]
 }
