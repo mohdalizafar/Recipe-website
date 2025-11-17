@@ -33,6 +33,7 @@
         background: white;
         min-height: 100vh;
         position: relative;
+        padding-bottom: 80px;
       }
 
       /* Back button */
@@ -113,8 +114,14 @@
         background: none;
         border: none;
         cursor: pointer;
-        padding: 0;
-        display: inline-flex;
+        padding: 10px;
+        border-radius: 90px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
       }
 
       .heart-icon {
@@ -126,11 +133,61 @@
         stroke: #e74c3c;
         stroke-width: 2;
         fill: none;
+        transition: all 0.3s ease;
       }
 
       .favourite-btn.active .heart-icon path {
         fill: #e74c3c;
         stroke: #e74c3c;
+      }
+
+      .favourite-btn:hover {
+        transform: scale(1.1);
+        background: rgba(231, 76, 60, 0.1);
+      }
+
+      .favourite-btn:active {
+        transform: scale(0.95);
+      }
+
+      .favourite-btn.animate {
+        animation: fav-pop 0.45s ease;
+      }
+
+      @keyframes fav-pop {
+        0% { transform: scale(1); }
+        35% { transform: scale(1.25); }
+        60% { transform: scale(0.92); }
+        100% { transform: scale(1); }
+      }
+
+      .favourite-toast {
+        position: fixed;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1300;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(233, 74, 56, 0.3);
+        color: #E64A3C;
+        font-weight: 600;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .favourite-toast.show {
+        animation: fav-toast 2.2s ease forwards;
+      }
+
+      @keyframes fav-toast {
+        0% { opacity: 0; transform: translateX(-50%) translateY(6px); }
+        15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        70% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        100% { opacity: 0; transform: translateX(-50%) translateY(-6px); }
       }
 
       .ratings-count {
@@ -226,7 +283,14 @@
 
       .star {
         display: inline-block;
-        transition: color 0.2s;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        padding: 2px;
+      }
+
+      .star:hover {
+        transform: scale(1.2);
+        color: gold;
       }
 
       .star.selected {
@@ -273,6 +337,42 @@
         display: flex;
         align-items: center;
         gap: 4px;
+        padding: 4px 8px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        color: #007aff;
+      }
+
+      .reply-btn:hover {
+        background: rgba(0, 122, 255, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .like-btn:hover {
+        background: rgba(0, 122, 255, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .like-btn:active {
+        transform: translateY(0) scale(0.95);
+      }
+
+      .dislike-btn:hover {
+        background: rgba(255, 59, 48, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .dislike-btn:active {
+        transform: translateY(0) scale(0.95);
+      }
+
+      .format-btn:hover {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+      }
+
+      .format-btn:active {
+        transform: scale(0.95);
       }
 
       .media-preview {
@@ -289,8 +389,8 @@
         color: #666;
       }
 
-      /* Bottom nav */
-      .bottom-nav {
+      /* Bottom nav - removed page-specific styles, now inherits from style.css */
+      /* .bottom-nav {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -301,7 +401,7 @@
         justify-content: space-around;
         padding: 8px 0;
         height: 60px;
-      }
+      } */
 
       .nav-item {
         display: flex;
@@ -423,9 +523,9 @@
             <button class="dislike-btn">👎 <span class="dislike-count">0</span></button>
           </div>
           <div class="media-preview">
-            <div class="media-item">▶️ Video</div>
-            <div class="media-item">Picture</div>
-            <div class="media-item">Picture</div>
+            <div class="media-item">Media placeholder 1</div>
+            <div class="media-item">Media placeholder 2</div>
+            <div class="media-item">Media placeholder 3</div>
           </div>
         </div>
       </div>
@@ -454,6 +554,10 @@
       </div>
     </div>
 
+    <div class="favourite-toast" id="favouriteToast" role="status" aria-live="polite">
+      Added to Favourites
+    </div>
+
     <script>
       function goBack() {
         window.history.back();
@@ -461,7 +565,29 @@
 
       function toggleFavourite() {
         const favouriteBtn = document.getElementById('favouriteBtn');
+        const heartIcon = favouriteBtn.querySelector('.heart-icon');
+        
         favouriteBtn.classList.toggle('active');
+        favouriteBtn.classList.add('animate');
+        setTimeout(() => favouriteBtn.classList.remove('animate'), 450);
+        
+        if (heartIcon.tagName === 'SPAN') {
+          heartIcon.textContent = favouriteBtn.classList.contains('active') ? '♥' : '♡';
+        }
+
+        if (favouriteBtn.classList.contains('active')) {
+          showFavouriteToast();
+        }
+      }
+
+      function showFavouriteToast() {
+        const toast = document.getElementById('favouriteToast');
+        if (!toast) return;
+        
+        toast.classList.remove('show');
+        // trigger reflow to restart animation
+        void toast.offsetWidth;
+        toast.classList.add('show');
       }
 
       const urlParams = new URLSearchParams(window.location.search);
