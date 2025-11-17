@@ -24,43 +24,65 @@
   ],
   "steps": [
     {
-      "text": "Slice mushrooms, finely chop the onion, and cut the celery into small pieces.",
+      "instructions": [
+        "Slice mushrooms into even pieces.",
+        "Finely chop the onion.",
+        "Cut celery into small, thin pieces so they soften quickly."
+      ],
       "image": "../images/mushroom_soup/step1.jpg",
       "time": "2 mins",
       "tips": [
-        "Mushrooms shrink significantly, so slice them slightly thicker."
+        "Mushrooms shrink when cooked, so avoid cutting them too thin."
       ]
     },
     {
-      "text": "Melt 20g butter in a pot and sauté mushrooms, onion, and celery until softened and fragrant.",
+      "instructions": [
+        "Add 20g butter to a pot and heat on low-medium.",
+        "Add mushrooms, onion, and celery to the pot.",
+        "Stir continuously until softened and fragrant."
+      ],
       "image": "../images/mushroom_soup/step2.jpg",
       "time": "4 mins",
       "tips": [
-        "Low to medium heat works best to prevent burning the butter."
+        "Avoid high heat to prevent butter from browning too quickly."
       ]
     },
     {
-      "text": "Add 20g butter and 25g flour to form a roux. Stir continuously until lightly golden.",
+      "instructions": [
+        "Add the remaining 20g butter to the pot.",
+        "Sprinkle flour evenly over the mixture.",
+        "Stir continuously to form a smooth roux with no dry flour visible."
+      ],
       "image": "../images/mushroom_soup/step3.jpg",
       "time": "2 mins",
       "tips": [
-        "A smooth roux prevents lumps in the final soup."
+        "A pale golden roux gives a mild flavor suitable for creamy soups."
       ]
     },
     {
-      "text": "Slowly add water and milk while stirring until the mixture becomes smooth. Bring to a gentle simmer.",
+      "instructions": [
+        "Slowly add water and milk while stirring.",
+        "Mix until the texture becomes smooth with no clumps.",
+        "Bring to a gentle simmer while stirring periodically."
+      ],
       "image": "../images/mushroom_soup/step4.jpg",
       "time": "5 mins",
       "tips": [
-        "Add milk gradually to prevent curdling."
+        "Adding milk gradually helps prevent curdling.",
+        "Reduce heat immediately if bubbling becomes too strong."
       ]
     },
     {
-      "text": "Season with salt, white pepper, and black pepper. Continue simmering until the soup thickens.",
+      "instructions": [
+        "Season with salt, white pepper, and black pepper.",
+        "Continue simmering until soup thickens to your preference.",
+        "Taste and adjust seasoning before serving."
+      ],
       "image": "../images/mushroom_soup/step5.jpg",
       "time": "3 mins",
       "tips": [
-        "For a creamier texture, blend part of the soup and stir it back in."
+        "Blend half of the soup and return it to the pot for extra creaminess.",
+        "Top with parsley or croutons if desired."
       ]
     }
   ],
