@@ -10,15 +10,16 @@
         
         /* Top Bar */
         .cooking-top-bar {
-            position: sticky;
+            position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
+            max-width: 450px;
             background: #FAF5EF;
             border-bottom: 1px solid #E0C9A6;
             padding: 15px 20px;
-            z-index: 1000;
+            z-index: 2000;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -26,12 +27,38 @@
         }
 
         .cooking-back-btn {
-            background: none;
             border: none;
-            font-size: 28px;
+            padding: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
             cursor: pointer;
-            padding: 8px 15px;
-            color: #3A2F27;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 158, 80, 0.33);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            color: #ffffff;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .cooking-back-btn:hover {
+            background: rgba(255, 158, 80, 0.43);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .cooking-back-btn:active {
+            background: rgba(255, 158, 80, 0.40);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+            transform: scale(0.98);
+        }
+
+        .cooking-back-icon {
+            width: 20px;
+            height: 20px;
         }
 
         .cooking-title-section {
@@ -55,7 +82,7 @@
         /* Main Content Container */
         .cooking-content-wrapper {
             margin-top: 100px;
-            padding-bottom: 200px;
+            padding-bottom: 220px;
             max-width: 100%;
             overflow-x: hidden;
         }
@@ -126,6 +153,7 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 15px;
+            cursor: pointer;
         }
 
         .tips-header {
@@ -142,6 +170,25 @@
 
         .tips-icon {
             fill: #FFB740;
+            transition: all 0.25s ease-out;
+            cursor: pointer;
+            width: 31px;
+            height: 31px;
+        }
+
+        /* Hover effect for desktop only */
+        @media (hover: hover) and (pointer: fine) {
+            .tips-header:hover .tips-icon {
+                transform: scale(1.06);
+                fill: #FFD700;
+                filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+            }
+        }
+
+        /* Active state (ON) */
+        .tips-icon.active {
+            fill: #FFED4E;
+            filter: drop-shadow(0 0 18px rgba(255, 215, 0, 1));
         }
 
         .cooking-tips-title {
@@ -156,10 +203,54 @@
             transition: transform 0.3s ease;
         }
 
+        /* Expand/Collapse Arrow Indicator */
+        .tips-arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            color: #FF8A00;
+            transition: transform 0.3s ease-out;
+            animation: bounce-hint 2s ease-in-out infinite;
+        }
+
+        .tips-arrow svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Arrow rotates when expanded */
+        .cooking-tips-section.expanded .tips-arrow {
+            transform: rotate(180deg);
+            animation: none;
+        }
+
+        /* Subtle bounce animation to hint interactivity */
+        @keyframes bounce-hint {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(3px);
+            }
+        }
+
         .cooking-tips-content {
-            padding: 20px;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0 20px;
             background: #FFF8E7;
             border-radius: 8px;
+            margin-top: 0;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out, margin-top 0.3s ease-out;
+        }
+
+        .cooking-tips-content.expanded {
+            max-height: 1000px;
+            opacity: 1;
+            padding: 20px;
             margin-top: 15px;
         }
 
@@ -197,15 +288,16 @@
 
         /* Bottom Control Bar */
         .cooking-control-bar {
-            position: sticky;
+            position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
+            max-width: 450px;
             background: #FAF5EF;
             border-top: 1px solid #E0C9A6;
             padding: 15px 20px;
-            z-index: 1000;
+            z-index: 2000;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -482,7 +574,16 @@
     <div class="container">
         <!-- Top Bar -->
         <div class="cooking-top-bar">
-            <button class="cooking-back-btn" onclick="goBack()">⬅︎</button>
+            <button class="cooking-back-btn" onclick="goBack()" aria-label="Back">
+                <svg class="cooking-back-icon" viewBox="0 0 24 24">
+                    <path d="M14 6 L8 12 L14 18"
+                          fill="none"
+                          stroke="#ffffff"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round" />
+                </svg>
+            </button>
             <div class="cooking-title-section">
                 <h1 class="cooking-recipe-name">Recipe Name</h1>
                 <div class="cooking-step-indicator">STEP 1 OF 4</div>
@@ -521,5 +622,70 @@
 
     </div>
     <script src="../script.js"></script>
+    <script>
+        // Tips toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to add arrow indicator to Tips headers
+            function addArrowToTips() {
+                const tipsHeaders = document.querySelectorAll('.cooking-tips-header');
+                tipsHeaders.forEach(header => {
+                    // Check if arrow already exists
+                    if (!header.querySelector('.tips-arrow')) {
+                        const arrow = document.createElement('div');
+                        arrow.className = 'tips-arrow';
+                        arrow.innerHTML = `
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        `;
+                        header.appendChild(arrow);
+                    }
+                });
+            }
+
+            // Initial check for existing Tips sections
+            addArrowToTips();
+
+            // Watch for dynamically added Tips sections
+            const observer = new MutationObserver(function(mutations) {
+                addArrowToTips();
+            });
+
+            const contentArea = document.getElementById('contentArea');
+            if (contentArea) {
+                observer.observe(contentArea, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+
+            // Use event delegation to handle dynamically generated Tips sections
+            document.addEventListener('click', function(e) {
+                const tipsHeader = e.target.closest('.cooking-tips-header');
+                if (tipsHeader) {
+                    const tipsSection = tipsHeader.closest('.cooking-tips-section');
+                    if (tipsSection) {
+                        const tipsContent = tipsSection.querySelector('.cooking-tips-content');
+                        const tipsIcon = tipsSection.querySelector('.tips-icon');
+                        
+                        if (tipsContent && tipsIcon) {
+                            // Toggle expanded state
+                            const isExpanded = tipsContent.classList.contains('expanded');
+                            
+                            if (isExpanded) {
+                                tipsContent.classList.remove('expanded');
+                                tipsIcon.classList.remove('active');
+                                tipsSection.classList.remove('expanded');
+                            } else {
+                                tipsContent.classList.add('expanded');
+                                tipsIcon.classList.add('active');
+                                tipsSection.classList.add('expanded');
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
