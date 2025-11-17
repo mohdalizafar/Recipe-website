@@ -33,6 +33,7 @@
         background: white;
         min-height: 100vh;
         position: relative;
+        padding-bottom: 80px;
       }
 
       /* Back button */
@@ -70,11 +71,55 @@
         stroke: #ffffff;
       }
 
+      .page-title-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 50px;
+        padding: 0 20px;
+        position: relative;
+      }
+
       .page-title {
         text-align: center;
-        margin-top: 50px; 
         font-size: 22px;
         font-weight: bold;
+        margin: 0;
+      }
+
+      /* --- new code --- */
+      .share-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 90px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        position: absolute;
+        right: 60px;
+      }
+
+      .share-btn:hover {
+        transform: scale(1.1);
+        background: rgba(231, 76, 60, 0.1);
+      }
+
+      .share-btn:active {
+        transform: scale(0.95);
+      }
+
+      .share-icon {
+        width: 24px;
+        height: 24px;
+        stroke: #e74c3c;
+        stroke-width: 2;
+        fill: none;
       }
 
       .producer {
@@ -388,8 +433,156 @@
         color: #666;
       }
 
-      /* Bottom nav */
-      .bottom-nav {
+      /* --- new code --- */
+      .media-item.clickable {
+        cursor: pointer;
+        transition: all 0.2s ease;
+        overflow: hidden;
+        position: relative;
+        padding: 0;
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+      }
+
+      .media-item.clickable:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .media-item.clickable img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Filter and Sort Section */
+      .filter-sort-section {
+        padding: 16px 20px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 0;
+      }
+
+      .filter-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .filter-chip {
+        padding: 6px 12px;
+        border-radius: 20px;
+        border: 1px solid #007aff;
+        background: white;
+        color: #007aff;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .filter-chip:hover {
+        background: rgba(0, 122, 255, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .filter-chip.active {
+        background: #007aff;
+        color: white;
+      }
+
+      .sort-dropdown-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .sort-label {
+        font-size: 13px;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .sort-dropdown {
+        padding: 6px 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background: white;
+        font-size: 13px;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .sort-dropdown:hover {
+        border-color: #007aff;
+      }
+
+      .sort-dropdown:focus {
+        outline: none;
+        border-color: #007aff;
+      }
+
+      /* Lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .lightbox-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: #333;
+        transition: all 0.2s ease;
+      }
+
+      .lightbox-close:hover {
+        background: white;
+        transform: scale(1.1);
+      }
+
+      /* Bottom nav - removed page-specific styles, now inherits from style.css */
+      /* .bottom-nav {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -400,7 +593,7 @@
         justify-content: space-around;
         padding: 8px 0;
         height: 60px;
-      }
+      } */
 
       .nav-item {
         display: flex;
@@ -447,7 +640,14 @@
         </svg>
       </button>
 
-      <h1 class="page-title">Tomato Pork Spaghetti</h1>
+      <div class="page-title-container">
+        <h1 class="page-title">Tomato Pork Spaghetti</h1>
+        <button class="share-btn" onclick="shareRecipe()" aria-label="Share recipe">
+          <svg class="share-icon" viewBox="0 0 24 24">
+            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+          </svg>
+        </button>
+      </div>
       <p class="producer">By Producer</p>
 
       <div class="rating-section">
@@ -496,8 +696,30 @@
         </div>
       </div>
 
+      <!-- --- new code --- -->
+      <div class="filter-sort-section">
+        <div class="filter-chips">
+          <button class="filter-chip" data-filter="photos" onclick="toggleFilter(this)">
+            🍳 Photos Only
+          </button>
+          <button class="filter-chip" data-filter="beginner" onclick="toggleFilter(this)">
+            🧑‍🍳 Beginner Reviews
+          </button>
+          <button class="filter-chip" data-filter="chef" onclick="toggleFilter(this)">
+            👨‍🍳 Chef Reviews
+          </button>
+        </div>
+        <div class="sort-dropdown-container">
+          <span class="sort-label">Sort:</span>
+          <select class="sort-dropdown" id="sortDropdown" onchange="sortComments()">
+            <option value="latest">Latest</option>
+            <option value="most-liked">Most Liked</option>
+          </select>
+        </div>
+      </div>
+
       <div id="commentsSection">
-        <div class="comment" data-comment-id="static1">
+        <div class="comment" data-comment-id="static1" data-has-media="false" data-user-type="beginner" data-likes="10" data-date="2025-01-12">
           <div class="comment-header">
             <span class="comment-user">User_name_1</span> • Jan 12, 2025
             <span class="comment-rating">★★★★★</span>
@@ -510,7 +732,7 @@
           </div>
         </div>
 
-        <div class="comment" data-comment-id="static2">
+        <div class="comment" data-comment-id="static2" data-has-media="true" data-user-type="chef" data-likes="2" data-date="2025-01-10">
           <div class="comment-header">
             <span class="comment-user">User_name_2</span> • Jan 10, 2025
             <span class="comment-rating">★★★☆☆</span>
@@ -522,9 +744,15 @@
             <button class="dislike-btn">👎 <span class="dislike-count">0</span></button>
           </div>
           <div class="media-preview">
-            <div class="media-item">Media placeholder 1</div>
-            <div class="media-item">Media placeholder 2</div>
-            <div class="media-item">Media placeholder 3</div>
+            <div class="media-item clickable" onclick="openLightbox('https://via.placeholder.com/300x200?text=Photo+1')">
+              <img src="https://via.placeholder.com/300x200?text=Photo+1" alt="Comment photo 1">
+            </div>
+            <div class="media-item clickable" onclick="openLightbox('https://via.placeholder.com/300x200?text=Photo+2')">
+              <img src="https://via.placeholder.com/300x200?text=Photo+2" alt="Comment photo 2">
+            </div>
+            <div class="media-item clickable" onclick="openLightbox('https://via.placeholder.com/300x200?text=Photo+3')">
+              <img src="https://via.placeholder.com/300x200?text=Photo+3" alt="Comment photo 3">
+            </div>
           </div>
         </div>
       </div>
@@ -555,6 +783,14 @@
 
     <div class="favourite-toast" id="favouriteToast" role="status" aria-live="polite">
       Added to Favourites
+    </div>
+
+    <!-- --- new code --- -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+      <div class="lightbox-content" onclick="event.stopPropagation()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button>
+        <img id="lightboxImage" src="" alt="Full size image">
+      </div>
     </div>
 
     <script>
@@ -588,6 +824,120 @@
         void toast.offsetWidth;
         toast.classList.add('show');
       }
+
+      /* --- new code --- */
+      // Share functionality
+      function shareRecipe() {
+        const recipeTitle = document.querySelector('.page-title').textContent;
+        const url = window.location.href;
+        
+        if (navigator.share) {
+          navigator.share({
+            title: recipeTitle,
+            text: `Check out this recipe: ${recipeTitle}`,
+            url: url
+          }).catch(err => console.log('Error sharing', err));
+        } else {
+          // Fallback: copy to clipboard
+          navigator.clipboard.writeText(url).then(() => {
+            alert('Recipe link copied to clipboard!');
+          }).catch(err => {
+            console.log('Error copying', err);
+            prompt('Copy this link:', url);
+          });
+        }
+      }
+
+      // Lightbox functionality
+      function openLightbox(imageSrc) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        lightboxImage.src = imageSrc;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox(event) {
+        if (event && event.target.id !== 'lightbox' && event.target.className !== 'lightbox-close') {
+          return;
+        }
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Filter functionality
+      let activeFilters = [];
+      function toggleFilter(button) {
+        const filter = button.dataset.filter;
+        button.classList.toggle('active');
+        
+        if (button.classList.contains('active')) {
+          activeFilters.push(filter);
+        } else {
+          activeFilters = activeFilters.filter(f => f !== filter);
+        }
+        
+        applyFilters();
+      }
+
+      function applyFilters() {
+        const comments = document.querySelectorAll('.comment');
+        comments.forEach(comment => {
+          let shouldShow = true;
+          
+          // If any filters are active, check them
+          if (activeFilters.length > 0) {
+            // Check photos filter
+            if (activeFilters.includes('photos') && comment.dataset.hasMedia !== 'true') {
+              shouldShow = false;
+            }
+            
+            // Check user type filters (beginner or chef)
+            const userTypeFilters = activeFilters.filter(f => f === 'beginner' || f === 'chef');
+            if (userTypeFilters.length > 0) {
+              const matchesUserType = userTypeFilters.some(filter => comment.dataset.userType === filter);
+              if (!matchesUserType) {
+                shouldShow = false;
+              }
+            }
+          }
+          
+          comment.style.display = shouldShow ? '' : 'none';
+        });
+      }
+
+      // Sort functionality
+      function sortComments() {
+        const sortValue = document.getElementById('sortDropdown').value;
+        const commentsSection = document.getElementById('commentsSection');
+        const comments = Array.from(commentsSection.querySelectorAll('.comment'));
+        
+        comments.sort((a, b) => {
+          if (sortValue === 'latest') {
+            const dateA = new Date(a.dataset.date);
+            const dateB = new Date(b.dataset.date);
+            return dateB - dateA;
+          } else if (sortValue === 'most-liked') {
+            const likesA = parseInt(a.dataset.likes) || 0;
+            const likesB = parseInt(b.dataset.likes) || 0;
+            return likesB - likesA;
+          }
+          return 0;
+        });
+        
+        comments.forEach(comment => commentsSection.appendChild(comment));
+      }
+
+      // Close lightbox on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const lightbox = document.getElementById('lightbox');
+          if (lightbox.classList.contains('active')) {
+            closeLightbox();
+          }
+        }
+      });
 
       const urlParams = new URLSearchParams(window.location.search);
       const recipeKey = urlParams.get('recipe') || 'pasta';  
