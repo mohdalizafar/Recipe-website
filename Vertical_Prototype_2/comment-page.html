@@ -38,26 +38,36 @@
       /* Back button */
       .back-btn {
         position: absolute;
-        top: 10px;
-        left: 10px;
-        width: 40px;
-        height: 40px;
+        top: 18px;
+        left: 18px;
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
-        background: white;
-        border: none;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        background: rgba(200,200,200,0.5);
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
         cursor: pointer;
         z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.3s ease;
-        font-size: 18px;
-        color: #333;
+        transition: all 0.2s ease;
       }
       .back-btn:hover { 
-        background: #f3f4f6; 
-        transform: scale(1.08); 
+        background: rgba(200,200,200,0.6);
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
+        transform: scale(1.05);
+      }
+      .back-btn:active {
+        background: rgba(180,180,180,0.5);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        transform: scale(0.98);
+      }
+      .comment-back-icon {
+        width: 20px;
+        height: 20px;
+        stroke: #ffffff;
       }
 
       .page-title {
@@ -279,7 +289,7 @@
         color: #666;
       }
 
-      /* Bottom nav  */
+      /* Bottom nav */
       .bottom-nav {
         position: absolute;
         bottom: 0;
@@ -327,7 +337,16 @@
   </head>
   <body>
     <div class="container">
-      <button class="back-btn" onclick="goBack()">←</button>
+      <button class="back-btn" onclick="goBack()" aria-label="Back">
+        <svg class="comment-back-icon" viewBox="0 0 24 24">
+          <path d="M14 6 L8 12 L14 18"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+      </button>
 
       <h1 class="page-title">Tomato Pork Spaghetti</h1>
       <p class="producer">By Producer</p>
@@ -387,8 +406,8 @@
           <p class="comment-text">This recipe was amazing! I'll definitely make it again.</p>
           <div class="comment-actions">
             <button class="reply-btn">Reply ↓</button>
-            <button class="like-btn" onclick="handleLike('static1')">👍 <span class="like-count">10</span></button>
-            <button class="dislike-btn" onclick="handleDislike('static1')">👎 <span class="dislike-count">1</span></button>
+            <button class="like-btn">👍 <span class="like-count">10</span></button>
+            <button class="dislike-btn">👎 <span class="dislike-count">1</span></button>
           </div>
         </div>
 
@@ -400,8 +419,8 @@
           <p class="comment-text">Good recipe but could use more seasoning.</p>
           <div class="comment-actions">
             <button class="reply-btn">Reply ↓</button>
-            <button class="like-btn" onclick="handleLike('static2')">👍 <span class="like-count">2</span></button>
-            <button class="dislike-btn" onclick="handleDislike('static2')">👎 <span class="dislike-count">0</span></button>
+            <button class="like-btn">👍 <span class="like-count">2</span></button>
+            <button class="dislike-btn">👎 <span class="dislike-count">0</span></button>
           </div>
           <div class="media-preview">
             <div class="media-item">▶️ Video</div>
@@ -448,11 +467,9 @@
       const urlParams = new URLSearchParams(window.location.search);
       const recipeKey = urlParams.get('recipe') || 'pasta';  
 
-      // Load saved comments and likes
+      // Load recipe data 
       window.addEventListener('load', async () => {
         await loadRecipeData();
-        loadSavedComments(recipeKey);
-        loadSavedLikes(recipeKey);
       });
 
       async function loadRecipeData() {
@@ -476,126 +493,6 @@
           });
         } catch (error) {
           console.error('Failed to load recipe data:', error);
-        }
-      }
-
-      // Load saved comments from localStorage
-      function loadSavedComments(key) {
-        const savedComments = JSON.parse(localStorage.getItem(`comments_${key}`)) || [];
-        const commentsSection = document.getElementById('commentsSection');
-        
-        savedComments.forEach((comment, index) => {
-          addCommentToDOM(comment.text, comment.stars, comment.date, `dynamic${index}`);
-        });
-      }
-
-      // Add a comment to the DOM
-      function addCommentToDOM(text, stars, date, commentId) {
-        const commentsSection = document.getElementById('commentsSection');
-        const newComment = document.createElement('div');
-        newComment.className = 'comment';
-        newComment.dataset.commentId = commentId;
-        newComment.innerHTML = `
-          <div class="comment-header">
-            <span class="comment-user">Your Name</span> • ${date}
-            <span class="comment-rating">${stars}</span>
-          </div>
-          <p class="comment-text">${text}</p>
-          <div class="comment-actions">
-            <button class="reply-btn">Reply ↓</button>
-            <button class="like-btn" onclick="handleLike('${commentId}')">👍 <span class="like-count">0</span></button>
-            <button class="dislike-btn" onclick="handleDislike('${commentId}')">👎 <span class="dislike-count">0</span></button>
-          </div>
-        `;
-        commentsSection.appendChild(newComment);
-      }
-
-      // Setup clickable stars for rating
-      const stars = document.querySelectorAll('.star');
-      let selectedRating = 0;
-
-      stars.forEach(star => {
-        star.addEventListener('click', function() {
-          selectedRating = parseInt(this.dataset.value);
-          updateStars(selectedRating);
-        });
-      });
-
-      function updateStars(rating) {
-        stars.forEach((star, index) => {
-          if (index < rating) {
-            star.textContent = '★';
-            star.classList.add('selected');
-          } else {
-            star.textContent = '☆';
-            star.classList.remove('selected');
-          }
-        });
-      }
-
-      // Listener for submit 
-      document.getElementById('commentInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-          e.preventDefault();
-          submitComment();
-        }
-      });
-
-      function submitComment() {
-        const commentInput = document.getElementById('commentInput');
-        const text = commentInput.value.trim();
-        const starsText = Array.from(stars).map(star => star.textContent).join('');
-        
-        if (text && selectedRating > 0) {
-          const now = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-          const savedComments = JSON.parse(localStorage.getItem(`comments_${recipeKey}`)) || [];
-          const commentId = `dynamic${savedComments.length}`;
-          addCommentToDOM(text, starsText, now, commentId);
-          
-          savedComments.push({ text, stars: starsText, date: now });
-          localStorage.setItem(`comments_${recipeKey}`, JSON.stringify(savedComments));
-          
-          commentInput.value = '';
-          updateStars(0);
-          selectedRating = 0;
-        } else {
-          alert('Please enter a comment and select a rating.');
-        }
-      }
-
-      // Like/dislike
-      function handleLike(commentId) {
-        updateVote(commentId, 'like');
-      }
-
-      function handleDislike(commentId) {
-        updateVote(commentId, 'dislike');
-      }
-
-      function updateVote(commentId, type) {
-        const commentElem = document.querySelector(`[data-comment-id="${commentId}"]`);
-        const countSpan = commentElem.querySelector(`.${type}-count`);
-        let count = parseInt(countSpan.textContent) || 0;
-        count++;
-        countSpan.textContent = count;
-
-        const savedVotes = JSON.parse(localStorage.getItem(`votes_${recipeKey}`)) || {};
-        if (!savedVotes[commentId]) savedVotes[commentId] = { like: 0, dislike: 0 };
-        savedVotes[commentId][type] = count;
-        localStorage.setItem(`votes_${recipeKey}`, JSON.stringify(savedVotes));
-      }
-
-      // Load saved likes/dislikes
-      function loadSavedLikes(key) {
-        const savedVotes = JSON.parse(localStorage.getItem(`votes_${key}`)) || {};
-        for (const commentId in savedVotes) {
-          const commentElem = document.querySelector(`[data-comment-id="${commentId}"]`);
-          if (commentElem) {
-            const likeSpan = commentElem.querySelector('.like-count');
-            const dislikeSpan = commentElem.querySelector('.dislike-count');
-            likeSpan.textContent = savedVotes[commentId].like || 0;
-            dislikeSpan.textContent = savedVotes[commentId].dislike || 0;
-          }
         }
       }
 
