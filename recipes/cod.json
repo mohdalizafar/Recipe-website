@@ -27,39 +27,92 @@
   ],
   "steps": [
     {
-      "text": "Make the glaze by whisking together white miso, orange juice, mirin, soy sauce, honey, sesame oil, garlic, and ginger until smooth.",
+      "instructions": [
+        "Add miso, orange juice, mirin, soy sauce, honey, sesame oil, garlic, and ginger to a bowl.",
+        "Whisk until fully combined and smooth.",
+        "Set aside half of the glaze for basting later."
+      ],
       "image": "../images/cod/1.jpg",
-      "time": "5 mins"
+      "time": "5 mins",
+      "tips": [
+        "Use room-temperature miso to make mixing easier.",
+        "Freshly squeezed orange juice gives a cleaner flavor."
+      ]
     },
     {
-      "text": "Pat the cod fillets dry and place them in a shallow dish. Spoon half the glaze over the fish, turning to coat. Reserve the remaining glaze for basting.",
+      "instructions": [
+        "Pat fish dry with paper towels.",
+        "Place fillets into a shallow dish.",
+        "Pour half of the glaze over the fish.",
+        "Turn gently to coat evenly."
+      ],
       "image": "../images/cod/2.jpg",
-      "time": "3 mins"
+      "time": "3 mins",
+      "tips": [
+        "Dry fish = better caramelization.",
+        "Avoid over-mixing to prevent damaging delicate fish."
+      ]
     },
     {
-      "text": "Marinate the fish in the refrigerator for 20-30 minutes to let flavors penetrate.",
+      "instructions": [
+        "Cover the dish and place it in the refrigerator.",
+        "Allow the fish to marinate to absorb flavors."
+      ],
       "image": "../images/cod/3.jpg",
-      "time": "30 mins"
+      "time": "30 mins",
+      "tips": [
+        "Do not exceed 60 min or miso may make the fish too salty."
+      ]
     },
     {
-      "text": "Preheat the oven to 425°F (220°C). Line a baking sheet with foil and oil lightly to prevent sticking.",
+      "instructions": [
+        "Preheat oven to 425°F (220°C).",
+        "Line a baking sheet with foil.",
+        "Lightly oil the foil to prevent sticking."
+      ],
       "image": "../images/cod/4.jpg",
-      "time": "10 mins"
+      "time": "10 mins",
+      "tips": [
+        "Use parchment under foil if you want an easier cleanup."
+      ]
     },
     {
-      "text": "Place the fillets skin-side down on the prepared sheet. Roast for 8-10 minutes until the fish is opaque and flakes easily, basting once or twice with the reserved glaze during the last few minutes.",
+      "instructions": [
+        "Place fillets skin-side down on the tray.",
+        "Roast for 8–10 minutes until flaky and opaque.",
+        "Baste once or twice using remaining glaze."
+      ],
       "image": "../images/cod/5.jpg",
-      "time": "10 mins"
+      "time": "10 mins",
+      "tips": [
+        "Do not overcook — sablefish becomes dry quickly.",
+        "Internal temp target: about 125–130°F (52–54°C)."
+      ]
     },
     {
-      "text": "While the fish roasts, fluff the cooked short-grain rice and toss with a drizzle of sesame oil, toasted sesame seeds, and a pinch of salt.",
+      "instructions": [
+        "Fluff warm rice with a fork.",
+        "Add sesame oil, sesame seeds, and a pinch of salt.",
+        "Mix gently to keep grains intact."
+      ],
       "image": "../images/cod/1.jpg",
-      "time": "3 mins"
+      "time": "3 mins",
+      "tips": [
+        "Short-grain rice retains moisture and pairs best with miso flavors."
+      ]
     },
     {
-      "text": "Transfer rice to bowls, top with a glazed cod fillet, scatter sliced scallions and a little citrus zest over the top, and serve immediately.",
+      "instructions": [
+        "Spoon rice into serving bowls.",
+        "Place glazed cod on top.",
+        "Finish with sliced scallions and citrus zest."
+      ],
       "image": "../images/cod/2.jpg",
-      "time": "2 mins"
+      "time": "2 mins",
+      "tips": [
+        "Zest adds balance by cutting through savory sweetness.",
+        "Serve immediately for best texture."
+      ]
     }
   ],
   "tags": ["Seafood", "Dinner"]
