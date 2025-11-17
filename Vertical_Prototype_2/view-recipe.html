@@ -372,6 +372,64 @@
     }
 }
 
+/* Step Instructions List */
+.step-text-content {
+    flex: 1;
+}
+
+.step-instructions {
+    margin: 0;
+    padding-left: 20px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.instruction-item {
+    margin-bottom: 8px;
+    padding-left: 4px;
+}
+
+.instruction-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Number styling for the ordered list */
+.step-instructions {
+    counter-reset: instruction-counter;
+    list-style: none;
+}
+
+.step-instructions .instruction-item {
+    counter-increment: instruction-counter;
+    position: relative;
+}
+
+.step-instructions .instruction-item::before {
+    content: "•";
+    position: absolute;
+    left: -15px;
+    color: #007AFF;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Mobile Responsive for Instructions */
+@media (max-width: 768px) {
+    .step-instructions {
+        padding-left: 18px;
+    }
+    
+    .step-instructions .instruction-item::before {
+        left: -18px;
+        font-size: 13px;
+    }
+    
+    .instruction-item {
+        margin-bottom: 6px;
+        font-size: 14px;
+    }
+}
+
 
 /* ===== COOK MODE BUTTON ===== */
 .content-cookModeButton {
@@ -638,13 +696,29 @@ function createSteps(steps) {
         const stepCard = document.createElement('div');
         stepCard.className = 'step-card';
         
+        // Create the list of instructions
+        let instructionsHTML = '';
+        if (step.instructions && Array.isArray(step.instructions)) {
+            instructionsHTML = `
+                <ul class="step-instructions">
+                    ${step.instructions.map(instruction => 
+                        `<li class="instruction-item">${instruction}</li>`
+                    ).join('')}
+                </ul>
+            `;
+        } else {
+            instructionsHTML = `<p class="step-text">No instructions provided.</p>`;
+        }
+        
         stepCard.innerHTML = `
             <div class="step-header">Step ${index + 1}</div>
             <div class="step-content">
-                <img src="${step.image}" alt="Step ${index + 1}" class="step-image" onerror="this.style.display='none'">
-                <div class="step-text">${step.text}</div>
+                ${step.image ? `<img src="${step.image}" alt="Step ${index + 1}" class="step-image" onerror="this.style.display='none'">` : ''}
+                <div class="step-text-content">
+                    ${instructionsHTML}
+                </div>
             </div>
-            <div class="step-time">${step.time}</div>
+            ${step.time ? `<div class="step-time">${step.time}</div>` : ''}
         `;
         
         container.appendChild(stepCard);
