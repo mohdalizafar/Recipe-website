@@ -898,7 +898,7 @@ function setupVoiceNarration() {
 
 function initWelcomeOverlay() {
     // Only show on index.html (home page)
-    const currentPage = window.location.pathname.split('/').pop() || window.location.href.split('/').pop();
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     if (currentPage !== 'index.html') {
         return;
     }
@@ -942,7 +942,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initHomeRecipes();  // will do nothing on non-home pages
     initWelcomeOverlay(); // Initialize welcome overlay
     
-    const currentPage = window.location.pathname.split('/').pop() || window.location.href.split('/').pop();
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     if (currentPage.includes('cooking-page')) {
         loadRecipe();
     }
@@ -1035,4 +1035,3 @@ function applyFilters() {
       applyFilters();
     });
   });
-  
