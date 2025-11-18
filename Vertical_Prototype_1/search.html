@@ -98,6 +98,125 @@ body {
     width: 0 !important;
 }
 
+/* Category tags wrapper - allows wrapping */
+.category-tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.category-pill:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.category-pill:active {
+  transform: scale(0.95);
+}
+
+.category-pill.active {
+  border: 2px solid currentColor;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+  font-weight: 700;
+}
+
+/* Tag color classes - matching home page */
+.tag-breakfast {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.tag-quick {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.tag-protein {
+  background: #fecaca;
+  color: #991b1b;
+}
+
+.tag-comfort {
+  background: #f3e8ff;
+  color: #6b21a8;
+}
+
+.tag-vegetarian {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.tag-healthy {
+  background: #a7f3d0;
+  color: #064e3b;
+}
+
+.tag-italian {
+  background: #fed7aa;
+  color: #9a3412;
+}
+
+.tag-creamy {
+  background: #fde68a;
+  color: #78350f;
+}
+
+.tag-hard {
+  background: #fca5a5;
+  color: #7f1d1d;
+}
+
+.tag-seafood {
+  background: #bfdbfe;
+  color: #1e3a8a;
+}
+
+.tag-default {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+/* Horizontal scroll styling */
+.horizontal-scroll {
+  display: flex;
+  gap: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.25) transparent;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.25);
+  border-radius: 10px;
+}
+
 
   </style>
 
@@ -108,22 +227,8 @@ body {
     >
       <div class="pb-28">
         <!-- Header -->
-        <div class="flex items-center bg-white p-4 pb-2 justify-between">
-          <h5 class="text-[#111811] text-4xl font-bold flex-1 text-center pl-12" style="color:#c10404;">
-            Search Recipes
-          </h5>
-          
-          <div class="flex w-12 items-center justify-end">
-            <button
-              class="flex cursor-pointer items-center justify-center rounded-lg h-12 bg-transparent text-[#111811] text-base font-bold"
-            >
-              <div data-icon="Plus" data-size="24px">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
-                  <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
-                </svg>
-              </div>
-            </button>
-          </div>
+        <div class="appbar" style="justify-content:center; padding:16px 0;">
+          <h1 style="font-size:21px; font-weight:600; color:#c10404; letter-spacing:-0.5px; text-align:center;">Search Recipes</h1>
         </div>
 
         <!-- Search Bar -->
@@ -131,78 +236,40 @@ body {
           <label class="flex flex-col h-12 w-full max-w-xl mx-auto">
             <div class="flex items-stretch rounded-lg h-full w-full">
               <div
-                class="text-[#618961] flex bg-[#f0f4f0] items-center justify-center pl-4 rounded-l-lg"
+                class="text-[#618961] flex bg-[#f0f4f0] items-center justify-center pl-4 pr-3 rounded-l-lg"
+                style="width: 48px; height: 48px;"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
-                  <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32Z"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
                 </svg>
               </div>
               <input
               id="searchInput"
                 placeholder="Search recipes"
                 class="form-input flex w-full flex-1 rounded-lg bg-[#f0f4f0] px-4 focus:outline-0 placeholder:text-[#618961]"
+                style="font-family: 'Nunito', 'Quicksand', sans-serif;"
               />
             </div>
           </label>
         </div>
 
         <!-- Categories -->
-<div class="flex gap-3 p-3 overflow-x-auto scrollbar-hide">
-  <button
-    class="category-pill flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0 text-sm font-medium"
-    data-filter="vv"
-  >
-    Vegetarian
-  </button>
-  <button
-    class="category-pill flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0 text-sm font-medium"
-    data-filter="g1v"
-  >
-    Vegan
-  </button>
-  <button
-    class="category-pill flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0 text-sm font-medium"
-    data-filter="authors"
-  >
-    Authors
-  </button>
-
-  <button
-    class="category-pill flex h-8 items-center px-4 rounded-sm bg-[#f0f4f0] shrink-0 text-sm font-medium"
-    data-filter="kosher"
-  >
-    Kosher
-  </button>
-
-  <button
-    class="category-pill flex items-center px-4 py-2 rounded-lg bg-[#f0f4f0]  shrink-0 text-sm font-medium"
-
-    data-filter="halal"
-  >
-    Halal
-  </button>
-
-  <button
-    class="category-pill flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0 text-sm font-medium"
-    data-filter="gluten-free"
-  >
-    Gluten-free
-  </button>
-
-  <button
-    class="category-pill flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0 text-sm font-medium"
-    data-filter="nonvegetarian"
-  >
-    Non-Vegetarian
-  </button>
-
-  <button
-    class="category-pill flex h-8 items-center px-4 rounded-lg bg-[#f0f4f0] shrink-0 text-sm font-medium"
-    data-filter="seafood"
-  >
-    Seafood
-  </button>
-</div>
+        <div class="category-tags-wrapper">
+          <button class="category-pill tag-vegetarian" data-filter="vv">Vegetarian</button>
+          <button class="category-pill tag-default" data-filter="g1v">Vegan</button>
+          <button class="category-pill tag-default" data-filter="authors">Authors</button>
+          <button class="category-pill tag-default" data-filter="halal">Halal</button>
+          <button class="category-pill tag-default" data-filter="gluten-free">Gluten-free</button>
+          <button class="category-pill tag-seafood" data-filter="seafood">Seafood</button>
+          <button class="category-pill tag-quick" data-filter="quick">Quick</button>
+          <button class="category-pill tag-healthy" data-filter="healthy">Healthy</button>
+          <button class="category-pill tag-protein" data-filter="highprotein">High Protein</button>
+          <button class="category-pill tag-hard" data-filter="hard">Hard</button>
+          <button class="category-pill tag-breakfast" data-filter="breakfast">Breakfast</button>
+          <button class="category-pill tag-comfort" data-filter="comfort">Comfort</button>
+          <button class="category-pill tag-italian" data-filter="italian">Italian</button>
+        </div>
 
           
 
@@ -211,7 +278,7 @@ body {
           Popular Recipes
         </h2>
         
-        <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+        <div class="horizontal-scroll">
 
             <!-- steak -->
             <a
@@ -287,7 +354,7 @@ body {
 
   
 
-    <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+    <div class="horizontal-scroll">
 
         <!-- Lemon Garlic Spaghetti -->
         <a 
@@ -351,7 +418,7 @@ body {
     </h2>
     
 
-    <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide">
+    <div class="horizontal-scroll">
         <!-- Mushroom Soup -->
         <a
         href="./view-recipe.html?recipe=mushroom_soup"
@@ -425,7 +492,7 @@ body {
     </h2>
     
 
-    <div class="flex gap-4 px-4 overflow-x-auto scrollbar-hide pb-2">
+    <div class="horizontal-scroll pb-2">
       <!-- Marco Pierre -->
       <div
         class="shrink-0 w-40 flex flex-col gap-2 recipe-card"
@@ -486,6 +553,44 @@ body {
       </div>
 
       <script src="../script.js"></script>
+
+      <script>
+        const searchInput = document.getElementById("searchInput");
+        const recipeCards = document.querySelectorAll("[data-name]");
+        const categoryPills = document.querySelectorAll(".category-pill");
+
+        // Tag button click handler
+        categoryPills.forEach(pill => {
+          pill.addEventListener("click", function() {
+            // Toggle active state
+            this.classList.toggle("active");
+          });
+        });
+
+        function filterResults() {
+          const text = searchInput.value.trim().toLowerCase();
+
+          if (text === "") {
+            recipeCards.forEach(card => card.style.display = "flex");
+            return;
+          }
+
+          // Only filter if input contains "steak"
+          if (text.includes("steak")) {
+            recipeCards.forEach(card => {
+              const name = (card.getAttribute("data-name") || "").toLowerCase();
+              card.style.display = name.includes("steak") ? "flex" : "none";
+            });
+          } else {
+            // If input doesn't contain "steak", show all cards
+            recipeCards.forEach(card => card.style.display = "flex");
+          }
+        }
+
+        if (searchInput) {
+          searchInput.addEventListener("input", filterResults);
+        }
+      </script>
 
       <div class="h-5 bg-white"></div>
 
